@@ -8,6 +8,10 @@ public class DbConnector {
     Statement statement;
     private ResultSet resultSet;
 
+    public static void main(String[] args) {
+        getInstance();
+    }
+
 
     private DbConnector() {
         try {
