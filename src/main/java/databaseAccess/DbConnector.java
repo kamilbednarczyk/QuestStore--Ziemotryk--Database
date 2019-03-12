@@ -11,7 +11,7 @@ public class DbConnector {
 
     private DbConnector() {
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/databasename", "username", "password"); // set user and password
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/queststore_database", "queststore_user", "123"); // set user and password
             statement = connection.createStatement();
             System.out.println("Opened Database Succefully");
         } catch (SQLException e) {
