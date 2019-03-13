@@ -11,10 +11,9 @@ public class DbConnector {
     public static void main(String[] args) {
         DbConnector dbConnector = DbConnector.getInstance();
         dbConnector.getConnectionFromConnectionPool();
-        Artifact artifact = new Artifact("Leniartekshead", "Testdescription", 1);
+        Artifact artifact = new Artifact("NewLeniartek", "Newnew", 666);
         ArtifactsDAO artifactsDAO = new ArtifactsDAO();
-        artifactsDAO.add(artifact);
-        System.out.println(artifactsDAO.get(10));
+        artifactsDAO.update(11, artifact);
     }
 
     private DbConnector() {

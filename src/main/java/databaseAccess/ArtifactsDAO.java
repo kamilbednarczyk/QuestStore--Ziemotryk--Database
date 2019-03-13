@@ -4,6 +4,7 @@ import models.Artifact;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -44,11 +45,34 @@ public class ArtifactsDAO implements IDAO<Artifact> {
     }
 
     public List<Artifact> getAll() {
-        return null;
+        List<Artifact> artifactsList = new ArrayList<>();
+
+        String query = "SELECT\n" +
+                       "*\n" +
+                       "FROM artifacts\n";
+
+        ResultSet currentResultSet = dbConnector.getResultSetByQuery(query);
+
+        try {
+            while (currentResultSet.next()) {
+                artifactsList.add(new Artifact(currentResultSet.getString("name"),
+                        currentResultSet.getString("description"),
+                        currentResultSet.getInt("prize")));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return artifactsList;
     }
 
     public void update(int id, Artifact toUpdate) {
-
+        String query = "UPDATE artifacts\n" +
+                "SET name = '" + toUpdate.getName() + "', description = '" + toUpdate.getDescription() + "', prize = " + toUpdate.getPrize() +"\n" +
+                "WHERE artifact_id = " + id;
+        dbConnector.executeUpdate(query);
+        System.out.println("dupa");
     }
 
     public void delete(int id) {
