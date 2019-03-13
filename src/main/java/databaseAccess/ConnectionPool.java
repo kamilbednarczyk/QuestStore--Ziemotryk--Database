@@ -61,16 +61,16 @@ public class ConnectionPool implements IConnectionPool {
 
     @Override
     public String getUrl() {
-        return null;
+        return url;
     }
 
     @Override
     public String getUser() {
-        return null;
+        return user;
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 }

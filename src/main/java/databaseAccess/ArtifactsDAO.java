@@ -13,6 +13,7 @@ public class ArtifactsDAO implements IDAO<Artifact> {
     private DbConnector dbConnector = DbConnector.getInstance();
 
 
+    @Override
     public void add(Artifact toAdd) {
         String query = "INSERT INTO artifacts" +
                 "(name, description, prize)" +
@@ -22,6 +23,7 @@ public class ArtifactsDAO implements IDAO<Artifact> {
         System.out.println("add works");
     }
 
+    @Override
     public Artifact get(int id) {
         Artifact artifact = null;
 
@@ -44,6 +46,7 @@ public class ArtifactsDAO implements IDAO<Artifact> {
         return artifact;
     }
 
+    @Override
     public List<Artifact> getAll() {
         List<Artifact> artifactsList = new ArrayList<>();
 
@@ -67,6 +70,7 @@ public class ArtifactsDAO implements IDAO<Artifact> {
         return artifactsList;
     }
 
+    @Override
     public void update(int id, Artifact toUpdate) {
         String query = "UPDATE artifacts\n" +
                 "SET name = '" + toUpdate.getName() + "', description = '" + toUpdate.getDescription() + "', prize = " + toUpdate.getPrize() +"\n" +
@@ -75,6 +79,7 @@ public class ArtifactsDAO implements IDAO<Artifact> {
         System.out.println("dupa");
     }
 
+    @Override
     public void delete(int id) {
         String query = "DELETE FROM artifacts\n" +
                 "WHERE artifact_id = " + id;

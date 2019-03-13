@@ -6,6 +6,17 @@ public class Level {
     private String levelName;
     private String levelDescription;
 
+    public Level(int level,
+                 int coolcoinsNeeded,
+                 String levelName,
+                 String levelDescription) {
+
+        this.level = level;
+        this.coolcoinsNeeded = coolcoinsNeeded;
+        this.levelName = levelName;
+        this.levelDescription = levelDescription;
+    }
+
     // Getters & Setters
     public int getLevel() {
         return level;

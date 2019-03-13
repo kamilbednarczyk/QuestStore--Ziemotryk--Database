@@ -9,7 +9,26 @@ public class Codecooler {
     private String avatarFile;
     private int coolcoins;
 
+    public Codecooler(String fullName, String email, String avatarFile, int coolcoins) {
+        this.fullName = fullName;
+        this.email = email;
+        this.avatarFile = avatarFile;
+        this.coolcoins = coolcoins;
+    }
 
+    public Codecooler(int accountId,
+                      int classId,
+                      int backpackId,
+                      String fullName,
+                      String email,
+                      String avatarFile,
+                      int coolcoins) {
+
+        this(fullName, email, avatarFile, coolcoins);
+        this.accountId = accountId;
+        this.classId = classId;
+        this.backpackId = backpackId;
+    }
     // Getters & Setters
     public int getAccountId() {
         return accountId;

@@ -5,7 +5,7 @@ public class Backpack {
     private int artifactId;
     private boolean isUsed;
 
-    Backpack(int backpackId, int artifactId, boolean isUsed) {
+    public Backpack(int backpackId, int artifactId, boolean isUsed) {
         this.backpackId = backpackId;
         this.artifactId = artifactId;
         this.isUsed = isUsed;
