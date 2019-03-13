@@ -5,8 +5,15 @@ import models.Artifact;
 import java.util.List;
 
 public class ArtifactsDAO implements IDAO<Artifact> {
-    public void add(Artifact toAdd) {
 
+    DbConnector dbConnector = DbConnector.getInstance();
+
+    public void add(Artifact toAdd) {
+        String query = "INSERT INTO artifacts" +
+                       "(name, description, prize)" +
+                       "VALUES ('" + toAdd.getName() + "', '" + toAdd.getDescription() + "', " + toAdd.getPrize() + ");";
+        dbConnector.executeUpdate(query);
+        System.out.println("add works");
     }
 
     public Artifact get(int id) {
@@ -22,6 +29,10 @@ public class ArtifactsDAO implements IDAO<Artifact> {
     }
 
     public void delete(int id) {
+        String query = "DELETE FROM artifacts\n" +
+                       "WHERE artifact_id = " + String.valueOf(id);
 
+        dbConnector.executeUpdate(query);
+        System.out.println("delete works");
     }
 }

@@ -1,5 +1,7 @@
 package databaseAccess;
 
+import models.Artifact;
+
 import java.sql.*;
 
 public class DbConnector {
@@ -8,6 +10,9 @@ public class DbConnector {
 
     public static void main(String[] args) {
         DbConnector dbConnector = DbConnector.getInstance();
+        dbConnector.getConnectionFromConnectionPool();
+        Artifact artifact = new Artifact("Leniartekshead", "Testdescription", 1);
+        ArtifactsDAO artifactsDAO = new ArtifactsDAO();
     }
 
     private DbConnector() {
@@ -43,7 +48,7 @@ public class DbConnector {
     }
 
 
-    private void executeUpdate(String query) {
+    public void executeUpdate(String query) {
         Connection connection = getConnectionFromConnectionPool();
 
         try {

@@ -6,6 +6,12 @@ public class Artifact {
     private String description;
     private int prize;
 
+    public Artifact(String name, String description, int prize) {
+        this.name = name;
+        this.description = description;
+        this.prize = prize;
+    }
+
     // Getters & Setters
     public int getArtifactId() {
         return artifactId;
