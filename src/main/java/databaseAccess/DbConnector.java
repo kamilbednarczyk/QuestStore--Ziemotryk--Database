@@ -13,6 +13,8 @@ public class DbConnector {
         dbConnector.getConnectionFromConnectionPool();
         Artifact artifact = new Artifact("Leniartekshead", "Testdescription", 1);
         ArtifactsDAO artifactsDAO = new ArtifactsDAO();
+        artifactsDAO.add(artifact);
+        System.out.println(artifactsDAO.get(10));
     }
 
     private DbConnector() {
@@ -29,14 +31,13 @@ public class DbConnector {
     }
 
 
-    public ResultSet getCurrentResultSetByQuery(String query) {
+    public ResultSet getResultSetByQuery(String query) {
         Connection connection = getConnectionFromConnectionPool();
         ResultSet resultSet = null;
 
         try {
             Statement statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
-            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
