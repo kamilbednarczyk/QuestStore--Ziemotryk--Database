@@ -4,15 +4,18 @@ import java.sql.*;
 
 public class DbConnector {
     private static DbConnector instance = new DbConnector();
-    Connection connection;
-    Statement statement;
-    private ResultSet resultSet;
+    private ConnectionPool connectionPool;
 
     public static void main(String[] args) {
         DbConnector dbConnector = DbConnector.getInstance();
     }
 
     private DbConnector() {
+        try {
+            this.connectionPool = ConnectionPool.create("jdbc:postgresql://localhost:5432/queststore_database", "queststore_user", "123");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -21,48 +24,44 @@ public class DbConnector {
     }
 
 
-    public ResultSet getQurrentResultSet() {
+    public ResultSet getCurrentResultSetByQuery(String query) {
+        Connection connection = getConnectionFromConnectionPool();
+        ResultSet resultSet = null;
+
+        try {
+            Statement statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        releaseUsedConnection(connection);
+
         return resultSet;
+
     }
+
 
     private void executeUpdate(String query) {
-        establishConnection();
+        Connection connection = getConnectionFromConnectionPool();
+
         try {
+            Statement statement = connection.createStatement();
             statement.executeUpdate(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        closeConnection();
-    }
-
-    private void setCurrentResultSetByQuery(String query) {
-        establishConnection();
-        try {
-            resultSet = statement.executeQuery(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        closeConnection();
-    }
-
-
-    private void establishConnection() {
-        try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/queststore_database", "queststore_user", "123"); // set user and password
-            statement = connection.createStatement();
-            System.out.println("Opened Database Succefully");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void closeConnection() {
-        try {
-            connection.close();
             statement.close();
-            System.out.println("Closed Database Succefully");
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        releaseUsedConnection(connection);
+    }
+
+    private Connection getConnectionFromConnectionPool() {
+        return connectionPool.getConnection();
+    }
+
+    private void releaseUsedConnection(Connection connection) {
+        connectionPool.releaseConnection(connection);
     }
 }
