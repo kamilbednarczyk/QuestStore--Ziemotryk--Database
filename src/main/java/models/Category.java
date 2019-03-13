@@ -2,7 +2,16 @@ package models;
 
 public class Category {
     private int categoryId;
-    private int categoryName;
+    private String categoryName;
+
+    Category(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    Category(int categoryId, String categoryName) {
+        this(categoryName);
+        this.categoryId = categoryId;
+    }
 
     // Getters & Setters
     public int getCategoryId() {
@@ -13,11 +22,11 @@ public class Category {
         this.categoryId = categoryId;
     }
 
-    public int getCategoryName() {
+    public String getCategoryName() {
         return categoryName;
     }
 
-    public void setCategoryName(int categoryName) {
+    public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }
 }

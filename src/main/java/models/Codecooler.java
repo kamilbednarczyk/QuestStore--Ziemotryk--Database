@@ -9,6 +9,7 @@ public class Codecooler {
     private String avatarFile;
     private int coolcoins;
 
+
     // Getters & Setters
     public int getAccountId() {
         return accountId;

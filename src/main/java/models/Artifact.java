@@ -12,6 +12,11 @@ public class Artifact {
         this.prize = prize;
     }
 
+    public Artifact(int artifactId, String name, String description, int prize) {
+        this(name, description, prize);
+        this.artifactId = artifactId;
+    }
+
     // Getters & Setters
     public int getArtifactId() {
         return artifactId;

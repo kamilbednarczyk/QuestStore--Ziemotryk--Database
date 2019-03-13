@@ -4,6 +4,15 @@ public class Class {
     private int primaryKey;
     private String className;
 
+    public Class(String className) {
+        this.className = className;
+    }
+
+    public Class(int primaryKey, String className) {
+        this(className);
+        this.primaryKey = primaryKey;
+    }
+
     // Getters & Setters
     public int getPrimaryKey() {
         return primaryKey;
