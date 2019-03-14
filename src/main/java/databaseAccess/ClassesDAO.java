@@ -1,31 +1,79 @@
 package databaseAccess;
 
+import models.Class;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClassesDAO implements IDAO<Class> {
 
+    DbConnector dbConnector = DbConnector.getInstance();
+
     @Override
     public void add(Class toAdd) {
-
+        dbConnector.executeUpdate(
+                "INSERT INTO classes(class_name)\n"
+                        + "VALUES ('" + toAdd.getClassName() + "');"
+        );
     }
 
     @Override
     public Class get(int id) {
-        return null;
+        ResultSet resultSet = dbConnector.getResultSetByQuery(
+                "SELECT * FROM categories WHERE category_id="+id
+        );
+        Class questStoreClass = null;
+
+        try {
+            resultSet.next();
+            questStoreClass = new Class(
+                    resultSet.getInt("class_id"),
+                    resultSet.getString("class_name")
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return questStoreClass;
     }
 
     @Override
     public List<Class> getAll() {
-        return null;
+        List<Class> classes = new ArrayList<>();
+        ResultSet resultSet = dbConnector.getResultSetByQuery(
+                "SELECT * FROM classes"
+        );
+
+        try {
+            while(resultSet.next()) {
+                classes.add(
+                        new Class(
+                                resultSet.getInt("class_id"),
+                                resultSet.getString("class_name")
+                        )
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return classes;
     }
 
     @Override
     public void update(int id, Class toUpdate) {
-
+        dbConnector.executeUpdate(
+                "UPDATE classes\n"
+                        + "SET class_name=" + toUpdate.getClassName() + "\n"
+                        + "WHERE class_id=" + id
+        );
     }
 
     @Override
     public void delete(int id) {
-
+        dbConnector.executeUpdate(
+                "DELETE FROM classes WHERE class_id="+id
+        );
     }
 }

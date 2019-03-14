@@ -1,25 +1,25 @@
 package models;
 
 public class Class {
-    private int primaryKey;
+    private int classId;
     private String className;
 
     public Class(String className) {
         this.className = className;
     }
 
-    public Class(int primaryKey, String className) {
+    public Class(int classId, String className) {
         this(className);
-        this.primaryKey = primaryKey;
+        this.classId = classId;
     }
 
     // Getters & Setters
-    public int getPrimaryKey() {
-        return primaryKey;
+    public int getClassId() {
+        return classId;
     }
 
-    public void setPrimaryKey(int primaryKey) {
-        this.primaryKey = primaryKey;
+    public void setClassId(int classId) {
+        this.classId = classId;
     }
 
     public String getClassName() {
