@@ -7,6 +7,18 @@ public class Quest {
     private String description;
     private int coolcoinPrize;
 
+    public Quest(int categoryId, String name, String description, int coolcoinPrize) {
+        this.categoryId = categoryId;
+        this.name = name;
+        this.description = description;
+        this.coolcoinPrize = coolcoinPrize;
+    }
+
+    public Quest(int questId, int categoryId, String name, String description, int coolcoinPrize) {
+        this(categoryId, name, description, coolcoinPrize);
+        this.questId = questId;
+    }
+
     // Getters & Setters
     public int getQuestId() {
         return questId;
