@@ -1,9 +1,6 @@
 package databaseAccess;
 
-import models.Artifact;
-import models.Backpack;
-import models.Class;
-import models.Codecooler;
+import models.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -106,5 +103,18 @@ public class CodecoolersDAO implements IDAO<Codecooler> {
                 false
         );
         new BackpacksDAO().add(backpack);
+    }
+
+    public void addFinishedQuestReward(Codecooler codecooler, Quest quest) {
+        int codecoolerId = codecooler.getAccountId();
+        int questReward = quest.getCoolcoinPrize();
+        int currentCodecoolerCoolcoins = get(codecoolerId).getCoolcoins();
+        int newCodecoolerCoolcoinsValue = questReward + currentCodecoolerCoolcoins;
+
+        dbConnector.executeUpdate(
+                "UPDATE codecoolers\n"
+                    + "SET coolcoins=" + newCodecoolerCoolcoinsValue + "\n"
+                    + "WHERE account_id=" + codecoolerId
+        );
     }
 }
