@@ -1,7 +1,7 @@
 package databaseAccess;
 
-import models.Artifact;
 import models.Backpack;
+import models.Codecooler;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -93,5 +93,21 @@ public class BackpacksDAO implements IDAO<Backpack> {
                     + " AND is_used=" + Boolean.toString(false).toUpperCase()
                     + " LIMIT 1"
         );
+    }
+
+    public List<Backpack> getCodecoolersArtifactsFromBackpack(Codecooler codecooler) {
+        List<Backpack> artifactsInBackpack = getAll();
+
+        Backpack currentArtficatInBackpack;
+        int codecoolerBackpackId = codecooler.getBackpackId();
+
+        for(int i = 0; i < artifactsInBackpack.size(); i++) {
+            currentArtficatInBackpack = artifactsInBackpack.get(i);
+            if(currentArtficatInBackpack.getBackpackId() != codecoolerBackpackId) {
+                artifactsInBackpack.remove(i);
+            }
+        }
+
+        return artifactsInBackpack;
     }
 }
