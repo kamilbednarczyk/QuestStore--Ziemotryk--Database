@@ -1,5 +1,6 @@
 package databaseAccess;
 
+import models.Artifact;
 import models.Backpack;
 
 import java.sql.ResultSet;
@@ -80,6 +81,17 @@ public class BackpacksDAO implements IDAO<Backpack> {
     public void delete(int id) {
         dbConnector.executeUpdate(
                 "DELETE FROM backpacks WHERE backpack_id=" + id
+        );
+    }
+
+    public void switchArtifactCurrentUsageStatus(int artifactId, int backpackId) {
+        dbConnector.executeUpdate(
+                "UPDATE backpacks\n"
+                    + "SET is_used=" + Boolean.toString(true).toUpperCase()
+                    + "WHERE artifact_id=" + artifactId
+                    + " AND backpack_id=" + backpackId
+                    + " AND is_used=" + Boolean.toString(false).toUpperCase()
+                    + " LIMIT 1"
         );
     }
 }

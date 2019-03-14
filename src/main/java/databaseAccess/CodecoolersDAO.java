@@ -1,5 +1,7 @@
 package databaseAccess;
 
+import models.Artifact;
+import models.Backpack;
 import models.Class;
 import models.Codecooler;
 
@@ -95,5 +97,14 @@ public class CodecoolersDAO implements IDAO<Codecooler> {
         dbConnector.executeUpdate(
                 "DELETE FROM codecoolers WHERE account_id="+id
         );
+    }
+
+    public void addArtifactToCodecoolerBackpack(int codecoolerId, Artifact artifact) {
+        Backpack backpack = new Backpack(
+                get(codecoolerId).getBackpackId(),
+                artifact.getArtifactId(),
+                false
+        );
+        new BackpacksDAO().add(backpack);
     }
 }

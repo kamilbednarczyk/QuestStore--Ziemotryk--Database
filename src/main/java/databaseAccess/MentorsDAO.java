@@ -1,5 +1,6 @@
 package databaseAccess;
 
+import models.Artifact;
 import models.Codecooler;
 import models.Mentor;
 
@@ -110,5 +111,12 @@ public class MentorsDAO implements IDAO<Mentor> {
         }
 
         return codecoolersFromClass;
+    }
+
+    public void switchCodecoolerArtifactUsedStatus(Artifact artifact, Codecooler codecooler) {
+        new BackpacksDAO().switchArtifactCurrentUsageStatus(
+                artifact.getArtifactId(),
+                codecooler.getBackpackId()
+        );
     }
 }
