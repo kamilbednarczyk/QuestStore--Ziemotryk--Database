@@ -9,7 +9,7 @@ import java.util.List;
 
 public class MentorsDAO implements IDAO<Mentor> {
 
-    DbConnector dbConnector =  DbConnector.getInstance();
+    private DbConnector dbConnector =  DbConnector.getInstance();
 
     @Override
     public void add(Mentor toAdd) {
