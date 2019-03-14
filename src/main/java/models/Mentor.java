@@ -8,6 +8,15 @@ public class Mentor {
     private String about;
     private String avatarFile;
 
+    public Mentor(int accountId, String fullName, String email, int classId, String about, String avatarFile) {
+        this.accountId = accountId;
+        this.fullName = fullName;
+        this.email = email;
+        this.classId = classId;
+        this.about = about;
+        this.avatarFile = avatarFile;
+    }
+
     // Getters & Setters
     public int getAccountId() {
         return accountId;

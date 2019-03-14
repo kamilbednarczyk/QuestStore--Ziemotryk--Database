@@ -6,6 +6,8 @@ import java.util.List;
 
 public class QuestsDAO implements IDAO<Quest> {
 
+    DbConnector dbConnector =  DbConnector.getInstance();
+
     @Override
     public void add(Quest toAdd) {
 
