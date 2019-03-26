@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit level</title>
+    <link rel="stylesheet" href="../../CSS/flexboxStyle.css">
+    <link rel="stylesheet" href="../../CSS/IndexPageStyle.css">
+    <link rel="stylesheet" href="../../CSS/Admin/editLevel.css">
+</head>
+<body>
+
+<nav role='navigation'>
+    <div id="menuToggle">
+
+        <input type="checkbox"/>
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <ul id="menu">
+            <p id="creepyGuyName">CreepyGuy</p>
+            <a href="indexPage.html">
+                <li>Home</li>
+            </a>
+            <a href="mentorsPage.html">
+                <li>Mentors</li>
+            </a>
+            <a href="classesPage.html">
+                <li>Classes</li>
+            </a>
+            <a href="pilarOfExperiencePage.html">
+                <li>Pilar of experience</li>
+            </a><br>
+            <a id="logoutButton" href="../loginPage.html">
+                <li>Log out</li>
+            </a>
+        </ul>
+    </div>
+</nav>
+
+<div id="pageInfo">
+    <a href="indexPage.html"><img id="logoImage" src="../../IMAGES/logoCodecool.jpg" alt="logo" width="70" height="70"></a>
+</div>
+
+<div class="container">
+    <ul class="item">
+        <li class="level">
+            <span style="font-size: 35px" style="font-weight: normal">Lvl:</span><br>
+            <input class="input" type="number" placeholder="Level" value="1"/>
+        </li>
+        <p class="heading">Coolcoin gap:</p>
+        <li class="coolcoinGap">
+            <input class="input" type="number" placeholder="Coolcoin gap" value="0"/>
+        </li>
+        <p class="heading">Level title:</p>
+        <li class="levelTitle">
+            <input class="input" type="text" placeholder="Level title" value="Plebsy mocne"/>
+        </li>
+        <li class="editButtonsImage">
+            <a href="#"><img class="deleteButton" src="../../IMAGES/deleteButton.png" alt="delete"></a>
+            <a href="#"><img class="cancelButton" src="../../IMAGES/cancelButton.png" alt="cancel"></a>
+            <a href="#"><img class="confirmButton" src="../../IMAGES/tickButton.png" alt="confirm"></a>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+.avatar {
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+    box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.3), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.avatarImage {
+    text-align: center;
+}
+
+.fullName {
+    text-align: center;
+}
+
+.editButton {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    border-radius: 50%;
+
+}
+
+.editButtonImage {
+    text-align: center;
+
+}
+
+ul {
+    list-style-type: none;
+}
+
+.container {
+    padding: 0;
+    margin: 10px;
+    list-style: none;
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-flex-flow: row wrap;
+    justify-content: center;
+    align-content: stretch;
+}
+
+.item {
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 20px 0 rgba(230, 75, 230, 0.3), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    padding: 15px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+
+    line-height: 35px;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+}

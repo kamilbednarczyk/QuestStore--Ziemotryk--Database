@@ -1,0 +1,42 @@
+.avatar {
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+    box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.3), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.avatarImage, .fullName {
+    text-align: center;
+}
+
+.deleteButton, .cancelButton, .confirmButton, .editButton{
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    border-radius: 50%;
+}
+
+.editButtonsImage {
+    text-align: center;
+    margin-top: 10px;
+    letter-spacing: 30px;
+
+}
+
+ul {
+    list-style-type: none;
+}
+
+body {
+    background: url("../../IMAGES/backgroundGradient.png") no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: "Avenir Next", "Avenir", sans-serif;
+
+    overflow-x: hidden; /* needed because hiding the menu on the right side is not perfect,  */
+}
+
