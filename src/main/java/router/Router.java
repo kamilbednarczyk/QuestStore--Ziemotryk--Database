@@ -2,6 +2,7 @@ package router;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import controllers.LoginController;
 import sessionData.SessionHandler;
 import sessionData.CookieHandler;
 import views.ResponseCreator;
@@ -30,9 +31,8 @@ public class Router implements HttpHandler {
         String method = httpExchange.getRequestMethod();
         String response = "";
         if(!cookie.isPresent() && method.equals("GET")) {
-            ResponseCreator responseCreator = new ResponseCreator();
-            response = responseCreator.renderLoginPage();
-            System.out.println(response);
+            LoginController loginController = new LoginController();
+            response = loginController.getLoginPage();
         }
         else if(!cookie.isPresent() && method.equals("POST")) {
             // check inputs
