@@ -3,6 +3,7 @@ package router;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import controllers.LoginController;
+import databaseAccess.AccountsDAO;
 import models.Account;
 import sessionData.SessionHandler;
 import sessionData.CookieHandler;
@@ -21,10 +22,15 @@ public class Router implements HttpHandler {
     private CookieHandler cookieHandler;
     private LoginController loginController;
 
+
     public Router() {
         this.sessionHandler = new SessionHandler();
         this.cookieHandler = new CookieHandler();
         this.loginController = new LoginController();
+        AccountsDAO accountsDAO = new AccountsDAO();
+        Account account = new Account("patryk", "mandrak", 3);
+        accountsDAO.add(account);
+
     }
 
     @Override
@@ -46,12 +52,13 @@ public class Router implements HttpHandler {
             // validate inputs && send response
             Account account = loginController.logIn(loginDataMap);
 
-            if(account == null) {
+            if(account == null || loginDataMap.isEmpty()) {
                 System.out.println("null account");
                 response = loginController.getLoginPage();
             } else {
                 sessionHandler.addSession(account, cookie, httpExchange);
                 response = "sss";
+                System.out.println(sessionHandler.getActiveSessionList());
             }
 
         }
@@ -78,11 +85,18 @@ public class Router implements HttpHandler {
         BufferedReader br = new BufferedReader(isr);
         String formData = br.readLine();
         String[] pairs = formData.split("&");
-        for(String pair : pairs){
-            String[] keyValue = pair.split("=");
-            String value = new URLDecoder().decode(keyValue[1], "UTF-8");
-            map.put(keyValue[0], value);
+        System.out.println(formData);
+        System.out.println(formData.length());
+        if(formData.length() > 16) {
+            for(String pair : pairs){
+                String[] keyValue = pair.split("=");
+                System.out.println("dupa");
+                System.out.println(keyValue[1]);
+                String value = new URLDecoder().decode(keyValue[1], "UTF-8");
+                map.put(keyValue[0], value);
+            }
         }
         return map;
     }
+
 }

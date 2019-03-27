@@ -18,6 +18,10 @@ public class SessionHandler {
         activeSessionList = new HashMap<>();
     }
 
+    public Map<String, String[]> getActiveSessionList() {
+        return activeSessionList;
+    }
+
     public void addSession(Account account, Optional<HttpCookie> cookie, HttpExchange httpExchange) {
         String randomSessionId = getRandomSessionId();
         String accountId = String.valueOf(account.getAccountId());

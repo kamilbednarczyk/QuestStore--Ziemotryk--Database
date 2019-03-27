@@ -16,9 +16,9 @@ public class AccountsDAO implements IDAO<Account> {
         dbConnector.executeUpdate(
                 "INSERT INTO accounts\n"
                     + "(login, password, permission)\n"
-                    + "VALUES(login='" + toAdd.getLogin() + "'\n"
-                    + "password='" + toAdd.getPassword() + "'\n"
-                    + "permission=" + toAdd.getPermission() + "\n"
+                    + "VALUES('" + toAdd.getLogin() + "',\n"
+                    + "'" + toAdd.getPassword() + "',\n"
+                    + "" + toAdd.getPermission() + "\n"
                     + ")"
         );
     }
