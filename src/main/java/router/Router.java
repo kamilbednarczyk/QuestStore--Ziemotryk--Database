@@ -8,10 +8,8 @@ import controllers.LoginController;
 import controllers.MentorController;
 import databaseAccess.AccountsDAO;
 import models.Account;
-import models.Codecooler;
 import sessionData.SessionHandler;
 import sessionData.CookieHandler;
-import views.ResponseCreator;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -66,15 +64,47 @@ public class Router implements HttpHandler {
             }
         } else if (cookie.isPresent()) {
             if (method.equals("GET")) {
+                String[] requestPathArray = httpExchange.getRequestURI().toString().split("/");
+                String userPermissions = requestPathArray[2];
+                String userPageRequest = requestPathArray[3];
 
+                if(userPermissions.equals("admin")) {
+                    response = getAdminResponse(httpExchange, userPageRequest);
+                } else if(userPermissions.equals("mentor")) {
+
+                } else if(userPermissions.equals("codecooler")) {
+
+                } else {
+                    response = "Error 404";
+                }
             } else if (method.equals("POST")){
 
             }
         }
 
         System.out.println("Response...");
-
+        response = loginController.getLoginPage();
         sendResponse(httpExchange, response, cookie);
+    }
+
+    private String getAdminResponse(HttpExchange httpExchange, String userPageRequest) {
+        String response = "";
+
+        if(userPageRequest.equals("index")) {
+
+        } else if(userPageRequest.equals("mentors")) {
+
+        } else if(userPageRequest.equals("classes")) {
+
+        } else if(userPageRequest.equals("levels")) {
+
+        } else if(userPageRequest.equals("logout")) {
+
+        } else {
+            response = "Error 404";
+        }
+
+        return response;
     }
 
     private String connectToControllerBy(Account account) {
@@ -83,8 +113,7 @@ public class Router implements HttpHandler {
 
         switch (permission) {
             case 3:
-                return adminController.getIndexPageRender();
-
+                return adminController.getIndexPage();
         }
         return null;
     }
@@ -102,6 +131,8 @@ public class Router implements HttpHandler {
         InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
         BufferedReader br = new BufferedReader(isr);
         String formData = br.readLine();
+        System.out.println("TUU");
+        System.out.println(formData);
         String[] pairs = formData.split("&");
         if (formData.length() > 16) {
             for (String pair : pairs) {
@@ -112,5 +143,4 @@ public class Router implements HttpHandler {
         }
         return map;
     }
-
 }

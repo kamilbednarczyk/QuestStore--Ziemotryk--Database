@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ClassesDAO implements IDAO<Class> {
 
-    DbConnector dbConnector = DbConnector.getInstance();
+    private DbConnector dbConnector = DbConnector.getInstance();
 
     @Override
     public void add(Class toAdd) {

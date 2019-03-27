@@ -17,8 +17,8 @@ public class ResponseCreator {
         return loginPage;
     }
 
-    public String renderPageWith(String fileName, List<String> listToFillWith) {
-        String response = "";
+    public <E> String renderPageWith(String fileName, List<E> listToFillWith) {
+        String response;
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/"+fileName);
         JtwigModel model;
         model = JtwigModel.newModel().with("list", listToFillWith);

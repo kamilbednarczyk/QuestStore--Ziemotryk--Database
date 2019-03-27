@@ -1,5 +1,7 @@
 package models;
 
+import databaseAccess.ClassesDAO;
+
 public class Mentor {
     private int accountId;
     private String fullName;
@@ -64,5 +66,10 @@ public class Mentor {
 
     public void setAvatarFile(String avatarFile) {
         this.avatarFile = avatarFile;
+    }
+
+    // Methods
+    public String getClassName() {
+        return new ClassesDAO().get(classId).getClassName();
     }
 }

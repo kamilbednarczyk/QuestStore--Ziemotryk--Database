@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mentors</title>
+    <link rel="stylesheet" href="../../CSS/flexboxStyle.css">
+    <link rel="stylesheet" href="../../CSS/IndexPageStyle.css">
+    <link rel="stylesheet" href="../../CSS/Admin/mentorsPage.css">
+</head>
+<body>
+
+<nav role='navigation'>
+    <div id="menuToggle">
+
+        <input type="checkbox"/>
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <ul id="menu">
+            <p id="creepyGuyName">CreepyGuy</p>
+            <a href="../../../templates/admin/indexPage.twig">
+                <li>Home</li>
+            </a>
+            <a href="mentorsPage.html">
+                <li>Mentors</li>
+            </a>
+            <a href="classesPage.html">
+                <li>Classes</li>
+            </a>
+            <a href="pilarOfExperiencePage.html">
+                <li>Pilar of experience</li>
+            </a><br>
+            <a id="logoutButton" href="../loginPage.html">
+                <li>Log out</li>
+            </a>
+        </ul>
+    </div>
+</nav>
+
+<div id="pageInfo">
+    <a href="../../../templates/admin/indexPage.twig"><img id="logoImage" src="../../IMAGES/logoCodecool.jpg" width="70" height="70"></a>
+</div>
+<div id="plusButton">
+    <a href="addMentorPage.html"><img class="plusButton" src="../../IMAGES/plusButton.png" alt="logo"></a>
+</div>
+
+<div class="container">
+    {% for mentor in list %}
+    <ul class="item">
+        <li class="avatarImage"><img class="avatar" src="../../IMAGES/leniartek.png" alt="Leniartek"></li>
+        <li class="fullName">
+            {{ mentor.getFullname() }}
+        </li>
+        <p class="heading">E-mail:</p>
+        <li class="email">
+            {{ mentor.getEmail() }}
+        </li>
+        <p class="heading">Class:</p>
+        <li class="assignedClass">
+            {{ mentor.getClassName() }}
+        </li>
+        <p class="heading">About:</p>
+        <li class="about">
+            {{ mentor.getAbout() }}
+        </li>
+        <li class="editButtonImage"><a href="editMentor.html"><img class="editButton" src="../../IMAGES/wrench.png"
+                                                                   alt="edit"></a></li>
+    </ul>
+    {% endfor %}
+</div>
+
+</body>
+</html>
