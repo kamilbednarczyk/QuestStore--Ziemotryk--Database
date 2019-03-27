@@ -19,20 +19,19 @@
         <span></span>
 
         <ul id="menu">
-            <p id="creepyGuyName">CreepyGuy</p>
-            <a href="../../../templates/admin/indexPage.twig">
+            <a href="quest/admin/index">
                 <li>Home</li>
             </a>
-            <a href="mentorsPage.html">
+            <a href="quest/admin/mentors">
                 <li>Mentors</li>
             </a>
-            <a href="classesPage.html">
+            <a href="quest/admin/classes">
                 <li>Classes</li>
             </a>
-            <a href="pilarOfExperiencePage.html">
+            <a href="quest/admin/levels">
                 <li>Pilar of experience</li>
-            </a><br>
-            <a id="logoutButton" href="../loginPage.html">
+            </a>
+            <a href="quest/admin/logout">
                 <li>Log out</li>
             </a>
         </ul>
@@ -43,13 +42,13 @@
     <a href="../../../templates/admin/indexPage.twig"><img id="logoImage" src="../../IMAGES/logoCodecool.jpg" width="70" height="70"></a>
 </div>
 <div id="plusButton">
-    <a href="addMentorPage.html"><img class="plusButton" src="../../IMAGES/plusButton.png" alt="logo"></a>
+    <a href="quest/admin/addMentorPage"><img class="plusButton" src="../../IMAGES/plusButton.png" alt="logo"></a>
 </div>
 
 <div class="container">
     {% for mentor in list %}
     <ul class="item">
-        <li class="avatarImage"><img class="avatar" src="../../IMAGES/leniartek.png" alt="Leniartek"></li>
+        <li class="avatarImage"><img class="avatar" src="../../IMAGES/mentors/{{ mentor.getAvatarFile() }}" alt="Avatar"></li>
         <li class="fullName">
             {{ mentor.getFullname() }}
         </li>
@@ -65,7 +64,7 @@
         <li class="about">
             {{ mentor.getAbout() }}
         </li>
-        <li class="editButtonImage"><a href="editMentor.html"><img class="editButton" src="../../IMAGES/wrench.png"
+        <li class="editButtonImage"><a href="quest/admin/editMentorPage/{{ mentor.getAccountId() }}"><img class="editButton" src="../../IMAGES/wrench.png"
                                                                    alt="edit"></a></li>
     </ul>
     {% endfor %}

@@ -51,5 +51,16 @@ public class SessionHandler {
         return randomId;
     }
 
+    public int getPermissionFromCookie(Optional<HttpCookie> cookie) {
+        return Integer.parseInt(getIndexValueFromActiveSessionId(cookie, 1));
+    }
 
+    public int getAccountIdFromCookie(Optional<HttpCookie> cookie) {
+        return Integer.parseInt(getIndexValueFromActiveSessionId(cookie, 0));
+    }
+
+    private String getIndexValueFromActiveSessionId(Optional<HttpCookie> cookie, int index) {
+        String cookieSessionId = cookieHandler.getSessionIdCookieValue(cookie);
+        return activeSessionList.get(cookie)[index];
+    }
 }

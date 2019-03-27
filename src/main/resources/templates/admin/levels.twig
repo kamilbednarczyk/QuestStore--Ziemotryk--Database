@@ -19,20 +19,19 @@
         <span></span>
 
         <ul id="menu">
-            <p id="creepyGuyName">CreepyGuy</p>
-            <a href="../../../templates/admin/indexPage.twig">
+            <a href="quest/admin/index">
                 <li>Home</li>
             </a>
-            <a href="mentorsPage.html">
+            <a href="quest/admin/mentors">
                 <li>Mentors</li>
             </a>
-            <a href="classesPage.html">
+            <a href="quest/admin/classes">
                 <li>Classes</li>
             </a>
-            <a href="pilarOfExperiencePage.html">
+            <a href="quest/admin/levels">
                 <li>Pilar of experience</li>
-            </a><br>
-            <a id="logoutButton" href="../loginPage.html">
+            </a>
+            <a href="quest/admin/logout">
                 <li>Log out</li>
             </a>
         </ul>
@@ -47,9 +46,10 @@
 </div>
 
 <div class="container">
+    {% for level in list %}
     <ul class="item">
         <li class="level">
-            <span style="font-size: 35px" style="font-weight: normal">Lvl:</span> 1
+            <span style="font-size: 35px" style="font-weight: normal">Lvl:</span>
         </li>
         <p class="heading">Coolcoin gap:</p>
         <li class="email">
@@ -60,9 +60,9 @@
             Typowy plebs, głupi
         </li>
 
-        <li class="editButtonImage"><a href="editLevel.html"><img class="editButton" src="../../IMAGES/wrench.png"
-                                                                  alt="edit"></a></li>
+        <li class="editButtonImage"><a href="editLevel.html"><img class="editButton" src="../../IMAGES/wrench.png" alt="edit"></a></li>
     </ul>
+    {% endblock %}
 </div>
 
 </body>

@@ -67,12 +67,13 @@ public class Router implements HttpHandler {
                 String[] requestPathArray = httpExchange.getRequestURI().toString().split("/");
                 String userPermissions = requestPathArray[2];
                 String userPageRequest = requestPathArray[3];
+                int cookiePermissionLevel = sessionHandler.getPermissionFromCookie(cookie);
 
-                if(userPermissions.equals("admin")) {
+                if(userPermissions.equals("admin") && cookiePermissionLevel == 3) {
                     response = getAdminResponse(httpExchange, userPageRequest);
-                } else if(userPermissions.equals("mentor")) {
+                } else if(userPermissions.equals("mentor") && cookiePermissionLevel == 2) {
 
-                } else if(userPermissions.equals("codecooler")) {
+                } else if(userPermissions.equals("codecooler") && cookiePermissionLevel == 1) {
 
                 } else {
                     response = "Error 404";

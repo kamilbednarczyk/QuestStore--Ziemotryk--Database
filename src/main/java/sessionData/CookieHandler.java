@@ -22,6 +22,10 @@ public class CookieHandler {
         return findCookieByName(SESSION_COOKIE_NAME, cookies);
     }
 
+    public String getSessionIdCookieValue(Optional<HttpCookie> cookie) {
+        return cookie.get().getValue();
+    }
+
     private List<HttpCookie> parseCookies(String cookieString) {
         List<HttpCookie> cookies = new ArrayList<>();
         if (cookieString == null || cookieString.isEmpty()) { // what happens if cookieString = null?
