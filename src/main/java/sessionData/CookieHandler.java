@@ -11,23 +11,23 @@ public class CookieHandler {
     private static final String SESSION_COOKIE_NAME = "sessionId";
 
     public void setResponseCookieIfPresent(HttpExchange httpExchange, Optional<HttpCookie> cookie) {
-        if(cookie.isPresent()) {
+        if (cookie.isPresent()) {
             httpExchange.getResponseHeaders().add("Set-cookie", cookie.toString());
         }
     }
 
-    public Optional<HttpCookie> getSessionIdCookie(HttpExchange httpExchange){
+    public Optional<HttpCookie> getSessionIdCookie(HttpExchange httpExchange) {
         String cookieStr = httpExchange.getRequestHeaders().getFirst("Cookie");
         List<HttpCookie> cookies = parseCookies(cookieStr);
         return findCookieByName(SESSION_COOKIE_NAME, cookies);
     }
 
-    private List<HttpCookie> parseCookies(String cookieString){
+    private List<HttpCookie> parseCookies(String cookieString) {
         List<HttpCookie> cookies = new ArrayList<>();
-        if(cookieString == null || cookieString.isEmpty()){ // what happens if cookieString = null?
+        if (cookieString == null || cookieString.isEmpty()) { // what happens if cookieString = null?
             return cookies;
         }
-        for(String cookie : cookieString.split(";")){
+        for (String cookie : cookieString.split(";")) {
             int indexOfEq = cookie.indexOf('=');
             String cookieName = cookie.substring(0, indexOfEq);
             String cookieValue = cookie.substring(indexOfEq + 1, cookie.length());
@@ -36,9 +36,9 @@ public class CookieHandler {
         return cookies;
     }
 
-    public Optional<HttpCookie> findCookieByName(String name, List<HttpCookie> cookies){
-        for(HttpCookie cookie : cookies){
-            if(cookie.getName().equals(name))
+    public Optional<HttpCookie> findCookieByName(String name, List<HttpCookie> cookies) {
+        for (HttpCookie cookie : cookies) {
+            if (cookie.getName().equals(name))
                 return Optional.ofNullable(cookie);
         }
         return Optional.empty();

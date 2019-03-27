@@ -30,7 +30,6 @@ public class Router implements HttpHandler {
         AccountsDAO accountsDAO = new AccountsDAO();
         Account account = new Account("patryk", "mandrak", 3);
         accountsDAO.add(account);
-
     }
 
     @Override
@@ -40,34 +39,25 @@ public class Router implements HttpHandler {
         String method = httpExchange.getRequestMethod();
         String response = "";
 
-        if(!cookie.isPresent() && method.equals("GET")) {
+        if (!cookie.isPresent() && method.equals("GET")) {
             response = loginController.getLoginPage();
-        }
-        else if(!cookie.isPresent() && method.equals("POST")) {
+        } else if (!cookie.isPresent() && method.equals("POST")) {
             // check inputs
-            Map<String, String > loginDataMap = getFormInputsMap(httpExchange);
-
-            System.out.println(loginDataMap.get("password"));
-            System.out.println(loginDataMap.get("login"));
+            Map<String, String> loginDataMap = getFormInputsMap(httpExchange);
             // validate inputs && send response
             Account account = loginController.logIn(loginDataMap);
 
-            if(account == null || loginDataMap.isEmpty()) {
-                System.out.println("null account");
+            if (account == null || loginDataMap.isEmpty()) {
                 response = loginController.getLoginPage();
             } else {
                 sessionHandler.addSession(account, cookie, httpExchange);
-                response = "sss";
-                System.out.println(sessionHandler.getActiveSessionList());
             }
-
         }
-
-        if(cookie.isPresent()) {
+        if (cookie.isPresent()) {
             response = "dziala";
         }
-
         System.out.println("Response...");
+
         sendResponse(httpExchange, response, cookie);
     }
 
@@ -85,13 +75,9 @@ public class Router implements HttpHandler {
         BufferedReader br = new BufferedReader(isr);
         String formData = br.readLine();
         String[] pairs = formData.split("&");
-        System.out.println(formData);
-        System.out.println(formData.length());
-        if(formData.length() > 16) {
-            for(String pair : pairs){
+        if (formData.length() > 16) {
+            for (String pair : pairs) {
                 String[] keyValue = pair.split("=");
-                System.out.println("dupa");
-                System.out.println(keyValue[1]);
                 String value = new URLDecoder().decode(keyValue[1], "UTF-8");
                 map.put(keyValue[0], value);
             }

@@ -21,8 +21,8 @@ public class LoginService {
         String login = inputs.get("login");
         String password = inputs.get("password");
 
-        for(Account account: accountsList) {
-            if(account.getLogin().equals(login) && account.getPassword().equals(password)) {
+        for (Account account : accountsList) {
+            if (account.getLogin().equals(login) && account.getPassword().equals(password)) {
                 return account;
             }
         }

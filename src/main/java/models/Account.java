@@ -11,10 +11,10 @@ public class Account {
     public Account(String login,
                    String password,
                    int permission) {
-        if(permission > 3 && permission < 1) {
+        if (permission > 3 && permission < 1) {
             throw new IllegalArgumentException(
                     "Permission of an account "
-                  + "can only be equal 1, 2 or 3"
+                            + "can only be equal 1, 2 or 3"
             );
         }
         this.login = login;

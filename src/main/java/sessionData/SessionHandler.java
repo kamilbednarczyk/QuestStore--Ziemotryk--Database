@@ -3,6 +3,7 @@ package sessionData;
 import models.Account;
 
 import com.sun.net.httpserver.HttpExchange;
+
 import java.net.HttpCookie;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,13 +40,13 @@ public class SessionHandler {
 
         int currentRandomNumber;
         do {
-            for(int i=0; i<10; i++) {
+            for (int i = 0; i < 10; i++) {
                 currentRandomNumber =
                         random.ints(33, 123)
                                 .findFirst().getAsInt();
                 randomId += (char) currentRandomNumber;
             }
-        } while(activeSessionList.containsKey(randomId));
+        } while (activeSessionList.containsKey(randomId));
 
         return randomId;
     }

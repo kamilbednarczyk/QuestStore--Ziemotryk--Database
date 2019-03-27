@@ -11,7 +11,7 @@ import java.util.List;
 
 public class MentorsDAO implements IDAO<Mentor> {
 
-    private DbConnector dbConnector =  DbConnector.getInstance();
+    private DbConnector dbConnector = DbConnector.getInstance();
 
     @Override
     public void add(Mentor toAdd) {
@@ -27,7 +27,7 @@ public class MentorsDAO implements IDAO<Mentor> {
     @Override
     public Mentor get(int id) {
         ResultSet resultSet = dbConnector.getResultSetByQuery(
-                "SELECT * FROM mentors WHERE account_id="+id
+                "SELECT * FROM mentors WHERE account_id=" + id
         );
         Mentor mentor = null;
 
@@ -81,7 +81,7 @@ public class MentorsDAO implements IDAO<Mentor> {
     public void update(int id, Mentor toUpdate) {
         String query = "UPDATE mentors\n" +
                 "SET account_id = '" + toUpdate.getAccountId() + "', full_name = '" + toUpdate.getFullName() + "', email = " + toUpdate.getEmail() +
-                "', class_id = " + toUpdate.getClassId() + "', about = '" + toUpdate.getAbout() + "', avatar_file = '" + toUpdate.getAvatarFile() +"\n" +
+                "', class_id = " + toUpdate.getClassId() + "', about = '" + toUpdate.getAbout() + "', avatar_file = '" + toUpdate.getAvatarFile() + "\n" +
                 "WHERE account_id = " + id;
         dbConnector.executeUpdate(query);
         System.out.println("dupa");
@@ -103,9 +103,9 @@ public class MentorsDAO implements IDAO<Mentor> {
         Codecooler currentCodecooler;
         int mentorClassId = get(mentorId).getClassId();
 
-        for(int i = 0; i < codecoolersFromClass.size(); i++) {
+        for (int i = 0; i < codecoolersFromClass.size(); i++) {
             currentCodecooler = codecoolersFromClass.get(i);
-            if(currentCodecooler.getClassId() != mentorClassId) {
+            if (currentCodecooler.getClassId() != mentorClassId) {
                 codecoolersFromClass.remove(i);
             }
         }

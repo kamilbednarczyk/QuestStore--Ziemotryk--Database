@@ -12,7 +12,7 @@ public class LoginController {
         return loginService.getLoginPageRender();
     }
 
-    public Account logIn(Map<String, String> inputs){
+    public Account logIn(Map<String, String> inputs) {
         return loginService.validateLogIn(inputs);
     }
 }

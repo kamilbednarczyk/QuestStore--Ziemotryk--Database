@@ -15,18 +15,18 @@ public class AccountsDAO implements IDAO<Account> {
     public void add(Account toAdd) {
         dbConnector.executeUpdate(
                 "INSERT INTO accounts\n"
-                    + "(login, password, permission)\n"
-                    + "VALUES('" + toAdd.getLogin() + "',\n"
-                    + "'" + toAdd.getPassword() + "',\n"
-                    + "" + toAdd.getPermission() + "\n"
-                    + ")"
+                        + "(login, password, permission)\n"
+                        + "VALUES('" + toAdd.getLogin() + "',\n"
+                        + "'" + toAdd.getPassword() + "',\n"
+                        + "" + toAdd.getPermission() + "\n"
+                        + ")"
         );
     }
 
     @Override
     public Account get(int id) {
         ResultSet resultSet = dbConnector.getResultSetByQuery(
-                "SELECT * FROM accoutns WHERE account_id="+id
+                "SELECT * FROM accoutns WHERE account_id=" + id
         );
         Account account = null;
 
@@ -53,7 +53,7 @@ public class AccountsDAO implements IDAO<Account> {
         );
 
         try {
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 accounts.add(
                         new Account(
                                 resultSet.getInt("account_id"),
