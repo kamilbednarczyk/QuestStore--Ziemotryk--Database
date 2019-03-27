@@ -37,6 +37,8 @@ public class Router implements HttpHandler {
         else if(!cookie.isPresent() && method.equals("POST")) {
             // check inputs
             Map<String, String > loginDataMap = getFormInputsMap(httpExchange);
+            System.out.println(loginDataMap.get("password"));
+            System.out.println(loginDataMap.get("login"));
             // validate inputs && send response
         }
 

@@ -8,4 +8,8 @@ public class LoginService {
     public String getLoginPageRender() {
         return responseCreator.renderLoginPage();
     }
+
+    public void logIn(){
+        //...
+    }
 }
