@@ -13,13 +13,13 @@ public class ResponseCreator {
     }
 
     public String renderLoginPage() {
-        String logInPage = renderPage("logIn.html");
-        return null;
+        String loginPage = renderPage("login.twig");
+        return loginPage;
     }
 
     private String renderPageWith(String fileName, List<String> listToFillWith) {
         String response = "";
-        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/login.twig");
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/"+fileName);
         JtwigModel model;
         model = JtwigModel.newModel().with("list", listToFillWith);
         response = template.render(model);

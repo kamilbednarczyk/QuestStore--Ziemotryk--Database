@@ -25,14 +25,14 @@ public class Router implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
+        System.out.println("Request...");
         Optional<HttpCookie> cookie = cookieHandler.getSessionIdCookie(httpExchange);
         String method = httpExchange.getRequestMethod();
         String response = "";
-
         if(!cookie.isPresent() && method.equals("GET")) {
-            response = "login page";
             ResponseCreator responseCreator = new ResponseCreator();
             response = responseCreator.renderLoginPage();
+            System.out.println(response);
         }
         else if(!cookie.isPresent() && method.equals("POST")) {
             // check inputs
@@ -40,6 +40,7 @@ public class Router implements HttpHandler {
             // validate inputs && send response
         }
 
+        System.out.println("Response...");
         sendResponse(httpExchange, response, cookie);
     }
 
