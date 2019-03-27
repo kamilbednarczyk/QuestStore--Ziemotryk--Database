@@ -26,7 +26,7 @@ public class AccountsDAO implements IDAO<Account> {
     @Override
     public Account get(int id) {
         ResultSet resultSet = dbConnector.getResultSetByQuery(
-                "SELECT * FROM acoutns WHERE account_id="+id
+                "SELECT * FROM accoutns WHERE account_id="+id
         );
         Account account = null;
 

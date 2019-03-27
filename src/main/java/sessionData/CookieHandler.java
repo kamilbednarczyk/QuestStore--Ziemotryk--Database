@@ -43,4 +43,9 @@ public class CookieHandler {
         }
         return Optional.empty();
     }
+
+    public void addSessionIdCookie(String sessionId, HttpExchange httpExchange) {
+        HttpCookie cookie = new HttpCookie("sessionId", sessionId);
+        httpExchange.getResponseHeaders().add("Set-Cookie", cookie.toString());
+    }
 }

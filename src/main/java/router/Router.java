@@ -3,6 +3,7 @@ package router;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import controllers.LoginController;
+import models.Account;
 import sessionData.SessionHandler;
 import sessionData.CookieHandler;
 import views.ResponseCreator;
@@ -16,12 +17,14 @@ import java.net.URLDecoder;
 import java.util.*;
 
 public class Router implements HttpHandler {
-    SessionHandler sessionHandler;
-    CookieHandler cookieHandler;
+    private SessionHandler sessionHandler;
+    private CookieHandler cookieHandler;
+    private LoginController loginController;
 
     public Router() {
         this.sessionHandler = new SessionHandler();
         this.cookieHandler = new CookieHandler();
+        this.loginController = new LoginController();
     }
 
     @Override
@@ -30,16 +33,31 @@ public class Router implements HttpHandler {
         Optional<HttpCookie> cookie = cookieHandler.getSessionIdCookie(httpExchange);
         String method = httpExchange.getRequestMethod();
         String response = "";
+
         if(!cookie.isPresent() && method.equals("GET")) {
-            LoginController loginController = new LoginController();
             response = loginController.getLoginPage();
         }
         else if(!cookie.isPresent() && method.equals("POST")) {
             // check inputs
             Map<String, String > loginDataMap = getFormInputsMap(httpExchange);
+
             System.out.println(loginDataMap.get("password"));
             System.out.println(loginDataMap.get("login"));
             // validate inputs && send response
+            Account account = loginController.logIn(loginDataMap);
+
+            if(account == null) {
+                System.out.println("null account");
+                response = loginController.getLoginPage();
+            } else {
+                sessionHandler.addSession(account, cookie, httpExchange);
+                response = "sss";
+            }
+
+        }
+
+        if(cookie.isPresent()) {
+            response = "dziala";
         }
 
         System.out.println("Response...");
