@@ -4,6 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import sessionData.SessionHandler;
 import sessionData.CookieHandler;
+import views.ResponseCreator;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,7 +31,8 @@ public class Router implements HttpHandler {
 
         if(!cookie.isPresent() && method.equals("GET")) {
             response = "login page";
-            //sendLoginPage
+            ResponseCreator responseCreator = new ResponseCreator();
+            response = responseCreator.renderLoginPage();
         }
         else if(!cookie.isPresent() && method.equals("POST")) {
             // check inputs
