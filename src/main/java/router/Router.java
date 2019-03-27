@@ -2,9 +2,13 @@ package router;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import controllers.AdminController;
+import controllers.CodecoolerController;
 import controllers.LoginController;
+import controllers.MentorController;
 import databaseAccess.AccountsDAO;
 import models.Account;
+import models.Codecooler;
 import sessionData.SessionHandler;
 import sessionData.CookieHandler;
 import views.ResponseCreator;
@@ -21,12 +25,19 @@ public class Router implements HttpHandler {
     private SessionHandler sessionHandler;
     private CookieHandler cookieHandler;
     private LoginController loginController;
+    private CodecoolerController codecoolerController;
+    private MentorController mentorController;
+    private AdminController adminController;
 
 
     public Router() {
         this.sessionHandler = new SessionHandler();
         this.cookieHandler = new CookieHandler();
         this.loginController = new LoginController();
+        this.codecoolerController = new CodecoolerController();
+        this.mentorController = new MentorController();
+        this.adminController = new AdminController();
+
         AccountsDAO accountsDAO = new AccountsDAO();
         Account account = new Account("patryk", "mandrak", 3);
         accountsDAO.add(account);
@@ -51,14 +62,31 @@ public class Router implements HttpHandler {
                 response = loginController.getLoginPage();
             } else {
                 sessionHandler.addSession(account, cookie, httpExchange);
+                response = connectToControllerBy(account);
+            }
+        } else if (cookie.isPresent()) {
+            if (method.equals("GET")) {
+
+            } else if (method.equals("POST")){
+
             }
         }
-        if (cookie.isPresent()) {
-            response = "dziala";
-        }
+
         System.out.println("Response...");
 
         sendResponse(httpExchange, response, cookie);
+    }
+
+    private String connectToControllerBy(Account account) {
+        int permission = account.getPermission();
+        int accountId = account.getAccountId();
+
+        switch (permission) {
+            case 3:
+                return adminController.getIndexPageRender();
+
+        }
+        return null;
     }
 
     private void sendResponse(HttpExchange httpExchange, String response, Optional<HttpCookie> cookie) throws IOException {

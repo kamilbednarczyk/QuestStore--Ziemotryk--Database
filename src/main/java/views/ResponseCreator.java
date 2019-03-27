@@ -17,7 +17,7 @@ public class ResponseCreator {
         return loginPage;
     }
 
-    private String renderPageWith(String fileName, List<String> listToFillWith) {
+    public String renderPageWith(String fileName, List<String> listToFillWith) {
         String response = "";
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/"+fileName);
         JtwigModel model;
@@ -26,7 +26,7 @@ public class ResponseCreator {
         return response;
     }
 
-    private String renderPage(String fileName) {
+    public String renderPage(String fileName) {
         return renderPageWith(fileName, new ArrayList<>());
     }
 }
