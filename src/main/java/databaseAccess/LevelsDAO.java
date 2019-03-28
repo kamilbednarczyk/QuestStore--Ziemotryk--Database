@@ -18,8 +18,8 @@ public class LevelsDAO implements IDAO<Level> {
                         + "(level, coolcoins_needed, level_name, level_description)"
                         + "VALUES(" + toAdd.getLevel() + ",\n"
                         + "" + toAdd.getCoolcoinsNeeded() + ",\n"
-                        + "'" + toAdd.getLevelName() + ",\n"
-                        + "'" + toAdd.getLevelDescription() + ""
+                        + "'" + toAdd.getLevelName() + "',\n"
+                        + "'" + toAdd.getLevelDescription() + "'"
                         + ");"
         );
     }

@@ -39,28 +39,33 @@
 </nav>
 
 <div id="pageInfo">
-    <a href="../../../templates/admin/indexPage.twig"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70" height="70"></a>
+    <a href="../../../templates/admin/indexPage.twig"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg"
+                                                           alt="logo" width="70" height="70"></a>
 </div>
 <div id="plusButton">
     <a href="addLevelPage.html"><img class="plusButton" src="/static/IMAGES/plusButton.png" alt="add"></a>
 </div>
 
 <div class="container">
+    {% for level in list %}
     <ul class="item">
         <li class="level">
-            LVL
+            <span style="font-size: 35px" style="font-weight: normal">Lvl:</span>
+            {{ level.getLevel() }}
         </li>
         <p class="heading">Coolcoin gap:</p>
         <li class="email">
-            0
+            {{ level.getCoolcoinsNeeded() }}
         </li>
         <p class="heading">Level title:</p>
         <li class="email">
-            Typowy plebs, glupi
+            {{ level.getLevelName() }}
         </li>
 
-        <li class="editButtonImage"><a href="editLevelPage.html"><img class="editButton" src="/static/IMAGES/wrench.png" alt="edit"></a></li>
+        <li class="editButtonImage"><a href="/quest/admin/editLevelPage/{{ level.getLevel() }}"><img class="editButton" src="/static/IMAGES/wrench.png"
+                                                                      alt="edit"></a></li>
     </ul>
+    {% endfor %}
 </div>
 
 </body>
