@@ -63,6 +63,11 @@
                 <input class="input" type="text" placeholder="Level title" value="{{ level.getLevelName() }}"
                        form="updateForm" name="levelTitle"/>
             </li>
+            <p class="heading">Level description:</p>
+            <li class="levelDescription">
+                <input class="input" type="text" placeholder="Level title" value="{{ level.getLevelDescription() }}"
+                       form="updateForm" name="levelDescription"/>
+            </li>
             <li class="editButtonsImage">
                 <input type="image" name="deleteLevel" class="deleteButton" src="/static/IMAGES/deleteButton.png"
                        form="deleteForm">
