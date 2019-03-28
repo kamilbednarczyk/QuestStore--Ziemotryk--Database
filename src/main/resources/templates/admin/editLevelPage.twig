@@ -39,35 +39,39 @@
 </nav>
 
 <div id="pageInfo">
-    <a href="/quest/admin/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70" height="70"></a>
+    <a href="/quest/admin/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70"
+                                      height="70"></a>
 </div>
 
 <div class="container">
-    <form id="updateForm" method="POST" action="/quest/admin/updateClass/{{ class.getClassId() }}"></form>
-    <form id="deleteForm" method="POST" action="/quest/admin/deleteClass/{{ class.getClassId() }}"></form>
     {% for level in list %}
-    <ul class="item">
-        <li class="level">
-            <span style="font-size: 35px" style="font-weight: normal">Lvl:</span><br>
-            <input class="input" type="number" placeholder="Level" value="{{ level.getLevel() }}" form="updateForm"/>
-        </li>
-        <p class="heading">Coolcoin gap:</p>
-        <li class="coolcoinGap">
-            <input class="input" type="number" placeholder="Coolcoin gap" value="{{ level.getCoolcoinsNeeded() }}" form="updateForm"/>
-        </li>
-        <p class="heading">Level title:</p>
-        <li class="levelTitle">
-            <input class="input" type="text" placeholder="Level title" value="{{ level.getLevelName() }}" form="updateForm"/>
-        </li>
-        <li class="editButtonsImage">
-            <input type="image" name="deleteLevel" class="deleteButton" src="/static/IMAGES/deleteButton.png"
-                   form="deleteForm">
-            <a href="/quest/admin/levels"><img class="cancelButton" src="/static/IMAGES/cancelButton.png"
-                                                alt="cancel"></a>
-            <input type="image" name="confirmEditLevel" class="confirmButton" src="/static/IMAGES/tickButton.png"
-                   form="updateForm">
-        </li>
-    </ul>
+        <form id="updateForm" method="POST" action="/quest/admin/updateClass/{{ class.getClassId() }}"></form>
+        <form id="deleteForm" method="POST" action="/quest/admin/deleteClass/{{ class.getClassId() }}"></form>
+        <ul class="item">
+            <li class="level">
+                <span style="font-size: 35px" style="font-weight: normal">Lvl:</span><br>
+                <input class="input" type="number" placeholder="Level" value="{{ level.getLevel() }}"
+                       form="updateForm"/>
+            </li>
+            <p class="heading">Coolcoin gap:</p>
+            <li class="coolcoinGap">
+                <input class="input" type="number" placeholder="Coolcoin gap" value="{{ level.getCoolcoinsNeeded() }}"
+                       form="updateForm"/>
+            </li>
+            <p class="heading">Level title:</p>
+            <li class="levelTitle">
+                <input class="input" type="text" placeholder="Level title" value="{{ level.getLevelName() }}"
+                       form="updateForm"/>
+            </li>
+            <li class="editButtonsImage">
+                <input type="image" name="deleteLevel" class="deleteButton" src="/static/IMAGES/deleteButton.png"
+                       form="deleteForm">
+                <a href="/quest/admin/levels"><img class="cancelButton" src="/static/IMAGES/cancelButton.png"
+                                                   alt="cancel"></a>
+                <input type="image" name="confirmEditLevel" class="confirmButton" src="/static/IMAGES/tickButton.png"
+                       form="updateForm">
+            </li>
+        </ul>
     {% endfor %}
 </div>
 
