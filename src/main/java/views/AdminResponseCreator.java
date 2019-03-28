@@ -32,26 +32,26 @@ public class AdminResponseCreator {
     }
 
     public String renderEditMentorPage(List<Mentor> mentor) {
-        return null;
+        return responseCreator.renderPageWith("/admin/editMentorPage.twig", mentor);
     }
 
     public String renderAddMentorPage() {
-        return null;
+        return responseCreator.renderPage("/admin/addMentorPage.twig");
     }
 
     public String renderEditLevelPage(List<Level> level) {
-        return null;
+        return responseCreator.renderPageWith("/admin/editLevelPage.twig", level);
     }
 
     public String renderAddLevelPage() {
-        return null;
+        return responseCreator.renderPage("/admin/addLevelPage.twig");
     }
 
     public String renderEditClassPage(List<Class> classes) {
-        return null;
+        return responseCreator.renderPageWith("/admin/editClassPage.twig", classes);
     }
 
     public String renderAddClassPage() {
-        return null;
+        return responseCreator.renderPage("/admin/addClassPage.twig");
     }
 }

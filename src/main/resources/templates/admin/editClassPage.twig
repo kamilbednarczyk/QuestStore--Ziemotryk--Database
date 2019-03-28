@@ -39,29 +39,40 @@
 </nav>
 
 <div id="pageInfo">
-    <a href="/quest/admin/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70" height="70"></a>
+    <a href="/quest/admin/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70"
+                                      height="70"></a>
 </div>
 
 <div class="container">
-    <ul class="item">
-        <li class="className">
-            <input class="input" type="text" placeholder="Class name" value="Glupole"/>
-        </li>
-        <p class="heading">Mentor:</p>
-        <li>
-            <input class="input" type="text" placeholder="Assigned Mentor" value="Piotr Leniartek"/>
-        </li>
-        <p class="heading">Number of students</p>
-        <li style="text-align: center;">
-            21
-        </li>
+    {% for class in list %}
+        <form id="updateForm" method="POST" action="/quest/admin/updateClass/{{ class.getClassId() }}"></form>
+        <form id="deleteForm" method="POST" action="/quest/admin/deleteClass/{{ class.getClassId() }}"></form>
 
-        <li class="editButtonsImage">
-            <input type="submit" name="deleteClass"><img class="deleteButton" src="/static/IMAGES/deleteButton.png" alt="delete"></a>
-            <a href="/quest/admin/classes"><img class="cancelButton" src="/static/IMAGES/cancelButton.png" alt="cancel"></a>
-            <input type="submit" name="confirmEditClass"><img class="confirmButton" src="/static/IMAGES/tickButton.png" alt="tick"></a>
-        </li>
-    </ul>
+        <ul class="item">
+            <li class="className">
+                <input class="input" type="text" placeholder="Class name" value="{{ class.getClassName() }}"
+                       form="updateForm"/>
+            </li>
+            <p class="heading">Mentor:</p>
+            <li>
+                <input class="input" type="text" placeholder="Assigned Mentor" value="{{ class.getAssignedMentor() }}"
+                       form="updateForm"/>
+            </li>
+            <p class="heading">Number of students</p>
+            <li style="text-align: center;">
+                {{ class.getNumberOfStudents() }}
+            </li>
+
+            <li class="editButtonsImage">
+                <input type="image" name="deleteClass" class="deleteButton" src="/static/IMAGES/deleteButton.png"
+                       form="deleteForm">
+                <a href="/quest/admin/classes"><img class="cancelButton" src="/static/IMAGES/cancelButton.png"
+                                                    alt="cancel"></a>
+                <input type="image" name="confirmEditClass" class="confirmButton" src="/static/IMAGES/tickButton.png"
+                       form="updateForm">
+            </li>
+        </ul>
+    {% endfor %}
 </div>
 
 </body>
