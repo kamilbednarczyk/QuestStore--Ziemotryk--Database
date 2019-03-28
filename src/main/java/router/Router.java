@@ -59,53 +59,36 @@ public class Router implements HttpHandler {
             if (account == null || loginDataMap.isEmpty()) {
                 response = loginController.getLoginPage();
             } else {
-                sessionHandler.addSession(account, cookie, httpExchange);
+                sessionHandler.addSession(account, httpExchange);
                 response = connectToControllerBy(account);
             }
         } else if (cookie.isPresent()) {
-            if (method.equals("GET")) {
+            if(method.equals("GET")) {
+                System.out.println(cookieHandler.getSessionIdCookieValue(cookie));
                 String[] requestPathArray = httpExchange.getRequestURI().toString().split("/");
-                String userPermissions = requestPathArray[2];
+                String userRequestedPermissions = requestPathArray[2];
                 String userPageRequest = requestPathArray[3];
                 int cookiePermissionLevel = sessionHandler.getPermissionFromCookie(cookie);
 
-                if(userPermissions.equals("admin") && cookiePermissionLevel == 3) {
-                    response = getAdminResponse(httpExchange, userPageRequest);
-                } else if(userPermissions.equals("mentor") && cookiePermissionLevel == 2) {
-
-                } else if(userPermissions.equals("codecooler") && cookiePermissionLevel == 1) {
-
+                if(userRequestedPermissions.equals("admin") && cookiePermissionLevel == 3) {
+                    response = adminController.getAdminResponse(httpExchange, userPageRequest);
+                } else if(userRequestedPermissions.equals("mentor") && cookiePermissionLevel == 2) {
+                    response = "mentorResponseGoesHere";
+                } else if(userRequestedPermissions.equals("codecooler") && cookiePermissionLevel == 1) {
+                    response = "codecoolerResponseGoesHere";
                 } else {
                     response = "Error 404";
                 }
             } else if (method.equals("POST")){
 
             }
+        } else {
+            System.out.println("Not found");
+            response = "ERROR 404";
         }
 
         System.out.println("Response...");
-        response = loginController.getLoginPage();
         sendResponse(httpExchange, response, cookie);
-    }
-
-    private String getAdminResponse(HttpExchange httpExchange, String userPageRequest) {
-        String response = "";
-
-        if(userPageRequest.equals("index")) {
-
-        } else if(userPageRequest.equals("mentors")) {
-
-        } else if(userPageRequest.equals("classes")) {
-
-        } else if(userPageRequest.equals("levels")) {
-
-        } else if(userPageRequest.equals("logout")) {
-
-        } else {
-            response = "Error 404";
-        }
-
-        return response;
     }
 
     private String connectToControllerBy(Account account) {
@@ -113,8 +96,12 @@ public class Router implements HttpHandler {
         int accountId = account.getAccountId();
 
         switch (permission) {
-            case 3:
+            case 3: // Admin
                 return adminController.getIndexPage();
+            case 2: // Mentor
+                return "mentor";
+            case 1: // Codecooler
+                return "codecooler";
         }
         return null;
     }

@@ -23,32 +23,16 @@ public class SessionHandler {
         return activeSessionList;
     }
 
-    public void addSession(Account account, Optional<HttpCookie> cookie, HttpExchange httpExchange) {
+    public void addSession(Account account, HttpExchange httpExchange) {
         String randomSessionId = getRandomSessionId();
         String accountId = String.valueOf(account.getAccountId());
         String permission = String.valueOf(account.getPermission());
 
         String[] accountData = {accountId, permission};
-
+        System.out.println("randomSessionId |||"+randomSessionId+"|||"); // remove later
         activeSessionList.put(randomSessionId, accountData);
         cookieHandler.addSessionIdCookie(randomSessionId, httpExchange);
-    }
-
-    private String getRandomSessionId() {
-        String randomId = "";
-        Random random = new Random();
-
-        int currentRandomNumber;
-        do {
-            for (int i = 0; i < 10; i++) {
-                currentRandomNumber =
-                        random.ints(33, 123)
-                                .findFirst().getAsInt();
-                randomId += (char) currentRandomNumber;
-            }
-        } while (activeSessionList.containsKey(randomId));
-
-        return randomId;
+        System.out.println("ALIVE");
     }
 
     public int getPermissionFromCookie(Optional<HttpCookie> cookie) {
@@ -59,8 +43,33 @@ public class SessionHandler {
         return Integer.parseInt(getIndexValueFromActiveSessionId(cookie, 0));
     }
 
+    public void removeActiveSessionWithCookie(HttpExchange httpExchange) {
+        Optional<HttpCookie> cookie = cookieHandler.getSessionIdCookie(httpExchange);
+        activeSessionList.remove(
+                cookieHandler.getSessionIdCookie(httpExchange).get().getValue()
+        );
+        cookieHandler.removeCookie(cookie);
+    }
+
     private String getIndexValueFromActiveSessionId(Optional<HttpCookie> cookie, int index) {
         String cookieSessionId = cookieHandler.getSessionIdCookieValue(cookie);
-        return activeSessionList.get(cookie)[index];
+        return activeSessionList.get(cookieSessionId)[index];
+    }
+
+    private String getRandomSessionId() {
+        String randomId = "";
+        Random random = new Random();
+
+        int currentRandomNumber;
+        do {
+            for (int i = 0; i < 19; i++) {
+                currentRandomNumber =
+                        random.ints(35, 123)
+                                .findFirst().getAsInt();
+                randomId += (char) currentRandomNumber;
+            }
+        } while (activeSessionList.containsKey(randomId));
+
+        return randomId;
     }
 }

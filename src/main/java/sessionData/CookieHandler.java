@@ -23,7 +23,7 @@ public class CookieHandler {
     }
 
     public String getSessionIdCookieValue(Optional<HttpCookie> cookie) {
-        return cookie.get().getValue();
+        return cookie.get().getValue().replaceAll("\"", "");
     }
 
     private List<HttpCookie> parseCookies(String cookieString) {
@@ -49,7 +49,14 @@ public class CookieHandler {
     }
 
     public void addSessionIdCookie(String sessionId, HttpExchange httpExchange) {
-        HttpCookie cookie = new HttpCookie("sessionId", sessionId);
+        System.out.println("im lost here");
+        HttpCookie cookie = new HttpCookie(SESSION_COOKIE_NAME, sessionId);
+        cookie.setMaxAge(90*80); // 2 hours
+        System.out.println("cookieSessionId|||"+cookie.getValue()+"|||");
         httpExchange.getResponseHeaders().add("Set-Cookie", cookie.toString());
+    }
+
+    public void removeCookie(Optional<HttpCookie> cookie) {
+        cookie.get().setMaxAge(0);
     }
 }
