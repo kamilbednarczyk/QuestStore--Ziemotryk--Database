@@ -39,37 +39,38 @@
 </nav>
 
 <div id="pageInfo">
-    <a href="/quest/admin/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70" height="70"></a>
+    <a href="/quest/admin/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70"
+                                      height="70"></a>
 </div>
 
 <div class="container">
-    <form>
-        <ul class="item">
-            <li class="avatarImage">
-                <img class="avatar" src="/static/IMAGES/leniartek.png" alt="Leniartek">
-            </li>
-            <li class="fullName">
-                <input class="input" type="text" placeholder="Full name"/>
+    <form id="addForm" method="POST" action="/quest/admin/addMentor"></form>
+    <ul class="item">
+        <li class="avatarImage">
+            <img class="avatar" src="/static/IMAGES/leniartek.png" alt="Leniartek">
+        </li>
+        <li class="fullName">
+            <input class="input" type="text" placeholder="Full name" form="addForm"/>
 
-            </li>
-            <p class="heading">E-mail:</p>
-            <li class="email">
-                <input class="input" type="text" placeholder="E-mail"/>
-            </li>
-            <p class="heading">Class:</p>
-            <li class="assignedClass">
-                <input class="input" type="text" placeholder="Assigned class"/>
-            </li>
-            <p class="heading">About:</p>
-            <li class="about">
-                <input class="input" type="text" placeholder="About"/>
-            </li>
-            <li class="editButtonsImage">
-                <a href="/quest/admin/mentors"><img class="cancelButton" src="/static/IMAGES/cancelButton.png" alt="cancel"></a>
-                <input type="submit" name="confirmAddMentor"><img class="confirmButton" src="/static/IMAGES/tickButton.png" alt="confirm">
-            </li>
-        </ul>
-    </form>
+        </li>
+        <p class="heading">E-mail:</p>
+        <li class="email">
+            <input class="input" type="text" placeholder="E-mail" form="addForm"/>
+        </li>
+        <p class="heading">Class:</p>
+        <li class="assignedClass">
+            <input class="input" type="text" placeholder="Assigned class" form="addForm"/>
+        </li>
+        <p class="heading">About:</p>
+        <li class="about">
+            <input class="input" type="text" placeholder="About" form="addForm"/>
+        </li>
+        <li class="editButtonsImage">
+            <a href="/quest/admin/mentors"><img class="cancelButton" src="/static/IMAGES/cancelButton.png" alt="cancel"></a>
+            <input type="image" name="confirmAddMentor" class="confirmButton" src="/static/IMAGES/tickButton.png"
+                   alt="confirm" form="addForm">
+        </li>
+    </ul>
 </div>
 
 </body>
