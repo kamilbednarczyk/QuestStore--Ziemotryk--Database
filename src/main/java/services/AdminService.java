@@ -13,6 +13,7 @@ import views.AdminResponseCreator;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -85,9 +86,13 @@ public class AdminService {
 
     // POST METHODS
     public void addMentor(HttpExchange httpExchange) throws IOException {
-        Account account = getMentorAccountFromForm(httpExchange);
+        new AccountsDAO().add(
+                getMentorAccountFromForm(httpExchange)
+        );
+        Account account = new AccountsDAO().getAccountFromDbByAccountWithoutId(
+                getMentorAccountFromForm(httpExchange)
+        );
         Mentor mentor = getMentorFromFormAndAccount(httpExchange, account);
-        new AccountsDAO().add(account);
         new MentorsDAO().add(mentor);
     }
 
@@ -141,7 +146,13 @@ public class AdminService {
     }
 
     private Mentor getMentorFromFormAndAccount(HttpExchange httpExchange, Account account) throws IOException {
-        Map<String, String> inputs = getFormInputsMap(httpExchange);
+        Map<String, String> inputs = new HashMap<>();
+        try {
+            inputs = FormService.getInputsStringMap(httpExchange);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
         System.out.println("TUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
         return new Mentor(
                 account.getAccountId(),

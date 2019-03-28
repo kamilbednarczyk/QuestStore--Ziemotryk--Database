@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class AccountsDAO implements IDAO<Account> {
 
@@ -85,5 +86,18 @@ public class AccountsDAO implements IDAO<Account> {
         dbConnector.executeUpdate(
                 "DELETE FROM accounts WHERE account_id=" + id
         );
+    }
+
+    public Account getAccountFromDbByAccountWithoutId(Account account) {
+        List<Account> accounts = getAll();
+
+        for(Account currentAccount: accounts) {
+            if(currentAccount.getLogin().equals(account.getLogin()) &&
+                currentAccount.getPassword().equals(account.getPassword()) &&
+                currentAccount.getPermission() == account.getPermission()) {
+                return currentAccount;
+            }
+        }
+        throw new NoSuchElementException("Account not found");
     }
 }
