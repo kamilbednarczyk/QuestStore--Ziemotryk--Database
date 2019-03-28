@@ -51,17 +51,17 @@
             <li class="level">
                 <span style="font-size: 35px" style="font-weight: normal">Lvl:</span><br>
                 <input class="input" type="number" placeholder="Level" value="{{ level.getLevel() }}"
-                       form="updateForm"/>
+                       form="updateForm" name="level"/>
             </li>
             <p class="heading">Coolcoin gap:</p>
             <li class="coolcoinGap">
                 <input class="input" type="number" placeholder="Coolcoin gap" value="{{ level.getCoolcoinsNeeded() }}"
-                       form="updateForm"/>
+                       form="updateForm" name="coolcoinGap"/>
             </li>
             <p class="heading">Level title:</p>
             <li class="levelTitle">
                 <input class="input" type="text" placeholder="Level title" value="{{ level.getLevelName() }}"
-                       form="updateForm"/>
+                       form="updateForm" name="levelTitle"/>
             </li>
             <li class="editButtonsImage">
                 <input type="image" name="deleteLevel" class="deleteButton" src="/static/IMAGES/deleteButton.png"

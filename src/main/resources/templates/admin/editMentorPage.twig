@@ -52,21 +52,24 @@
                 <img class="avatar" src="/static/IMAGES/leniartek.png" alt="Leniartek">
             </li>
             <li class="fullName">
-                <input class="input" type="text" placeholder="Piotr Leniartek" value="{{ mentor.getFullName() }}" form="updateForm"/>
+                <input class="input" type="text" placeholder="Piotr Leniartek" value="{{ mentor.getFullName() }}"
+                       form="updateForm" name="fullName"/>
 
             </li>
             <p class=" heading">E-mail:</p>
             <li class="email">
-                <input class="input" type="text" placeholder="Piotr Leniartek" value="{{ mentor.getEmail() }}" form="updateForm"/>
+                <input class="input" type="text" placeholder="Piotr Leniartek" value="{{ mentor.getEmail() }}"
+                       form="updateForm" name="email"/>
             </li>
             <p class=" heading">Class:</p>
             <li class="assignedClass">
                 <input class="input" type="text" placeholder="Piotr Leniartek" value="{{ mentor.getClassName() }}"
-                       form="updateForm"/>
+                       form="updateForm" name="assignedClass"/>
             </li>
             <p class=" heading">About:</p>
             <li class="about">
-                <input class="input" type="text" placeholder="Piotr Leniartek" value="{{ mentor.getAbout() }}" form="updateForm"/>
+                <input class="input" type="text" placeholder="Piotr Leniartek" value="{{ mentor.getAbout() }}"
+                       form="updateForm" name="about"/>
             </li>
             <li class="editButtonsImage">
                 <input type="image" name="deleteMentor" class="deleteButton" src="/static/IMAGES/deleteButton.png"
