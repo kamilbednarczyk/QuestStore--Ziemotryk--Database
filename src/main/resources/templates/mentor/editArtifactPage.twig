@@ -3,66 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit artifact</title>
-    <link rel="stylesheet" href="../../CSS/flexboxStyle.css">
-    <link rel="stylesheet" href="../../CSS/IndexPageStyle.css">
-    <link rel="stylesheet" href="../../CSS/Mentor/editCodecoolerPage.css">
+    <link rel="stylesheet" href="/static/CSS/flexboxStyle.css">
+    <link rel="stylesheet" href="/static/CSS/IndexPageStyle.css">
+    <link rel="stylesheet" href="/static/CSS/Mentor/editCodecoolerPage.css">
 </head>
 <body>
 
 
-
 <div id="pageInfo">
-    <img id="logoImage" src="../../IMAGES/logoCodecool.jpg" width="70" height="70">
+    <img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" width="70" height="70">
     <nav role='navigation'>
         <div id="menuToggle">
 
-            <input type="checkbox" />
+            <input type="checkbox"/>
 
             <span></span>
             <span></span>
             <span></span>
 
             <ul id="menu">
-                <p id="mentorName">Mentor</p>
-                <a href="indexPage.twig"><li>Home</li></a>
-                <a href="codecoolerPage.twig"><li>Codecooler</li></a>
-                <a href="questPage.twig"><li>Quests</li></a>
-                <a href="artifactPage.twig"><li>Artifacts</li></a>
-                <a id="logoutButton" href="../loginPage.html"><li>Log out</li></a>
+                <a href="/quest/mentor/index">
+                    <li>Home</li>
+                </a>
+                <a href="/quest/mentor/codecoolers">
+                    <li>Codecoolers</li>
+                </a>
+                <a href="/quest/mentor/quests">
+                    <li>Quests</li>
+                </a>
+                <a href="/quest/mentor/artifacts">
+                    <li>Artifacts</li>
+                </a>
+                <a href="/quest/mentor/logout">
+                    <li>Log out</li>
+                </a>
             </ul>
         </div>
     </nav>
 </div>
 
 <div id="pageInfo">
-    <a href="indexPage.twig"><img id="logoImage" src="../../IMAGES/logoCodecool.jpg" width="70" height="70"></a>
+    <a href="/quest/mentor/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" width="70" height="70"></a>
 </div>
 
 <div class="container">
-    <form>
+    {% for artifact in list %}
+        <form id="updateForm" method="POST" action="/quest/mentor/updateArtifact/{{ artifact.getArtifactId() }}"></form>
+        <form id="deleteForm" method="POST" action="/quest/mentor/deleteArtifact/{{ artifact.getArtifactId() }}"></form>
         <ul class="item">
             <li class="avatarImage">
                 <img class="avatar" src="#" alt="Artifact image">
             </li>
             <li class="artifactName">
-                <input class="input" type="text" placeholder="Artifact name" value="Artifact name"/>
+                <input class="input" type="text" placeholder="Artifact name" value="{{ artifact.getName() }}"
+                       form="updateForm"
+                       name="artifactName"/>
 
             </li>
             <p class="heading">Description:</p>
             <li class="decription">
-                <input class="input" type="text" placeholder="Description" value="Artifact description"/>
+                <input class="input" type="text" placeholder="Description" value="{{ artifact.getDescription() }}"
+                       form="updateForm" name="description"/>
             </li>
             <p class="heading">Prize:</p>
             <li class="prize">
-                <input class="input" type="text" placeholder="Artifact prize" value="Artifact prize"/>
+                <input class="input" type="text" placeholder="Artifact prize" value="{{ artifact.getPrize() }}"
+                       form="updateForm"
+                       name="prize"/>
             </li>
             <li class="editButtonsImage">
-                <a href="#"><img class="deleteButton" src="../../IMAGES/deleteButton.png" alt="delete"></a>
-                <a href="#"><img class="cancelButton" src="../../IMAGES/cancelButton.png" alt="cancel"></a>
-                <a href="#"><img class="confirmButton" src="../../IMAGES/tickButton.png" alt="confirm"></a>
+                <input type="image" name="deleteArtifact" class="deleteButton" src="/static/IMAGES/deleteButton.png"
+                       form="deleteForm">
+                <a href="/quest/mentor/artifacts"><img class="cancelButton" src="/static/IMAGES/cancelButton.png"
+                                                       alt="cancel"></a>
+                <input type="image" name="confirmEditArtifact" class="confirmButton" src="/static/IMAGES/tickButton.png"
+                       form="updateForm">
             </li>
         </ul>
-    </form>
+    {% endfor %}
 </div>
 
 </body>
