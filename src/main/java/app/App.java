@@ -10,7 +10,7 @@ import java.net.InetSocketAddress;
 public class App {
 
     public void run() throws IOException {
-        HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
+        HttpServer server = HttpServer.create(new InetSocketAddress(7900), 0);
 
         server.createContext("/quest", new Router());
         server.createContext("/", new Static());

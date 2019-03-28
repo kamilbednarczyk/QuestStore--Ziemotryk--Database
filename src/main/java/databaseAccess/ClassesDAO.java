@@ -22,7 +22,7 @@ public class ClassesDAO implements IDAO<Class> {
     @Override
     public Class get(int id) {
         ResultSet resultSet = dbConnector.getResultSetByQuery(
-                "SELECT * FROM categories WHERE category_id="+id
+                "SELECT * FROM classes WHERE class_id="+id
         );
         Class questStoreClass = null;
 

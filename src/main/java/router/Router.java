@@ -7,7 +7,11 @@ import controllers.CodecoolerController;
 import controllers.LoginController;
 import controllers.MentorController;
 import databaseAccess.AccountsDAO;
+import databaseAccess.ClassesDAO;
+import databaseAccess.MentorsDAO;
 import models.Account;
+import models.Class;
+import models.Mentor;
 import sessionData.SessionHandler;
 import sessionData.CookieHandler;
 
@@ -36,9 +40,6 @@ public class Router implements HttpHandler {
         this.mentorController = new MentorController();
         this.adminController = new AdminController();
 
-        AccountsDAO accountsDAO = new AccountsDAO();
-        Account account = new Account("patryk", "mandrak", 3);
-        accountsDAO.add(account);
     }
 
     @Override
@@ -86,7 +87,6 @@ public class Router implements HttpHandler {
             System.out.println("Not found");
             response = "ERROR 404";
         }
-
         sendResponse(httpExchange, response, cookie);
     }
 

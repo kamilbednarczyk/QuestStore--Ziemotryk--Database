@@ -1,5 +1,10 @@
 package models;
 
+import databaseAccess.CodecoolersDAO;
+import databaseAccess.MentorsDAO;
+
+import java.util.List;
+
 public class Class {
     private int classId;
     private String className;
@@ -28,5 +33,30 @@ public class Class {
 
     public void setClassName(String className) {
         this.className = className;
+    }
+
+    public String getAssignedMentor() {
+        List<Mentor> mentorList = new MentorsDAO().getAll();
+
+        for (Mentor mentor : mentorList) {
+            if (mentor.getClassId() == classId) {
+                return mentor.getFullName();
+            }
+        }
+
+        return "mentorNotFound";
+    }
+
+    public int getNumberOfStudents() {
+        List<Codecooler> codecoolerList = new CodecoolersDAO().getAll();
+        int counter = 0;
+
+        for (Codecooler codecooler : codecoolerList) {
+            if (codecooler.getClassId() == classId) {
+                counter++;
+            }
+        }
+
+        return counter;
     }
 }
