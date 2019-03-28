@@ -13,6 +13,7 @@ import views.AdminResponseCreator;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -76,24 +77,30 @@ public class AdminService {
 
     private int getIdByURL(HttpExchange httpExchange) {
         int requestedId = Integer
-                            .parseInt(httpExchange
-                            .getRequestURI()
-                            .toString().split("/")[4]);
+                .parseInt(httpExchange
+                        .getRequestURI()
+                        .toString().split("/")[4]);
 
         return requestedId;
     }
 
     // POST METHODS
     public void addMentor(HttpExchange httpExchange) throws IOException {
-        Account account = getMentorAccountFromForm(httpExchange);
-        Mentor mentor = getMentorFromFormAndAccount(httpExchange, account);
-        new AccountsDAO().add(account);
+        Map<String, String> inputs = getFormInputsMap(httpExchange);
+
+        Account account = getMentorAccountFromForm(inputs);
+        AccountsDAO accountsDAO = new AccountsDAO();
+        accountsDAO.add(account);
+        Account currentAccount = accountsDAO.getAccountFromDbByAccountWithoutId(account);
+
+        Mentor mentor = getMentorFromFormAndAccount(inputs, currentAccount);
         new MentorsDAO().add(mentor);
     }
 
     public void updateMentor(HttpExchange httpExchange, int requestedItemId) throws IOException {
+        Map<String, String> inputs = getFormInputsMap(httpExchange);
         Account account = new AccountsDAO().get(requestedItemId);
-        Mentor mentor = getMentorFromFormAndAccount(httpExchange, account);
+        Mentor mentor = getMentorFromFormAndAccount(inputs, account);
         new MentorsDAO().update(requestedItemId, mentor);
     }
 
@@ -131,8 +138,7 @@ public class AdminService {
         new ClassesDAO().delete(requestedItemId);
     }
 
-    private Account getMentorAccountFromForm(HttpExchange httpExchange) throws IOException {
-        Map<String, String> inputs = getFormInputsMap(httpExchange);
+    private Account getMentorAccountFromForm(Map<String, String> inputs) throws IOException {
         return new Account(
                 inputs.get("login"),
                 inputs.get("password"),
@@ -140,9 +146,7 @@ public class AdminService {
         );
     }
 
-    private Mentor getMentorFromFormAndAccount(HttpExchange httpExchange, Account account) throws IOException {
-        Map<String, String> inputs = getFormInputsMap(httpExchange);
-        System.out.println("TUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
+    private Mentor getMentorFromFormAndAccount(Map<String, String> inputs, Account account) throws IOException {
         return new Mentor(
                 account.getAccountId(),
                 inputs.get("fullName"),
