@@ -23,21 +23,57 @@ public class AdminController {
         return adminService.getLevelPageRender();
     }
 
+    public String getEditMentorPage(HttpExchange httpExchange) {
+        return adminService.getEditMentorPageRender(httpExchange);
+    }
+
+    public String getAddMentorPage() {
+        return adminService.getAddMentorPageRender();
+    }
+
+    public String getEditLevelPage(HttpExchange httpExchange) {
+        return adminService.getEditLevelPageRender(httpExchange);
+    }
+
+    public String getAddLevelPage() {
+        return adminService.getAddLevelPageRender();
+    }
+
+    public String getEditClassPage(HttpExchange httpExchange) {
+        return adminService.getEditClassPageRender(httpExchange);
+    }
+
+    public String getAddClassPage() {
+        return adminService.getAddClassPageRender();
+    }
+
     public String getAdminResponse(HttpExchange httpExchange, String userPageRequest) {
         String response = "";
-        if(userPageRequest.equals("index")) {
+        if (userPageRequest.equals("index")) {
             response = getIndexPage();
-        } else if(userPageRequest.equals("mentors")) {
+        } else if (userPageRequest.equals("mentors")) {
             response = getMentorPage();
-        } else if(userPageRequest.equals("classes")) {
+        } else if (userPageRequest.equals("classes")) {
             response = getClassPage();
-        } else if(userPageRequest.equals("levels")) {
+        } else if (userPageRequest.equals("levels")) {
             response = getLevelPage();
-        } else if(userPageRequest.equals("logout")) {
+        } else if (userPageRequest.equals("logout")) {
             new SessionHandler().removeActiveSessionWithCookie(httpExchange);
             response = new LoginController().getLoginPage();
+        } else if (userPageRequest.equals("editMentorPage")) {
+            response = getEditMentorPage(httpExchange);
+        } else if (userPageRequest.equals("addMentorPage")) {
+            response = getAddMentorPage();
+        } else if (userPageRequest.equals("editLevelPage")) {
+            response = getEditLevelPage(httpExchange);
+        } else if (userPageRequest.equals("addLevelPage")) {
+            response = getAddLevelPage();
+        } else if (userPageRequest.equals("editClassPage")) {
+            response = getEditClassPage(httpExchange);
+        } else if (userPageRequest.equals("addClassPage")) {
+            response = getAddClassPage();
         } else {
-            response = "Error 404";
+            response = "error404";
         }
 
         return response;

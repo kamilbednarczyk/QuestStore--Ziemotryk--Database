@@ -30,4 +30,28 @@ public class AdminResponseCreator {
     public String renderLevelPage(List<Level> levels) {
         return responseCreator.renderPageWith("/admin/levels.twig", levels);
     }
+
+    public String renderEditMentorPage(List<Mentor> mentor) {
+        return null;
+    }
+
+    public String renderAddMentorPage() {
+        return null;
+    }
+
+    public String renderEditLevelPage(List<Level> level) {
+        return null;
+    }
+
+    public String renderAddLevelPage() {
+        return null;
+    }
+
+    public String renderEditClassPage(List<Class> classes) {
+        return null;
+    }
+
+    public String renderAddClassPage() {
+        return null;
+    }
 }
