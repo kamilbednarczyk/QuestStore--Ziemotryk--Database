@@ -45,8 +45,8 @@
 
 <div class="container">
     {% for level in list %}
-        <form id="updateForm" method="POST" action="/quest/admin/updateClass/{{ class.getClassId() }}"></form>
-        <form id="deleteForm" method="POST" action="/quest/admin/deleteClass/{{ class.getClassId() }}"></form>
+        <form id="updateForm" method="POST" action="/quest/admin/updateClass/{{ level.getLevel() }}"></form>
+        <form id="deleteForm" method="POST" action="/quest/admin/deleteClass/{{ level.getLevel() }}"></form>
         <ul class="item">
             <li class="level">
                 <span style="font-size: 35px" style="font-weight: normal">Lvl:</span><br>
