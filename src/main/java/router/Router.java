@@ -14,6 +14,7 @@ import models.Account;
 import models.Class;
 import models.Level;
 import models.Mentor;
+import services.FormService;
 import sessionData.SessionHandler;
 import sessionData.CookieHandler;
 
@@ -66,30 +67,39 @@ public class Router implements HttpHandler {
                 response = connectToControllerBy(account);
             }
         } else if (cookie.isPresent()) {
-            if(method.equals("GET")) {
+            int cookiePermissionLevel = sessionHandler.getPermissionFromCookie(cookie);
+
                 System.out.println(cookieHandler.getSessionIdCookieValue(cookie));
                 String[] requestPathArray = httpExchange.getRequestURI().toString().split("/");
                 String userRequestedPermissions = requestPathArray[2];
                 String userPageRequest = requestPathArray[3];
-                int cookiePermissionLevel = sessionHandler.getPermissionFromCookie(cookie);
 
-                if(userRequestedPermissions.equals("admin") && cookiePermissionLevel == 3) {
-                    response = adminController.getAdminResponse(httpExchange, userPageRequest);
-                } else if(userRequestedPermissions.equals("mentor") && cookiePermissionLevel == 2) {
-                    response = "mentorResponseGoesHere";
-                } else if(userRequestedPermissions.equals("codecooler") && cookiePermissionLevel == 1) {
-                    response = "codecoolerResponseGoesHere";
-                } else {
-                    response = "Error 404";
-                }
-            } else if (method.equals("POST")){
-
-            }
+                response = getResponseByCookieAndUrl(httpExchange,
+                                                    cookiePermissionLevel,
+                                                    userRequestedPermissions,
+                                                    userPageRequest);
         } else {
             System.out.println("Not found");
             response = "ERROR 404";
         }
         sendResponse(httpExchange, response, cookie);
+    }
+
+    private String getResponseByCookieAndUrl(HttpExchange httpExchange,
+                                             int cookiePermissionLevel,
+                                             String userRequestedPermissions,
+                                             String userPageRequest) {
+        String response;
+        if(userRequestedPermissions.equals("admin") && cookiePermissionLevel == 3) {
+            response = adminController.getAdminResponse(httpExchange, userPageRequest);
+        } else if(userRequestedPermissions.equals("mentor") && cookiePermissionLevel == 2) {
+            response = "mentorResponseGoesHere";
+        } else if(userRequestedPermissions.equals("codecooler") && cookiePermissionLevel == 1) {
+            response = "codecoolerResponseGoesHere";
+        } else {
+            response = "Error 404";
+        }
+        return response;
     }
 
     private String connectToControllerBy(Account account) {
@@ -116,20 +126,6 @@ public class Router implements HttpHandler {
     }
 
     private Map<String, String> getFormInputsMap(HttpExchange httpExchange) throws IOException {
-        Map<String, String> map = new HashMap<>();
-        InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
-        BufferedReader br = new BufferedReader(isr);
-        String formData = br.readLine();
-        System.out.println("TUU");
-        System.out.println(formData);
-        String[] pairs = formData.split("&");
-        if (formData.length() > 16) {
-            for (String pair : pairs) {
-                String[] keyValue = pair.split("=");
-                String value = new URLDecoder().decode(keyValue[1], "UTF-8");
-                map.put(keyValue[0], value);
-            }
-        }
-        return map;
+        return new FormService().getInputsStringMap(httpExchange);
     }
 }

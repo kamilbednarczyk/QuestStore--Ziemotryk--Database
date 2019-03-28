@@ -10,13 +10,18 @@ public class Mentor {
     private String about;
     private String avatarFile;
 
-    public Mentor(int accountId, String fullName, String email, int classId, String about, String avatarFile) {
-        this.accountId = accountId;
+    // Use for update
+    public Mentor(String fullName, String email, int classId, String about, String avatarFile) {
         this.fullName = fullName;
         this.email = email;
         this.classId = classId;
         this.about = about;
         this.avatarFile = avatarFile;
+    }
+
+    public Mentor(int accountId, String fullName, String email, int classId, String about, String avatarFile) {
+        this(fullName, email, classId, about, avatarFile);
+        this.accountId = accountId;
     }
 
     // Getters & Setters

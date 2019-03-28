@@ -44,7 +44,7 @@ public class Class {
             }
         }
 
-        return "mentorNotFound";
+        return "No assigned mentor";
     }
 
     public int getNumberOfStudents() {

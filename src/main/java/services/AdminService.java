@@ -1,17 +1,25 @@
 package services;
 
 import com.sun.net.httpserver.HttpExchange;
+import databaseAccess.AccountsDAO;
 import databaseAccess.ClassesDAO;
 import databaseAccess.LevelsDAO;
 import databaseAccess.MentorsDAO;
+import models.Account;
 import models.Class;
 import models.Level;
 import models.Mentor;
 import views.AdminResponseCreator;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URLDecoder;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AdminService {
     private AdminResponseCreator adminResponseCreator = new AdminResponseCreator();
@@ -78,5 +86,94 @@ public class AdminService {
                             .toString().split("/")[4]);
 
         return requestedId;
+    }
+
+    public void addMentor(HttpExchange httpExchange) throws IOException {
+        Account account = getMentorAccountFromForm(httpExchange);
+        Mentor mentor = getMentorFromFormAndAccount(httpExchange, account);
+        new AccountsDAO().add(account);
+        new MentorsDAO().add(mentor);
+    }
+
+    public void updateMentor(HttpExchange httpExchange, int requestedItemId) throws IOException {
+        Account account = new AccountsDAO().get(requestedItemId);
+        Mentor mentor = getMentorFromFormAndAccount(httpExchange, account);
+        new MentorsDAO().update(requestedItemId, mentor);
+    }
+
+    public void deleteMentor(int requestedItemId) {
+        new MentorsDAO().delete(requestedItemId);
+    }
+
+    public void addLevel(HttpExchange httpExchange) throws IOException {
+        Level level = getLevelFromForm(httpExchange);
+        new LevelsDAO().add(level);
+    }
+
+    public void updateLevel(HttpExchange httpExchange, int requestedItemId) throws IOException {
+        Level level = getLevelFromForm(httpExchange);
+        LevelsDAO levelsDAO = new LevelsDAO();
+        levelsDAO.delete(requestedItemId);
+        levelsDAO.add(level);
+    }
+
+    public void deleteLevel(int requestedItemId) throws IOException {
+        new LevelsDAO().delete(requestedItemId);
+    }
+
+    public void addClass(HttpExchange httpExchange) throws IOException {
+        Class classToAdd = getClassFromForm(httpExchange);
+        new ClassesDAO().add(classToAdd);
+    }
+
+    public void updateClass(HttpExchange httpExchange, int requestedItemId) throws IOException {
+        Class classToUpdate = getClassFromForm(httpExchange);
+        new ClassesDAO().update(requestedItemId, classToUpdate);
+    }
+
+    public void deleteClass(HttpExchange httpExchange, int requestedItemId) {
+        new ClassesDAO().delete(requestedItemId);
+    }
+
+    private Account getMentorAccountFromForm(HttpExchange httpExchange) throws IOException {
+        Map<String, String> inputs = getFormInputsMap(httpExchange);
+        return new Account(
+                inputs.get("login"),
+                inputs.get("password"),
+                2
+        );
+    }
+
+    private Mentor getMentorFromFormAndAccount(HttpExchange httpExchange, Account account) throws IOException {
+        Map<String, String> inputs = getFormInputsMap(httpExchange);
+        return new Mentor(
+                account.getAccountId(),
+                inputs.get("fullName"),
+                inputs.get("email"),
+                Integer.parseInt(inputs.get("classId")), // create method get class id by name assignedClass
+                inputs.get("about"),
+                "noneForNow"
+        );
+    }
+
+    private Class getClassFromForm(HttpExchange httpExchange) throws IOException {
+        Map<String, String> inputs = getFormInputsMap(httpExchange);
+        return new Class(
+                inputs.get("className")
+        );
+    }
+
+    private Level getLevelFromForm(HttpExchange httpExchange) throws IOException {
+        Map<String, String> inputs = getFormInputsMap(httpExchange);
+        return new Level(
+                Integer.parseInt(inputs.get("level")),
+                Integer.parseInt(inputs.get("coolcoinGap")),
+                inputs.get("levelTitle"),
+                inputs.get("levelDescription")
+        );
+    }
+
+    private Map<String, String> getFormInputsMap(HttpExchange httpExchange) throws IOException {
+        return new FormService().getInputsStringMap(httpExchange);
     }
 }
