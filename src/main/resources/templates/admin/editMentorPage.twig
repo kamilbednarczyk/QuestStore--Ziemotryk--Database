@@ -39,38 +39,48 @@
 </nav>
 
 <div id="pageInfo">
-    <a href="/quest/admin/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70" height="70"></a>
+    <a href="/quest/admin/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70"
+                                      height="70"></a>
 </div>
 
 <div class="container">
-    <form>
+    {% for mentor in list %}
+        <form id="updateForm" method="POST" action="/quest/admin/updateClass/{{ mentor.getAccountId() }}"></form>
+        <form id="deleteForm" method="POST" action="/quest/admin/deleteClass/{{ mentor.getAccountId() }}"></form>
         <ul class="item">
             <li class="avatarImage">
                 <img class="avatar" src="/static/IMAGES/leniartek.png" alt="Leniartek">
             </li>
             <li class="fullName">
-                <input class="input" type="text" placeholder="Piotr Leniartek" value="Name"/>
+                <input class="input" type="text" placeholder="Piotr Leniartek" value="{{ mentor.getFullName() }}"
+                       form="updateForm" name="fullName"/>
 
             </li>
-            <p class="heading">E-mail:</p>
+            <p class=" heading">E-mail:</p>
             <li class="email">
-                <input class="input" type="text" placeholder="Piotr Leniartek" value="E-mail"/>
+                <input class="input" type="text" placeholder="Piotr Leniartek" value="{{ mentor.getEmail() }}"
+                       form="updateForm" name="email"/>
             </li>
-            <p class="heading">Class:</p>
+            <p class=" heading">Class:</p>
             <li class="assignedClass">
-                <input class="input" type="text" placeholder="Piotr Leniartek" value="Class"/>
+                <input class="input" type="text" placeholder="Piotr Leniartek" value="{{ mentor.getClassName() }}"
+                       form="updateForm" name="assignedClass"/>
             </li>
-            <p class="heading">About:</p>
+            <p class=" heading">About:</p>
             <li class="about">
-                <input class="input" type="text" placeholder="Piotr Leniartek" value="About"/>
+                <input class="input" type="text" placeholder="Piotr Leniartek" value="{{ mentor.getAbout() }}"
+                       form="updateForm" name="about"/>
             </li>
             <li class="editButtonsImage">
-                <input type="submit" name="deleteMentor"><img class="deleteButton" src="/static/IMAGES/deleteButton.png" alt="delete"></a>
-                <a href="/quest/admin/mentors"><img class="cancelButton" src="/static/IMAGES/cancelButton.png" alt="cancel"></a>
-                <input type="submit" name="confirmEditMentor"><img class="confirmButton" src="/static/IMAGES/tickButton.png" alt="confirm"></a>
+                <input type="image" name="deleteMentor" class="deleteButton" src="/static/IMAGES/deleteButton.png"
+                       form="deleteForm">
+                <a href="/quest/admin/classes"><img class="cancelButton" src="/static/IMAGES/cancelButton.png"
+                                                    alt="cancel"></a>
+                <input type="image" name="confirmEditMentor" class="confirmButton" src="/static/IMAGES/tickButton.png"
+                       form="updateForm">
             </li>
         </ul>
-    </form>
+    {% endfor %}
 </div>
 
 

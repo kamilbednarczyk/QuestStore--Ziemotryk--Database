@@ -39,17 +39,19 @@
 </nav>
 
 <div id="pageInfo">
-    <a href="/quest/admin/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70" height="70" /></a>
+    <a href="/quest/admin/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70"
+                                      height="70"/></a>
 </div>
 
 <div class="container">
+    <form id="addForm" method="POST" action="/quest/admin/addClass"></form>
     <ul class="item">
         <li class="className">
-            <input class="input" type="text" placeholder="Class name"/>
+            <input class="input" type="text" placeholder="Class name" form="addForm" name="className"/>
         </li>
         <p class="heading">Mentor:</p>
         <li>
-            <input class="input" type="text" placeholder="Assigned Mentor"/>
+            No mentor assigned
         </li>
         <p class="heading">Number of students</p>
         <li style="text-align: center;">
@@ -58,7 +60,8 @@
 
         <li class="editButtonsImage">
             <a href="/quest/admin/classes"><img class="cancelButton" src="/static/IMAGES/cancelButton.png" alt="cancel"></a>
-            <input type="submit" name="confirmAddClass"><img class="confirmButton" src="/static/IMAGES/tickButton.png" alt="confirm"></a>
+            <input type="image" name="confirmAddClass" class="confirmButton" src="/static/IMAGES/tickButton.png"
+                   alt="confirm" form="addForm">
         </li>
     </ul>
 </div>

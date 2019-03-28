@@ -1,5 +1,7 @@
 package models;
 
+import databaseAccess.ClassesDAO;
+
 public class Codecooler {
     private int accountId;
     private int classId;
@@ -84,5 +86,9 @@ public class Codecooler {
 
     public void setCoolcoins(int coolcoins) {
         this.coolcoins = coolcoins;
+    }
+
+    public String getClassName() {
+        return new ClassesDAO().get(classId).getClassName();
     }
 }

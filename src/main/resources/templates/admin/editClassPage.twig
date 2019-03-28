@@ -51,12 +51,11 @@
         <ul class="item">
             <li class="className">
                 <input class="input" type="text" placeholder="Class name" value="{{ class.getClassName() }}"
-                       form="updateForm"/>
+                       form="updateForm" name="className"/>
             </li>
             <p class="heading">Mentor:</p>
             <li>
-                <input class="input" type="text" placeholder="Assigned Mentor" value="{{ class.getAssignedMentor() }}"
-                       form="updateForm"/>
+                {{ class.getAssignedMentor() }}
             </li>
             <p class="heading">Number of students</p>
             <li style="text-align: center;">

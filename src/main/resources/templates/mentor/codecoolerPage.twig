@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Codecooler</title>
+    <link rel="stylesheet" href="/static/CSS/flexboxStyle.css">
+    <link rel="stylesheet" href="/static/CSS/IndexPageStyle.css">
+</head>
+<body>
+
+
+<div id="pageInfo">
+    <img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" width="70" height="70">
+    <nav role='navigation'>
+        <div id="menuToggle">
+
+            <input type="checkbox"/>
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <ul id="menu">
+                <a href="/quest/mentor/index">
+                    <li>Home</li>
+                </a>
+                <a href="/quest/mentor/codecoolers">
+                    <li>Codecoolers</li>
+                </a>
+                <a href="/quest/mentor/quests">
+                    <li>Quests</li>
+                </a>
+                <a href="/quest/mentor/artifacts">
+                    <li>Artifacts</li>
+                </a>
+                <a href="/quest/mentor/logout">
+                    <li>Log out</li>
+                </a>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div id="pageInfo">
+    <a href="/quest/mentor/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" width="70" height="70"></a>
+</div>
+<div id="plusButton">
+    <a href="/quest/mentor/addCodecoolerPage"><img class="plusButton" src="/static/IMAGES/plusButton.png"></a>
+</div>
+
+<div class="container">
+    {% for codecooler in list %}
+        <ul class="item">
+            <li class="avatarImage"><img class="avatar" src="/static/IMAGES/leniartekStudent.png" alt="Leniartek"></li>
+            <li class="fullName">
+                Piotr Leniartek Student
+            </li>
+            <p class="heading">E-mail:</p>
+            <li class="email">
+                piotrleniarket@covbvvb.pl
+            </li>
+            <p class="heading">Class:</p>
+            <li class="assignedClass">
+                cymbaly
+            </li>
+            <p class="heading">Coolcoins:</p>
+            <li class="about">
+                999
+            </li>
+            <li class="editButtonImage"><a href="/quest/mentor/editCodecoolerPage/{{ codecooler.getAccountId() }}"><img
+                            class="editButton" src="/static/IMAGES/wrench.png" ALT="EDIT"></a></li>
+        </ul>
+    {% endfor %}
+</div>
+
+</body>
+</html>

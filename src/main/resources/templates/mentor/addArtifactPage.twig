@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add artifact</title>
+    <link rel="stylesheet" href="/static/CSS/flexboxStyle.css">
+    <link rel="stylesheet" href="/static/CSS/IndexPageStyle.css">
+    <link rel="stylesheet" href="/static/CSS/Mentor/addCodecoolerPage.css">
+</head>
+<body>
+
+
+<div id="pageInfo">
+    <img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" width="70" height="70">
+    <nav role='navigation'>
+        <div id="menuToggle">
+
+            <input type="checkbox"/>
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <ul id="menu">
+                <a href="/quest/mentor/index">
+                    <li>Home</li>
+                </a>
+                <a href="/quest/mentor/codecoolers">
+                    <li>Codecoolers</li>
+                </a>
+                <a href="/quest/mentor/quests">
+                    <li>Quests</li>
+                </a>
+                <a href="/quest/mentor/artifacts">
+                    <li>Artifacts</li>
+                </a>
+                <a href="/quest/mentor/logout">
+                    <li>Log out</li>
+                </a>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div id="pageInfo">
+    <a href="/quest/mentor/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" width="70" height="70"></a>
+</div>
+
+<div class="container">
+    <form id="addForm" method="POST" action="/quest/mentor/addArtifact"></form>
+    <ul class="item">
+        <li class="avatarImage">
+            <img class="avatar" src="#" alt="Artifact image">
+        </li>
+        <li class="artifactName">
+            <input class="input" type="text" placeholder="Artifact name" form="addForm" name="artifactName"/>
+
+        </li>
+        <p class="heading">Decription:</p>
+        <li class="decription">
+            <input class="input" type="text" placeholder="Decription" form="addForm" name="description"/>
+        </li>
+        <p class="heading">Prize:</p>
+        <li class="prize">
+            <input class="input" type="text" placeholder="Artifact prize" form="addForm" name="prize"/>
+        </li>
+        <li class="editButtonsImage">
+            <a href="/quest/mentor/artifacts"><img class="cancelButton" src="/static/IMAGES/cancelButton.png"
+                                                   alt="cancel"></a>
+            <input type="image" name="confirmAddArtifact" class="confirmButton" src="/static/IMAGES/tickButton.png"
+                   alt="confirm" form="addForm">
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

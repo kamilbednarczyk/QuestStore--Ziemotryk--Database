@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit quest</title>
+    <link rel="stylesheet" href="/static/CSS/flexboxStyle.css">
+    <link rel="stylesheet" href="/static/CSS/IndexPageStyle.css">
+    <link rel="stylesheet" href="/static/CSS/Mentor/editCodecoolerPage.css">
+</head>
+<body>
+
+
+<div id="pageInfo">
+    <img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" width="70" height="70">
+    <nav role='navigation'>
+        <div id="menuToggle">
+
+            <input type="checkbox"/>
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <ul id="menu">
+                <a href="/quest/mentor/index">
+                    <li>Home</li>
+                </a>
+                <a href="/quest/mentor/codecoolers">
+                    <li>Codecoolers</li>
+                </a>
+                <a href="/quest/mentor/quests">
+                    <li>Quests</li>
+                </a>
+                <a href="/quest/mentor/artifacts">
+                    <li>Artifacts</li>
+                </a>
+                <a href="/quest/mentor/logout">
+                    <li>Log out</li>
+                </a>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div id="pageInfo">
+    <a href="/quest/mentor/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" width="70" height="70"></a>
+</div>
+
+<div class="container">
+    {% for quest in list %}
+        <form id="updateForm" method="POST" action="/quest/mentor/updateQuest/{{ quest.getQuestId() }}"></form>
+        <form id="deleteForm" method="POST" action="/quest/mentor/deleteQuest/{{ quest.getQuestId() }}"></form>
+        <ul class="item">
+            <li class="avatarImage">
+                <img class="avatar" src="#" alt="Quest image">
+            </li>
+            <li class="questName">
+                <input class="input" type="text" placeholder="Quest name" value="{{ quest.getName() }}"
+                       form="updateForm" name="questName"/>
+
+            </li>
+            <p class="heading">Description:</p>
+            <li class="decription">
+                <input class="input" type="text" placeholder="Description" value="{{ quest.getDescription() }}"
+                       form="updateForm" name="description"/>
+            </li>
+            <p class="heading">Value:</p>
+            <li class="questValue">
+                <input class="input" type="text" placeholder="Quest value" value="{{ quest.getCoolcoinPrize() }}"
+                       form="updateForm" name="questValue"/>
+            </li>
+            <li class="editButtonsImage">
+                <input type="image" name="deleteQuest" class="deleteButton" src="/static/IMAGES/deleteButton.png"
+                       form="deleteForm">
+                <a href="/quest/mentor/quests"><img class="cancelButton" src="/static/IMAGES/cancelButton.png"
+                                                    alt="cancel"></a>
+                <input type="image" name="confirmEditQuest" class="confirmButton" src="/static/IMAGES/tickButton.png"
+                       form="updateForm">
+            </li>
+        </ul>
+    {% endfor %}
+</div>
+
+</body>
+</html>

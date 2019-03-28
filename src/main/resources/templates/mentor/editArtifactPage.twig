@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit artifact</title>
+    <link rel="stylesheet" href="/static/CSS/flexboxStyle.css">
+    <link rel="stylesheet" href="/static/CSS/IndexPageStyle.css">
+    <link rel="stylesheet" href="/static/CSS/Mentor/editCodecoolerPage.css">
+</head>
+<body>
+
+
+<div id="pageInfo">
+    <img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" width="70" height="70">
+    <nav role='navigation'>
+        <div id="menuToggle">
+
+            <input type="checkbox"/>
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <ul id="menu">
+                <a href="/quest/mentor/index">
+                    <li>Home</li>
+                </a>
+                <a href="/quest/mentor/codecoolers">
+                    <li>Codecoolers</li>
+                </a>
+                <a href="/quest/mentor/quests">
+                    <li>Quests</li>
+                </a>
+                <a href="/quest/mentor/artifacts">
+                    <li>Artifacts</li>
+                </a>
+                <a href="/quest/mentor/logout">
+                    <li>Log out</li>
+                </a>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div id="pageInfo">
+    <a href="/quest/mentor/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" width="70" height="70"></a>
+</div>
+
+<div class="container">
+    {% for artifact in list %}
+        <form id="updateForm" method="POST" action="/quest/mentor/updateArtifact/{{ artifact.getArtifactId() }}"></form>
+        <form id="deleteForm" method="POST" action="/quest/mentor/deleteArtifact/{{ artifact.getArtifactId() }}"></form>
+        <ul class="item">
+            <li class="avatarImage">
+                <img class="avatar" src="#" alt="Artifact image">
+            </li>
+            <li class="artifactName">
+                <input class="input" type="text" placeholder="Artifact name" value="{{ artifact.getName() }}"
+                       form="updateForm"
+                       name="artifactName"/>
+
+            </li>
+            <p class="heading">Description:</p>
+            <li class="decription">
+                <input class="input" type="text" placeholder="Description" value="{{ artifact.getDescription() }}"
+                       form="updateForm" name="description"/>
+            </li>
+            <p class="heading">Prize:</p>
+            <li class="prize">
+                <input class="input" type="text" placeholder="Artifact prize" value="{{ artifact.getPrize() }}"
+                       form="updateForm"
+                       name="prize"/>
+            </li>
+            <li class="editButtonsImage">
+                <input type="image" name="deleteArtifact" class="deleteButton" src="/static/IMAGES/deleteButton.png"
+                       form="deleteForm">
+                <a href="/quest/mentor/artifacts"><img class="cancelButton" src="/static/IMAGES/cancelButton.png"
+                                                       alt="cancel"></a>
+                <input type="image" name="confirmEditArtifact" class="confirmButton" src="/static/IMAGES/tickButton.png"
+                       form="updateForm">
+            </li>
+        </ul>
+    {% endfor %}
+</div>
+
+</body>
+</html>

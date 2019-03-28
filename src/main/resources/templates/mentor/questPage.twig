@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quests</title>
+    <link rel="stylesheet" href="/static/CSS/flexboxStyle.css">
+    <link rel="stylesheet" href="/static/CSS/IndexPageStyle.css">
+</head>
+<body>
+
+
+<div id="pageInfo">
+    <img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" width="70" height="70">
+    <nav role='navigation'>
+        <div id="menuToggle">
+
+            <input type="checkbox"/>
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <ul id="menu">
+                <a href="/quest/mentor/index">
+                    <li>Home</li>
+                </a>
+                <a href="/quest/mentor/codecoolers">
+                    <li>Codecoolers</li>
+                </a>
+                <a href="/quest/mentor/quests">
+                    <li>Quests</li>
+                </a>
+                <a href="/quest/mentor/artifacts">
+                    <li>Artifacts</li>
+                </a>
+                <a href="/quest/mentor/logout">
+                    <li>Log out</li>
+                </a>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div id="pageInfo">
+    <a href="/quest/mentor/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" width="70" height="70"></a>
+</div>
+<div id="plusButton">
+    <a href="/quest/mentor/addQuestPage"><img class="plusButton" src="/static/IMAGES/plusButton.png"></a>
+</div>
+
+<div class="container">
+    {% for quest in list %}
+        <ul class="item">
+            <img class="avatar" src="#" alt="Quest image">
+            <li class="questName">
+                Test Quest
+            </li>
+            <p class="heading">Description:</p>
+            <li class="description">
+                Decription
+            </li>
+            <p class="heading">Value:</p>
+            <li class="questValue">
+                Quest value
+            </li>
+            <li class="editButtonImage"><a href="/quest/mentor/editQuestPage/{{ quest.getQuestId() }}"><img
+                            class="editButton"
+                            src="/static/IMAGES/wrench.png"
+                            ALT="EDIT"></a></li>
+            </li>
+        </ul>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

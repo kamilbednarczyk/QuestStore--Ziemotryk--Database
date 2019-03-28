@@ -40,7 +40,7 @@
 
 <div id="pageInfo">
     <a href="/quest/admin/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg"
-                                                           alt="logo" width="70" height="70"></a>
+                                      alt="logo" width="70" height="70"></a>
 </div>
 
 <div id="plusButton">
@@ -49,22 +49,22 @@
 
 <div class="container">
     {% for class in list %}
-    <ul class="item">
-        <li class="className">
-            {{ class.getClassName() }}
-        </li>
-        <p class="heading">Assigned mentor:</p>
-        <li>
-            {{ class.getAssignedMentor() }}
-        </li>
-        <p class="heading">Number of students:</p>
-        <li>
-            {{ class.getNumberOfStudents() }}
-        </li>
+        <ul class="item">
+            <li class="className">
+                {{ class.getClassName() }}
+            </li>
+            <p class="heading">Assigned mentor:</p>
+            <li>
+                {{ class.getAssignedMentor() }}
+            </li>
+            <p class="heading">Number of students:</p>
+            <li>
+                {{ class.getNumberOfStudents() }}
+            </li>
 
-        <li class="editButtonImage"><a href="/quest/admin/editClassPage/{{ class.getClassId() }}"><img
-                        class="editButton" src="/static/IMAGES/wrench.png" alt="edit"></a></li>
-    </ul>
+            <li class="editButtonImage"><a href="/quest/admin/editClassPage/{{ class.getClassId() }}"><img
+                            class="editButton" src="/static/IMAGES/wrench.png" alt="edit"></a></li>
+        </ul>
     {% endfor %}
 </div>
 
