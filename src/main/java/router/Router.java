@@ -87,7 +87,6 @@ public class Router implements HttpHandler {
             response = "ERROR 404";
         }
 
-        System.out.println("Response...");
         sendResponse(httpExchange, response, cookie);
     }
 
@@ -108,7 +107,7 @@ public class Router implements HttpHandler {
 
     private void sendResponse(HttpExchange httpExchange, String response, Optional<HttpCookie> cookie) throws IOException {
         cookieHandler.setResponseCookieIfPresent(httpExchange, cookie);
-        httpExchange.sendResponseHeaders(200, response.length());
+        httpExchange.sendResponseHeaders(200, response.getBytes().length);
         OutputStream os = httpExchange.getResponseBody();
         os.write(response.getBytes());
         os.close();

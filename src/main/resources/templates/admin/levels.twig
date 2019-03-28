@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pillars of experience</title>
+    <title>Title</title>
     <link rel="stylesheet" href="../../CSS/flexboxStyle.css">
     <link rel="stylesheet" href="../../CSS/IndexPageStyle.css">
-    <link rel="stylesheet" href="../../CSS/Admin/pilarOfExperiencePage.css">
+    <link rel="stylesheet" href="../../CSS/Admin/classesPage.css">
 </head>
 <body>
 
@@ -19,19 +19,19 @@
         <span></span>
 
         <ul id="menu">
-            <a href="quest/admin/index">
+            <a href="/quest/admin/index">
                 <li>Home</li>
             </a>
-            <a href="quest/admin/mentors">
+            <a href="/quest/admin/mentors">
                 <li>Mentors</li>
             </a>
-            <a href="quest/admin/classes">
+            <a href="/quest/admin/classes">
                 <li>Classes</li>
             </a>
-            <a href="quest/admin/levels">
+            <a href="/quest/admin/levels">
                 <li>Pilar of experience</li>
             </a>
-            <a href="quest/admin/logout">
+            <a href="/quest/admin/logout">
                 <li>Log out</li>
             </a>
         </ul>
@@ -46,10 +46,9 @@
 </div>
 
 <div class="container">
-    {% for level in list %}
     <ul class="item">
         <li class="level">
-            <span style="font-size: 35px" style="font-weight: normal">Lvl:</span>
+            LVL
         </li>
         <p class="heading">Coolcoin gap:</p>
         <li class="email">
@@ -57,12 +56,11 @@
         </li>
         <p class="heading">Level title:</p>
         <li class="email">
-            Typowy plebs, głupi
+            Typowy plebs, glupi
         </li>
 
-        <li class="editButtonImage"><a href="editLevel.html"><img class="editButton" src="../../IMAGES/wrench.png" alt="edit"></a></li>
+        <li class="editButtonImage"><a href="editLevelPage.html"><img class="editButton" src="../../IMAGES/wrench.png" alt="edit"></a></li>
     </ul>
-    {% endblock %}
 </div>
 
 </body>

@@ -25,11 +25,9 @@ public class AdminController {
 
     public String getAdminResponse(HttpExchange httpExchange, String userPageRequest) {
         String response = "";
-        System.out.println("getAdminResponse");
         if(userPageRequest.equals("index")) {
             response = getIndexPage();
         } else if(userPageRequest.equals("mentors")) {
-            System.out.println("mentors...");
             response = getMentorPage();
         } else if(userPageRequest.equals("classes")) {
             response = getClassPage();
