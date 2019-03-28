@@ -3,30 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Mentor</title>
-    <link rel="stylesheet" href="../../CSS/IndexPageStyle.css">
+    <link rel="stylesheet" href="/static/CSS/IndexPageStyle.css">
 </head>
 <body>
 
 
-
 <div id="pageInfo">
-    <img id="logoImage" src="../../IMAGES/logoCodecool.jpg" width="70" height="70">
+    <img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" width="70" height="70" alt="logoImage">
     <nav role='navigation'>
         <div id="menuToggle">
 
-            <input type="checkbox" />
+            <input type="checkbox"/>
 
             <span></span>
             <span></span>
             <span></span>
 
             <ul id="menu">
-                <p id="mentorName">Mentor</p>
-                <a href="indexPage.twig"><li>Home</li></a>
-                <a href="codecoolerPage.twig"><li>Codecooler</li></a>
-                <a href="questPage.twig"><li>Quests</li></a>
-                <a href="artifactPage.twig"><li>Artifacts</li></a>
-                <a id="logoutButton" href="../loginPage.html"><li>Log out</li></a>
+                <a href="/quest/mentor/index">
+                    <li>Home</li>
+                </a>
+                <a href="/quest/mentor/codecoolers">
+                    <li>Codecoolers</li>
+                </a>
+                <a href="/quest/mentor/quests">
+                    <li>Quests</li>
+                </a>
+                <a href="/quest/mentor/artifacts">
+                    <li>Artifacts</li>
+                </a>
+                <a href="/quest/mentor/logout">
+                    <li>Log out</li>
+                </a>
             </ul>
         </div>
     </nav>
