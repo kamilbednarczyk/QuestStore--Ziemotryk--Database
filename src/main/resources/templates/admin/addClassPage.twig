@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/CSS/flexboxStyle.css">
+    <link rel="stylesheet" href="/static/CSS/IndexPageStyle.css">
+    <link rel="stylesheet" href="/static/CSS/Admin/classesPage.css">
+</head>
+<body>
+
+<nav role='navigation'>
+    <div id="menuToggle">
+
+        <input type="checkbox"/>
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <ul id="menu">
+            <a href="/quest/admin/index">
+                <li>Home</li>
+            </a>
+            <a href="/quest/admin/mentors">
+                <li>Mentors</li>
+            </a>
+            <a href="/quest/admin/classes">
+                <li>Classes</li>
+            </a>
+            <a href="/quest/admin/levels">
+                <li>Pilar of experience</li>
+            </a>
+            <a href="/quest/admin/logout">
+                <li>Log out</li>
+            </a>
+        </ul>
+    </div>
+</nav>
+
+<div id="pageInfo">
+    <a href="/quest/admin/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70" height="70" /></a>
+</div>
+
+<div class="container">
+    <ul class="item">
+        <li class="className">
+            <input class="input" type="text" placeholder="Class name"/>
+        </li>
+        <p class="heading">Mentor:</p>
+        <li>
+            <input class="input" type="text" placeholder="Assigned Mentor"/>
+        </li>
+        <p class="heading">Number of students</p>
+        <li style="text-align: center;">
+            21
+        </li>
+
+        <li class="editButtonsImage">
+            <a href="/quest/admin/classes"><img class="cancelButton" src="/static/IMAGES/cancelButton.png" alt="cancel"></a>
+            <input type="submit" name="confirmAddClass"><img class="confirmButton" src="/static/IMAGES/tickButton.png" alt="confirm"></a>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
