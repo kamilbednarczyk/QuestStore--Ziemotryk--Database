@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit level</title>
+    <link rel="stylesheet" href="/static/CSS/flexboxStyle.css">
+    <link rel="stylesheet" href="/static/CSS/IndexPageStyle.css">
+    <link rel="stylesheet" href="/static/CSS/Admin/editLevel.css">
+</head>
+<body>
+
+<nav role='navigation'>
+    <div id="menuToggle">
+
+        <input type="checkbox"/>
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <ul id="menu">
+            <a href="/quest/admin/index">
+                <li>Home</li>
+            </a>
+            <a href="/quest/admin/mentors">
+                <li>Mentors</li>
+            </a>
+            <a href="/quest/admin/classes">
+                <li>Classes</li>
+            </a>
+            <a href="/quest/admin/levels">
+                <li>Pilar of experience</li>
+            </a>
+            <a href="/quest/admin/logout">
+                <li>Log out</li>
+            </a>
+        </ul>
+    </div>
+</nav>
+
+<div id="pageInfo">
+    <a href="/quest/admin/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70" height="70"></a>
+</div>
+
+<div class="container">
+    <form>
+        <ul class="item">
+            <li class="level">
+                <span style="font-size: 35px" style="font-weight: normal">Lvl:</span><br>
+                <input class="input" type="number" placeholder="Level"/>
+            </li>
+            <p class="heading">Coolcoin gap:</p>
+            <li class="coolcoinGap">
+                <input class="input" type="number" placeholder="Coolcoin gap"/>
+            </li>
+            <p class="heading">Level title:</p>
+            <li class="levelTitle">
+                <input class="input" type="text" placeholder="Level title"/>
+            </li>
+            <li class="editButtonsImage">
+                <a href="/quest/admin/levels"><img class="cancelButton" src="/static/IMAGES/cancelButton.png" alt="cancel"></a>
+                <input type="submit" name="confirmAddLevel"><img class="confirmButton" src="/static/IMAGES/tickButton.png" alt="confirm"></a>
+            </li>
+        </ul>
+    </form>
+
+</div>
+
+</body>
+</html>
