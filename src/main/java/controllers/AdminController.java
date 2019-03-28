@@ -53,69 +53,73 @@ public class AdminController {
         int requestedItemId = getItemIdRequestIfExists(httpExchange);
         String response = "";
 
-        if (userPageRequest.equals("index")) {
+        if (userPageRequest.equals("index")) { // GET: index
             response = getIndexPage();
-        } else if (userPageRequest.equals("mentors")) {
+
+        } else if (userPageRequest.equals("mentors")) { // GET: mentors
             response = getMentorPage();
-        } else if (userPageRequest.equals("classes")) {
+
+        } else if (userPageRequest.equals("classes")) { // GET: classes
             response = getClassPage();
-        } else if (userPageRequest.equals("levels")) {
+
+        } else if (userPageRequest.equals("levels")) { // GET: levels
             response = getLevelPage();
-        } else if (userPageRequest.equals("logout")) {
+
+        } else if (userPageRequest.equals("logout")) { // GET: logout
             new SessionHandler().removeActiveSessionWithCookie(httpExchange);
             response = new LoginController().getLoginPage();
 
-        } else if (userPageRequest.equals("editMentorPage")) {
+        } else if (userPageRequest.equals("editMentorPage")) { // GET: edit mentor
             response = getEditMentorPage(httpExchange);
 
-        } else if (userPageRequest.equals("addMentorPage")) {
+        } else if (userPageRequest.equals("addMentorPage")) { // GET: add mentor
             response = getAddMentorPage();
 
-        } else if (userPageRequest.equals("editLevelPage")) {
+        } else if (userPageRequest.equals("editLevelPage")) { // GET: edit level
             response = getEditLevelPage(httpExchange);
 
-        } else if (userPageRequest.equals("addLevelPage")) {
+        } else if (userPageRequest.equals("addLevelPage")) { // GET: add level
             response = getAddLevelPage();
 
-        } else if (userPageRequest.equals("editClassPage")) {
+        } else if (userPageRequest.equals("editClassPage")) { // GET: edit class
             response = getEditClassPage(httpExchange);
 
-        } else if (userPageRequest.equals("addClassPage")) {
+        } else if (userPageRequest.equals("addClassPage")) { // GET: add class
             response = getAddClassPage();
 
-        } else if (userPageRequest.equals("addMentor")) { // mentor
+        } else if (userPageRequest.equals("addMentor")) { // POST: add mentor
             adminService.addMentor(httpExchange);
             response = getMentorPage();
 
-        } else if (userPageRequest.equals("updateMentor")) {
+        } else if (userPageRequest.equals("updateMentor")) { // POST: edit mentor
             adminService.updateMentor(httpExchange, requestedItemId);
             response = getMentorPage();
 
-        } else if (userPageRequest.equals("deleteMentor")) {
+        } else if (userPageRequest.equals("deleteMentor")) { // POST: delete mentor
             adminService.deleteMentor(requestedItemId);
             response = getMentorPage();
 
-        } else if (userPageRequest.equals("addLevel")) { // level
+        } else if (userPageRequest.equals("addLevel")) { // POST: add level
             adminService.addLevel(httpExchange);
             response = getLevelPage();
 
-        } else if (userPageRequest.equals("updateLevel")) {
+        } else if (userPageRequest.equals("updateLevel")) { // POST: update level
             adminService.updateLevel(httpExchange, requestedItemId);
             response = getLevelPage();
 
-        } else if (userPageRequest.equals("deleteLevel")) {
+        } else if (userPageRequest.equals("deleteLevel")) { // POST: delete level
             adminService.deleteLevel(requestedItemId);
             response = getLevelPage();
 
-        } else if (userPageRequest.equals("addClass")) { // class
+        } else if (userPageRequest.equals("addClass")) { // POST: add class
             adminService.addClass(httpExchange);
             response = getClassPage();
 
-        } else if (userPageRequest.equals("updateClass")) {
+        } else if (userPageRequest.equals("updateClass")) { // POST: update Class
             adminService.updateClass(httpExchange, requestedItemId);
             response = getClassPage();
 
-        } else if (userPageRequest.equals("deleteClass")) {
+        } else if (userPageRequest.equals("deleteClass")) { // POST delete class
             adminService.deleteClass(httpExchange, requestedItemId);
             response = getClassPage();
 

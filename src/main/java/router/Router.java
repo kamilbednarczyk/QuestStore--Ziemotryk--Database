@@ -88,7 +88,7 @@ public class Router implements HttpHandler {
     private String getResponseByCookieAndUrl(HttpExchange httpExchange,
                                              int cookiePermissionLevel,
                                              String userRequestedPermissions,
-                                             String userPageRequest) {
+                                             String userPageRequest) throws IOException {
         String response;
         if(userRequestedPermissions.equals("admin") && cookiePermissionLevel == 3) {
             response = adminController.getAdminResponse(httpExchange, userPageRequest);
@@ -126,6 +126,6 @@ public class Router implements HttpHandler {
     }
 
     private Map<String, String> getFormInputsMap(HttpExchange httpExchange) throws IOException {
-        return new FormService().getInputsStringMap(httpExchange);
+        return FormService.getInputsStringMap(httpExchange);
     }
 }

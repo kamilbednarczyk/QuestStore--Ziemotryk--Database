@@ -76,4 +76,15 @@ public class ClassesDAO implements IDAO<Class> {
                 "DELETE FROM classes WHERE class_id="+id
         );
     }
+
+    public int getClassIdByName(String name) {
+        List<Class> classes = getAll();
+
+        for(Class currentClass: classes) {
+            if(currentClass.getClassName().equals(name)) {
+                return currentClass.getClassId();
+            }
+        }
+        return -1;
+    }
 }

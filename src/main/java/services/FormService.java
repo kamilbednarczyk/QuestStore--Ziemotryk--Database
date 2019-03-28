@@ -24,6 +24,7 @@ public class FormService {
                 map.put(keyValue[0], value);
             }
         }
+        System.out.println("getInputsStringMap");
         return map;
     }
 }

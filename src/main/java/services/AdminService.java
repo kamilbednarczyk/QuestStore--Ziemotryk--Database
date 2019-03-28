@@ -11,13 +11,8 @@ import models.Level;
 import models.Mentor;
 import views.AdminResponseCreator;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URLDecoder;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -88,6 +83,7 @@ public class AdminService {
         return requestedId;
     }
 
+    // POST METHODS
     public void addMentor(HttpExchange httpExchange) throws IOException {
         Account account = getMentorAccountFromForm(httpExchange);
         Mentor mentor = getMentorFromFormAndAccount(httpExchange, account);
@@ -146,11 +142,12 @@ public class AdminService {
 
     private Mentor getMentorFromFormAndAccount(HttpExchange httpExchange, Account account) throws IOException {
         Map<String, String> inputs = getFormInputsMap(httpExchange);
+        System.out.println("TUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
         return new Mentor(
                 account.getAccountId(),
                 inputs.get("fullName"),
                 inputs.get("email"),
-                Integer.parseInt(inputs.get("classId")), // create method get class id by name assignedClass
+                new ClassesDAO().getClassIdByName(String.valueOf(inputs.get("assignedClass"))),
                 inputs.get("about"),
                 "noneForNow"
         );
@@ -174,6 +171,7 @@ public class AdminService {
     }
 
     private Map<String, String> getFormInputsMap(HttpExchange httpExchange) throws IOException {
-        return new FormService().getInputsStringMap(httpExchange);
+        System.out.println("IN ADMIN SERVICE");
+        return FormService.getInputsStringMap(httpExchange);
     }
 }
