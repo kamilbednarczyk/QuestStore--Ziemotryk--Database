@@ -39,31 +39,31 @@
 </nav>
 
 <div id="pageInfo">
-    <a href="/quest/admin/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70" height="70"></a>
+    <a href="/quest/admin/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70"
+                                      height="70"></a>
 </div>
 
 <div class="container">
-    <form>
-        <ul class="item">
-            <li class="level">
-                <span style="font-size: 35px" style="font-weight: normal">Lvl:</span><br>
-                <input class="input" type="number" placeholder="Level"/>
-            </li>
-            <p class="heading">Coolcoin gap:</p>
-            <li class="coolcoinGap">
-                <input class="input" type="number" placeholder="Coolcoin gap"/>
-            </li>
-            <p class="heading">Level title:</p>
-            <li class="levelTitle">
-                <input class="input" type="text" placeholder="Level title"/>
-            </li>
-            <li class="editButtonsImage">
-                <a href="/quest/admin/levels"><img class="cancelButton" src="/static/IMAGES/cancelButton.png" alt="cancel"></a>
-                <input type="submit" name="confirmAddLevel"><img class="confirmButton" src="/static/IMAGES/tickButton.png" alt="confirm"></a>
-            </li>
-        </ul>
-    </form>
-
+    <form id="addForm" method="POST" action="/quest/admin/addLevel"></form>
+    <ul class="item">
+        <li class="level">
+            <span style="font-size: 35px" style="font-weight: normal">Lvl:</span><br>
+            <input class="input" type="number" placeholder="Level" form="addForm"/>
+        </li>
+        <p class="heading">Coolcoin gap:</p>
+        <li class="coolcoinGap">
+            <input class="input" type="number" placeholder="Coolcoin gap" form="addForm"/>
+        </li>
+        <p class="heading">Level title:</p>
+        <li class="levelTitle">
+            <input class="input" type="text" placeholder="Level title" form="addForm"/>
+        </li>
+        <li class="editButtonsImage">
+            <a href="/quest/admin/levels"><img class="cancelButton" src="/static/IMAGES/cancelButton.png" alt="cancel"></a>
+            <input type="image" name="confirmAddLevel" class="confirmButton" src="/static/IMAGES/tickButton.png"
+                   alt="confirm" form="addForm">
+        </li>
+    </ul>
 </div>
 
 </body>
