@@ -50,8 +50,8 @@
     {% for level in list %}
     <ul class="item">
         <li class="level">
-            <span style="font-size: 35px" style="font-weight: normal">Lvl:</span>
-            {{ level.getLevel() }}
+            <span style="font-size: 15px" style="font-weight: normal">Lvl:</span>
+            <span style="font-size: 35px">{{ level.getLevel() }}</span>
         </li>
         <p class="heading">Coolcoin gap:</p>
         <li class="email">
@@ -60,6 +60,10 @@
         <p class="heading">Level title:</p>
         <li class="email">
             {{ level.getLevelName() }}
+        </li>
+        <p class="heading">Level description:</p>
+        <li class="email">
+            {{ level.getLevelDescription() }}
         </li>
 
         <li class="editButtonImage"><a href="/quest/admin/editLevelPage/{{ level.getLevel() }}"><img class="editButton" src="/static/IMAGES/wrench.png"
