@@ -40,16 +40,22 @@ public class AdminService {
     }
 
     public String getEditMentorPageRender(HttpExchange httpExchange) {
-        System.out.println("IM IN EDIT MENTOR");
         int id = getIdByURL(httpExchange);
-        System.out.println("ID:"+id);
         List<Mentor> mentor = new ArrayList<>();
         mentor.add(new MentorsDAO().get(id));
-        return adminResponseCreator.renderEditMentorPage(mentor);
+        List<Class> possibleClasses = new ClassesDAO().getAll();
+
+        for(int i=0; i<possibleClasses.size(); i++) {
+            if(possibleClasses.get(i).getClassId()==mentor.get(0).getClassId()) {
+                possibleClasses.remove(i);
+            }
+        }
+        return adminResponseCreator.renderEditMentorPage(mentor, possibleClasses);
     }
 
     public String getAddMentorPageRender() {
-        return adminResponseCreator.renderAddMentorPage();
+        List<Class> possibleClasses = new ClassesDAO().getAll();
+        return adminResponseCreator.renderAddMentorPage(possibleClasses);
     }
 
     public String getEditLevelPageRender(HttpExchange httpExchange) {
@@ -143,6 +149,7 @@ public class AdminService {
     }
 
     private Account getMentorAccountFromForm(Map<String, String> inputs) throws IOException {
+
         return new Account(
                 inputs.get("login"),
                 inputs.get("password"),
@@ -151,6 +158,7 @@ public class AdminService {
     }
 
     private Mentor getMentorFromFormAndAccount(Map<String, String> inputs, Account account) throws IOException {
+
         return new Mentor(
                 account.getAccountId(),
                 inputs.get("fullName"),

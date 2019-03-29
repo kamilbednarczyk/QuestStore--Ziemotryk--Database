@@ -77,4 +77,5 @@ public class Mentor {
     public String getClassName() {
         return new ClassesDAO().get(classId).getClassName();
     }
+
 }

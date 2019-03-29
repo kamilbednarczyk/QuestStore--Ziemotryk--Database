@@ -12,11 +12,19 @@ import java.util.Random;
 
 public class SessionHandler {
     private CookieHandler cookieHandler = new CookieHandler();
+    private static SessionHandler instance = null;
 
     private Map<String, String[]> activeSessionList;
 
-    public SessionHandler() {
+    private SessionHandler() {
         activeSessionList = new HashMap<>();
+    }
+
+    public static SessionHandler getInstance() {
+        if(instance == null) {
+            instance = new SessionHandler();
+        }
+        return instance;
     }
 
     public Map<String, String[]> getActiveSessionList() {
@@ -46,7 +54,7 @@ public class SessionHandler {
     public void removeActiveSessionWithCookie(HttpExchange httpExchange) {
         Optional<HttpCookie> cookie = cookieHandler.getSessionIdCookie(httpExchange);
         activeSessionList.remove(
-                cookieHandler.getSessionIdCookie(httpExchange).get().getValue()
+                cookie.get().getValue().replaceAll("\"", "")
         );
         cookieHandler.removeCookie(cookie);
     }

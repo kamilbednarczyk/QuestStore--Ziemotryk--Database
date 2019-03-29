@@ -1,5 +1,7 @@
 package views;
 
+import models.Class;
+import models.Mentor;
 import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
 
@@ -28,5 +30,15 @@ public class ResponseCreator {
 
     public String renderPage(String fileName) {
         return renderPageWith(fileName, new ArrayList<>());
+    }
+
+    public <E> String renderPageWith(String fileName, List<Mentor> firstList, List<Class> secondList) {
+        String response;
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/"+fileName);
+        JtwigModel model;
+        model = JtwigModel.newModel().with("list", firstList);
+        model.with("secondlist", secondList);
+        response = template.render(model);
+        return response;
     }
 }

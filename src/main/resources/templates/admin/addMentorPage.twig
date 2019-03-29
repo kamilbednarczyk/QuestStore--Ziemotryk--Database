@@ -47,7 +47,7 @@
     <form id="addForm" method="POST" action="/quest/admin/addMentor"></form>
     <ul class="item">
         <li class="avatarImage">
-            <img class="avatar" src="/static/IMAGES/emptyAvatar404.png" alt="Leniartek">
+            <img class="avatar" src="/static/IMAGES/mentors/emptyAvatar404.jpg" alt="Leniartek">
         </li>
         <li class="fullName">
             <input class="input" type="text" placeholder="Full name" form="addForm" name="fullName"/>
@@ -59,7 +59,13 @@
         </li>
         <p class="heading">Class:</p>
         <li class="assignedClass">
-            <input class="input" type="text" placeholder="Assigned class" form="addForm" name="assignedClass"/>
+            <!--input class="input" type="text" placeholder="Assigned class" form="addForm" name="assignedClass"/-->
+            <select  name="assignedClass" form="addForm">
+                <option disabled selected value> -- select class -- </option>
+                {% for class in list %}
+                <option value="{{ class.getClassName() }}">{{ class.getClassName() }}</option>
+                {% endfor %}
+            </select>
         </li>
         <p class="heading">About:</p>
         <li class="about">

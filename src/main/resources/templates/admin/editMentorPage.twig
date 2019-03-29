@@ -49,7 +49,7 @@
         <form id="deleteForm" method="POST" action="/quest/admin/deleteMentor/{{ mentor.getAccountId() }}"></form>
         <ul class="item">
             <li class="avatarImage">
-                <img class="avatar" src="/static/IMAGES/{{ mentor.getAvatarFile() }}" alt="Leniartek">
+                <img class="avatar" src="/static/IMAGES/mentors/{{ mentor.getAvatarFile() }}" alt="Leniartek">
             </li>
             <li class="fullName">
                 <input class="input" type="text" placeholder="Piotr Leniartek" value="{{ mentor.getFullName() }}"
@@ -63,8 +63,12 @@
             </li>
             <p class=" heading">Class:</p>
             <li class="assignedClass">
-                <input class="input" type="text" placeholder="Piotr Leniartek" value="{{ mentor.getClassName() }}"
-                       form="updateForm" name="assignedClass"/>
+                <select  name="assignedClass" form="updateForm">
+                    <option value="{{ mentor.getClassName() }}">{{ mentor.getClassName() }}</option>
+                    {% for class in secondlist %}
+                        <option value="{{ class.getClassName() }}">{{ class.getClassName() }}</option>
+                    {% endfor %}
+                </select>
             </li>
             <p class=" heading">About:</p>
             <li class="about">

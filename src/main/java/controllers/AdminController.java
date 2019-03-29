@@ -5,6 +5,8 @@ import services.AdminService;
 import sessionData.SessionHandler;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.function.Function;
 
 public class AdminController {
     private AdminService adminService = new AdminService();
@@ -53,6 +55,10 @@ public class AdminController {
         int requestedItemId = getItemIdRequestIfExists(httpExchange);
         String response = "";
 
+//        Map<String, Function> map;
+//        map.get("key").apply(httpExchange);
+
+
         if (userPageRequest.equals("index")) { // GET: index
             response = getIndexPage();
 
@@ -66,7 +72,7 @@ public class AdminController {
             response = getLevelPage();
 
         } else if (userPageRequest.equals("logout")) { // GET: logout
-            new SessionHandler().removeActiveSessionWithCookie(httpExchange);
+            SessionHandler.getInstance().removeActiveSessionWithCookie(httpExchange);
             response = new LoginController().getLoginPage();
 
         } else if (userPageRequest.equals("editMentorPage")) { // GET: edit mentor

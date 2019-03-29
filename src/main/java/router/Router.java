@@ -36,7 +36,7 @@ public class Router implements HttpHandler {
 
 
     public Router() {
-        this.sessionHandler = new SessionHandler();
+        this.sessionHandler = SessionHandler.getInstance();
         this.cookieHandler = new CookieHandler();
         this.loginController = new LoginController();
         this.codecoolerController = new CodecoolerController();

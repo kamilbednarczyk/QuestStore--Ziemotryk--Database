@@ -31,12 +31,12 @@ public class AdminResponseCreator {
         return responseCreator.renderPageWith("/admin/levels.twig", levels);
     }
 
-    public String renderEditMentorPage(List<Mentor> mentor) {
-        return responseCreator.renderPageWith("/admin/editMentorPage.twig", mentor);
+    public String renderEditMentorPage(List<Mentor> mentor, List<Class> possibleClasses) {
+        return responseCreator.renderPageWith("/admin/editMentorPage.twig", mentor, possibleClasses);
     }
 
-    public String renderAddMentorPage() {
-        return responseCreator.renderPage("/admin/addMentorPage.twig");
+    public String renderAddMentorPage(List<Class> possibleClasses) {
+        return responseCreator.renderPageWith("/admin/addMentorPage.twig", possibleClasses);
     }
 
     public String renderEditLevelPage(List<Level> level) {
