@@ -65,7 +65,7 @@ public class ClassesDAO implements IDAO<Class> {
     public void update(int id, Class toUpdate) {
         dbConnector.executeUpdate(
                 "UPDATE classes\n"
-                        + "SET class_name=" + toUpdate.getClassName() + "\n"
+                        + "SET class_name='" + toUpdate.getClassName() + "'\n"
                         + "WHERE class_id=" + id
         );
     }

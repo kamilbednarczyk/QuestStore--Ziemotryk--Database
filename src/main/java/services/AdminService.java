@@ -40,10 +40,11 @@ public class AdminService {
     }
 
     public String getEditMentorPageRender(HttpExchange httpExchange) {
+        System.out.println("IM IN EDIT MENTOR");
         int id = getIdByURL(httpExchange);
+        System.out.println("ID:"+id);
         List<Mentor> mentor = new ArrayList<>();
         mentor.add(new MentorsDAO().get(id));
-
         return adminResponseCreator.renderEditMentorPage(mentor);
     }
 
@@ -76,12 +77,10 @@ public class AdminService {
     }
 
     private int getIdByURL(HttpExchange httpExchange) {
-        int requestedId = Integer
+        return Integer
                 .parseInt(httpExchange
                         .getRequestURI()
                         .toString().split("/")[4]);
-
-        return requestedId;
     }
 
     // POST METHODS
@@ -99,12 +98,17 @@ public class AdminService {
 
     public void updateMentor(HttpExchange httpExchange, int requestedItemId) throws IOException {
         Map<String, String> inputs = getFormInputsMap(httpExchange);
+
+        System.out.println("DZIALA");
         Account account = new AccountsDAO().get(requestedItemId);
+        System.out.println(1);
         Mentor mentor = getMentorFromFormAndAccount(inputs, account);
+        System.out.println(2);
         new MentorsDAO().update(requestedItemId, mentor);
     }
 
     public void deleteMentor(int requestedItemId) {
+        new AccountsDAO().delete(requestedItemId);
         new MentorsDAO().delete(requestedItemId);
     }
 
@@ -153,7 +157,7 @@ public class AdminService {
                 inputs.get("email"),
                 new ClassesDAO().getClassIdByName(String.valueOf(inputs.get("assignedClass"))),
                 inputs.get("about"),
-                "noneForNow"
+                "emptyAvatar404.jpg" // none for now
         );
     }
 
@@ -175,7 +179,6 @@ public class AdminService {
     }
 
     private Map<String, String> getFormInputsMap(HttpExchange httpExchange) throws IOException {
-        System.out.println("IN ADMIN SERVICE");
         return FormService.getInputsStringMap(httpExchange);
     }
 }

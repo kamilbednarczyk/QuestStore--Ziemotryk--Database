@@ -57,6 +57,6 @@ public class CookieHandler {
     }
 
     public void removeCookie(Optional<HttpCookie> cookie) {
-        cookie.get().setMaxAge(0);
+        cookie.get().setMaxAge(-1);
     }
 }

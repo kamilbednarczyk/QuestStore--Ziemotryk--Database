@@ -92,6 +92,7 @@ public class AdminController {
             response = getMentorPage();
 
         } else if (userPageRequest.equals("updateMentor")) { // POST: edit mentor
+            System.out.println("IM IN CONTROLLER UPDATE MENTOR");
             adminService.updateMentor(httpExchange, requestedItemId);
             response = getMentorPage();
 
@@ -133,8 +134,10 @@ public class AdminController {
     private int getItemIdRequestIfExists(HttpExchange httpExchange) {
         int id = -1;
         String[] requestUrlArray = httpExchange.getRequestURI().toString().split("/");
+        System.out.println("3");
         if(requestUrlArray.length >= 5) {
-            id = Integer.parseInt(requestUrlArray[6]);
+            System.out.println(requestUrlArray[4]);
+            id = Integer.parseInt(requestUrlArray[4]);
         }
         return id;
     }

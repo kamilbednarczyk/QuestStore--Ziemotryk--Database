@@ -45,8 +45,8 @@
 
 <div class="container">
     {% for mentor in list %}
-        <form id="updateForm" method="POST" action="/quest/admin/updateClass/{{ mentor.getAccountId() }}"></form>
-        <form id="deleteForm" method="POST" action="/quest/admin/deleteClass/{{ mentor.getAccountId() }}"></form>
+        <form id="updateForm" method="POST" action="/quest/admin/updateMentor/{{ mentor.getAccountId() }}"></form>
+        <form id="deleteForm" method="POST" action="/quest/admin/deleteMentor/{{ mentor.getAccountId() }}"></form>
         <ul class="item">
             <li class="avatarImage">
                 <img class="avatar" src="/static/IMAGES/leniartek.png" alt="Leniartek">
@@ -74,7 +74,7 @@
             <li class="editButtonsImage">
                 <input type="image" name="deleteMentor" class="deleteButton" src="/static/IMAGES/deleteButton.png"
                        form="deleteForm">
-                <a href="/quest/admin/classes"><img class="cancelButton" src="/static/IMAGES/cancelButton.png"
+                <a href="/quest/admin/mentors"><img class="cancelButton" src="/static/IMAGES/cancelButton.png"
                                                     alt="cancel"></a>
                 <input type="image" name="confirmEditMentor" class="confirmButton" src="/static/IMAGES/tickButton.png"
                        form="updateForm">

@@ -80,8 +80,8 @@ public class MentorsDAO implements IDAO<Mentor> {
     @Override
     public void update(int id, Mentor toUpdate) {
         String query = "UPDATE mentors\n" +
-                "SET full_name = '" + toUpdate.getFullName() + "', email = " + toUpdate.getEmail() +
-                "', class_id = " + toUpdate.getClassId() + "', about = '" + toUpdate.getAbout() + "', avatar_file = '" + toUpdate.getAvatarFile() + "\n" +
+                "SET full_name = '" + toUpdate.getFullName() + "', email = '" + toUpdate.getEmail() +
+                "', class_id = '" + toUpdate.getClassId() + "', about = '" + toUpdate.getAbout() + "', avatar_file = '" + toUpdate.getAvatarFile() + "'\n" +
                 "WHERE account_id = " + id;
         dbConnector.executeUpdate(query);
         System.out.println("dupa");
