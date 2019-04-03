@@ -65,7 +65,7 @@
             <li class="assignedClass">
                 <select  name="assignedClass" form="updateForm">
                     <option value="{{ mentor.getClassName() }}">{{ mentor.getClassName() }}</option>
-                    {% for class in secondlist %}
+                    {% for class in list2 %}
                         <option value="{{ class.getClassName() }}">{{ class.getClassName() }}</option>
                     {% endfor %}
                 </select>

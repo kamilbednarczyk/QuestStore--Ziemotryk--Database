@@ -1,5 +1,6 @@
 package router;
 
+import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import controllers.AdminController;
@@ -119,6 +120,9 @@ public class Router implements HttpHandler {
 
     private void sendResponse(HttpExchange httpExchange, String response, Optional<HttpCookie> cookie) throws IOException {
         cookieHandler.setResponseCookieIfPresent(httpExchange, cookie);
+        Headers headers = httpExchange.getResponseHeaders();
+        headers.set("Cache-Control", "no-cache");
+        headers.set("Cache-Control", "no-store");
         httpExchange.sendResponseHeaders(200, response.getBytes().length);
         OutputStream os = httpExchange.getResponseBody();
         os.write(response.getBytes());

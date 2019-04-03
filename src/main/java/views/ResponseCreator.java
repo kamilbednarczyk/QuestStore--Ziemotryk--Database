@@ -19,6 +19,22 @@ public class ResponseCreator {
         return loginPage;
     }
 
+//    public String renderPageWith(String fileName, Object... toModelWith) {
+//        String response;
+//        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/"+fileName);
+//        JtwigModel model = JtwigModel.newModel();
+//
+//
+//        model.with("list", toModelWith);
+//        for(int i=1; i<toModelWith.length; i++) {
+//            model.with("list"+(i+1), toModelWith[i]);
+//            System.out.println("TUTAJ");
+//            System.out.println("list"+i+1);
+//        }
+//        response = template.render(model);
+//        return response;
+//    }
+
     public <E> String renderPageWith(String fileName, List<E> listToFillWith) {
         String response;
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/"+fileName);
@@ -37,8 +53,39 @@ public class ResponseCreator {
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/"+fileName);
         JtwigModel model;
         model = JtwigModel.newModel().with("list", firstList);
-        model.with("secondlist", secondList);
+        model.with("list2", secondList);
         response = template.render(model);
         return response;
     }
+
+    private JtwigTemplate getTemplateByFile(String fileName) {
+        return JtwigTemplate.classpathTemplate("templates/"+fileName);
+    }
+
+    private JtwigModel getNewModel() {
+        return JtwigModel.newModel();
+    }
+//                      ======OLD=ONES======
+//    public <E> String renderPageWith(String fileName, List<E> listToFillWith) {
+//        String response;
+//        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/"+fileName);
+//        JtwigModel model;
+//        model = JtwigModel.newModel().with("list", listToFillWith);
+//        response = template.render(model);
+//        return response;
+//    }
+//
+//    public String renderPage(String fileName) {
+//        return renderPageWith(fileName, new ArrayList<>());
+//    }
+//
+//    public <E> String renderPageWith(String fileName, List<Mentor> firstList, List<Class> secondList) {
+//        String response;
+//        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/"+fileName);
+//        JtwigModel model;
+//        model = JtwigModel.newModel().with("list", firstList);
+//        model.with("list2", secondList);
+//        response = template.render(model);
+//        return response;
+//    }
 }
