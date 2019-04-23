@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Artifact Store| Store</title>
+    <link rel="stylesheet" href="/static/CSS/flexboxStyle.css">
+    <link rel="stylesheet" href="/static/CSS/IndexPageStyle.css">
+    <link rel="stylesheet" href="/static/CSS/Admin/editLevel.css">
+</head>
+<body>
+
+<nav role='navigation'>
+    <div id="menuToggle">
+
+        <input type="checkbox"/>
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <ul id="menu">
+            <p id="mentorName">Codecooler</p>
+            <a href="indexPage.html"><li>My Profile</li></a>
+            <a href="backpack.html"><li>Backpack</li></a>
+            <a href="artifactStore.html"><li>Artifact Store</li></a>
+            <a id="logoutButton" href="../login.twig"><li>Log out</li></a>
+        </ul>
+    </div>
+</nav>
+
+<div id="pageInfo">
+    <a href="indexPage.html"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70" height="70"></a>
+</div>
+
+<div class="container">
+    {% for artifact in list %}
+        <ul class="item">
+            <img class="avatar" src="#" alt="Artifact image">
+            <li class="artifactName">
+                Test Artifact
+            </li>
+            <p class="heading">Description:</p>
+            <li class="description">
+                Decription
+            </li>
+            <p class="heading">prize:</p>
+            <li class="prize">
+                Artifact prize
+            </li>
+            <li class="editButtonImage"><a href="/quest/codecooler/buy/{{ artifact.getArtifactId() }}"><img
+                            class="editButton"
+                            src="/static/IMAGES/wrench.png"
+                            ALT="EDIT"></a></li>
+        </ul>
+    {% endfor %}
+</div>
+</body>
+</html>
