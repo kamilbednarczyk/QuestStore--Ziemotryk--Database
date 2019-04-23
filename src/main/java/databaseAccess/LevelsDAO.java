@@ -27,7 +27,7 @@ public class LevelsDAO implements IDAO<Level> {
     @Override
     public Level get(int levelRow) {
         ResultSet resultSet = dbConnector.getResultSetByQuery(
-                "SELECT * FROM levels WHERE level="+levelRow
+                "SELECT * FROM levels WHERE level=" + levelRow
         );
         Level level = null;
 
@@ -54,7 +54,7 @@ public class LevelsDAO implements IDAO<Level> {
         );
 
         try {
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 levels.add(
                         new Level(
                                 resultSet.getInt("level"),
@@ -74,17 +74,31 @@ public class LevelsDAO implements IDAO<Level> {
     public void update(int level, Level toUpdate) {
         dbConnector.executeUpdate(
                 "UPDATE levels"
-                        +"SET level="+toUpdate.getLevel()+",\n"
-                        +"coolcoins_needed="+toUpdate.getCoolcoinsNeeded()+",\n"
-                        +"level_name='"+toUpdate.getLevelName()+"',\n"
-                        +"level_description='"+toUpdate.getLevelDescription()
+                        + "SET level=" + toUpdate.getLevel() + ",\n"
+                        + "coolcoins_needed=" + toUpdate.getCoolcoinsNeeded() + ",\n"
+                        + "level_name='" + toUpdate.getLevelName() + "',\n"
+                        + "level_description='" + toUpdate.getLevelDescription()
         );
     }
 
     @Override
     public void delete(int level) {
         dbConnector.executeUpdate(
-                "DELETE FROM levels WHERE level="+level
+                "DELETE FROM levels WHERE level=" + level
         );
+    }
+
+    public Level getLevelBy(int coolcoins) {
+        List<Level> listOfLevels = getAll();
+
+        Level level = null;
+
+        for (int i = 0; i < listOfLevels.size(); i++) {
+            if (listOfLevels.get(i).getCoolcoinsNeeded() > coolcoins) {
+                level = listOfLevels.get(i - 1);
+            }
+        }
+
+        return level;
     }
 }
