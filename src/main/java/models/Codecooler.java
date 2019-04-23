@@ -1,6 +1,7 @@
 package models;
 
 import databaseAccess.ClassesDAO;
+import databaseAccess.LevelsDAO;
 
 public class Codecooler {
     private int accountId;
@@ -31,6 +32,7 @@ public class Codecooler {
         this.classId = classId;
         this.backpackId = backpackId;
     }
+
     // Getters & Setters
     public int getAccountId() {
         return accountId;
@@ -90,5 +92,10 @@ public class Codecooler {
 
     public String getClassName() {
         return new ClassesDAO().get(classId).getClassName();
+    }
+
+    public Level getLevelBy(int coolcoins) {
+        return new LevelsDAO().getLevelBy(coolcoins);
+
     }
 }
