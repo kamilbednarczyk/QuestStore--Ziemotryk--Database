@@ -56,12 +56,13 @@
             <li class="prize">
                 {{ artifact.getPrize() }}
             </li>
-            <li class="editButtonImage"><a href="/quest/codecooler/buy/{{ artifact.getArtifactId() }}"><img
+            <li class="editButtonImage"><a id="buyLink" data-href="/quest/codecooler/buy/{{ artifact.getArtifactId() }}"><img
                             class="editButton"
                             src="../../static/IMAGES/plusButton.png"
                             ALT="EDIT"></a></li>
         </ul>
     {% endfor %}
+    <script src="../../static/JS/buyValidator.js"></script>
 </div>
 </body>
 </html>

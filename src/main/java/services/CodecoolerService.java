@@ -50,17 +50,36 @@ public class CodecoolerService {
     }
 
 
-    public void buyArtifact(HttpExchange httpExchange) {
+    public boolean buyArtifact(HttpExchange httpExchange) {
         BackpacksDAO backpacksDAO = new BackpacksDAO();
         int artifactId = getIdByURL(httpExchange);
-
         int accountId = getAccountIdBy(httpExchange);
         Codecooler codecooler = new CodecoolersDAO().get(accountId);
 
-        Backpack backpack = new Backpack(codecooler.getBackpackId(), artifactId, false);
+        int amountOfCoolcoins = codecooler.getCoolcoins();
+        int artifactPrize = new ArtifactsDAO().get(artifactId).getPrize();
 
-        backpacksDAO.add(backpack);
-        System.out.println("kupa dupa");
+
+
+        if (enoughCoins(amountOfCoolcoins, artifactPrize)) {
+            codecooler.setCoolcoins(amountOfCoolcoins - artifactPrize);
+
+            Backpack backpack = new Backpack(codecooler.getBackpackId(), artifactId, false);
+            backpacksDAO.add(backpack);
+
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    private boolean enoughCoins(int codecoolerCoolcoins, int artifactPrize) {
+        if (codecoolerCoolcoins >= artifactPrize) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private int getAccountIdBy(HttpExchange httpExchange) {

@@ -50,6 +50,7 @@ public class CodecoolerController {
                 codecoolerService.buyArtifact(httpExchange);
                 response = getArtifactStorePage();
                 break;
+
         }
         return response;
     }
