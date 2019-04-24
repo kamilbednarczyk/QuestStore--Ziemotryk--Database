@@ -2,6 +2,7 @@ package views;
 
 import models.Artifact;
 import models.Codecooler;
+import models.Mentor;
 import models.Quest;
 
 import java.util.List;
@@ -13,8 +14,8 @@ public class MentorResponseCreator {
     public MentorResponseCreator() { this.responseCreator = new ResponseCreator(); }
 
     // Methods
-    public String renderIndexPage() {
-        return this.responseCreator.renderPage("/mentor/indexPage.twig");
+    public String renderIndexPage(List<Mentor> mentor) {
+        return this.responseCreator.renderPageWith("/mentor/indexPage.twig", mentor);
     }
 
     public String renderCodecoolerPage(List<Codecooler> codecoolers) {

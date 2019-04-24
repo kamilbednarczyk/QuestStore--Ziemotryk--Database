@@ -95,7 +95,7 @@ public class Router implements HttpHandler {
         if(userRequestedPermissions.equals("admin") && cookiePermissionLevel == 3) {
             response = adminController.getAdminResponse(httpExchange, userPageRequest);
         } else if(userRequestedPermissions.equals("mentor") && cookiePermissionLevel == 2) {
-            response = "mentorResponseGoesHere";
+            response = mentorController.getMentorResponse(httpExchange, userPageRequest);
         } else if(userRequestedPermissions.equals("codecooler") && cookiePermissionLevel == 1) {
             response = codecoolerController.getCodecoolerResponse(httpExchange, userPageRequest);
         } else {
@@ -112,7 +112,7 @@ public class Router implements HttpHandler {
             case 3: // Admin
                 return adminController.getIndexPage();
             case 2: // Mentor
-                return "mentor";
+                return mentorController.getIndexPage(accountId);
             case 1: // Codecooler
                 return codecoolerController.getIndexPage(accountId);
         }

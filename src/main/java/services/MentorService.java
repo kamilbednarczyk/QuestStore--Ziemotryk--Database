@@ -1,24 +1,36 @@
 package services;
 
 import databaseAccess.*;
-import models.Account;
-import models.Artifact;
-import models.Codecooler;
-import models.Quest;
+import models.*;
+import sessionData.CookieHandler;
+import sessionData.SessionHandler;
 import views.MentorResponseCreator;
 
 import com.sun.net.httpserver.HttpExchange;
 
 import java.io.IOException;
+import java.net.HttpCookie;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class MentorService {
     private MentorResponseCreator mentorResponseCreator = new MentorResponseCreator();
 
     // GET METHODS
-    public String getIndexPageRender() { return this.mentorResponseCreator.renderIndexPage(); }
+    public String getIndexPageRender(int id) {
+
+        List<Mentor> mentor = new ArrayList<>();
+        mentor.add(new MentorsDAO().get(id));
+
+        return mentorResponseCreator.renderIndexPage(mentor);
+    }
+
+    public String getIndexPageRender(HttpExchange httpExchange) {
+        int id = getAccountIdBy(httpExchange);
+        return getIndexPageRender(id);
+    }
 
     public String getCodecoolerPageRender() {
         List<Codecooler> codecoolers = new CodecoolersDAO().getAll();
@@ -168,5 +180,10 @@ public class MentorService {
             inputs.get("description"),
             Integer.parseInt(inputs.get("questValue"))
         );
+    }
+
+    private int getAccountIdBy(HttpExchange httpExchange) {
+        Optional<HttpCookie> cookie = new CookieHandler().getSessionIdCookie(httpExchange);
+        return SessionHandler.getInstance().getAccountIdFromCookie(cookie);
     }
 }
