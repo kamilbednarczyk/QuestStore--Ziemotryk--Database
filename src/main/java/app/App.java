@@ -2,10 +2,7 @@ package app;
 
 import com.sun.net.httpserver.HttpServer;
 import databaseAccess.*;
-import models.Account;
-import models.Backpack;
-import models.Codecooler;
-import models.Level;
+import models.*;
 import router.Router;
 import staticHandler.Static;
 
@@ -30,8 +27,14 @@ public class App {
     }
 
     public void test() {
+        AccountsDAO accountsDAO = new AccountsDAO();
+        MentorsDAO mentorsDAO = new MentorsDAO();
 
-
-
+        Account newAccount = new Account("test", "test", 2);
+        accountsDAO.add(newAccount);
+        Account newAccountFromDb = accountsDAO.getAccountFromDbByAccountWithoutId(newAccount);
+        // acc id = 12
+        Mentor newMentor = new Mentor(newAccountFromDb.getAccountId(), "bomba konga", "zubizubi@bubi.pl", 12, "funny momby", "emptyAvatar404.jpg");
+        mentorsDAO.add(newMentor);
     }
 }
