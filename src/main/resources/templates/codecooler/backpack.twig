@@ -20,16 +20,16 @@
 
         <ul id="menu">
             <p id="mentorName">Codecooler</p>
-            <a href="indexPage.twig">
+            <a href="/quest/codecooler/index">
                 <li>My Profile</li>
             </a>
-            <a href="backpack.twig">
+            <a href="/quest/codecooler/backpack">
                 <li>Backpack</li>
             </a>
-            <a href="artifactStore.twig">
+            <a href="/quest/codecooler/artifactStore">
                 <li>Artifact Store</li>
             </a>
-            <a id="logoutButton" href="../login.twig">
+            <a id="logoutButton" href="/quest/codecooler/logout">
                 <li>Log out</li>
             </a>
         </ul>
@@ -37,23 +37,23 @@
 </nav>
 
 <div id="pageInfo">
-    <a href="indexPage.html"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70"
+    <a href="/quest/codecooler/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70"
                                   height="70"></a>
 </div>
 
 <div class="container">
-    {% for artifact in list %}
+    {% for backpack in list %}
         <ul class="item">
             <li class="level">
-                <span style="font-size: 35px" style="font-weight: normal">{{ artifact.getName() }}</span>
+                <span style="font-size: 35px" style="font-weight: normal">{{ backpack.getArtifactName() }}</span>
             </li>
             <p class="heading">Description:</p>
             <li class="email">
-                {{ artifact.getDescription() }}
+                {{ backpack.getArtifactDescription() }}
             </li>
             <p class="heading">Is Used:</p>
             <li class="email">
-                !! WE MUST DO IT !!
+                {{ backpack.isUsed() }}
             </li>
         </ul>
     {% endfor %}

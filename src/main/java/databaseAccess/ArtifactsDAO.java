@@ -51,14 +51,15 @@ public class ArtifactsDAO implements IDAO<Artifact> {
         List<Artifact> artifactsList = new ArrayList<>();
 
         String query = "SELECT\n" +
-                       "*\n" +
-                       "FROM artifacts\n";
+                "*\n" +
+                "FROM artifacts\n";
 
         ResultSet currentResultSet = dbConnector.getResultSetByQuery(query);
 
         try {
             while (currentResultSet.next()) {
-                artifactsList.add(new Artifact(currentResultSet.getString("name"),
+                artifactsList.add(new Artifact(currentResultSet.getInt("artifact_id"),
+                        currentResultSet.getString("name"),
                         currentResultSet.getString("description"),
                         currentResultSet.getInt("prize")));
 
@@ -73,10 +74,9 @@ public class ArtifactsDAO implements IDAO<Artifact> {
     @Override
     public void update(int id, Artifact toUpdate) {
         String query = "UPDATE artifacts\n" +
-                "SET name = '" + toUpdate.getName() + "', description = '" + toUpdate.getDescription() + "', prize = " + toUpdate.getPrize() +"\n" +
+                "SET name = '" + toUpdate.getName() + "', description = '" + toUpdate.getDescription() + "', prize = " + toUpdate.getPrize() + "\n" +
                 "WHERE artifact_id = " + id;
         dbConnector.executeUpdate(query);
-        System.out.println("dupa");
     }
 
     @Override

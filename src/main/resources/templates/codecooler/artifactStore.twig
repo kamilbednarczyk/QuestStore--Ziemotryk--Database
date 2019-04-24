@@ -20,10 +20,18 @@
 
         <ul id="menu">
             <p id="mentorName">Codecooler</p>
-            <a href="indexPage.html"><li>My Profile</li></a>
-            <a href="backpack.html"><li>Backpack</li></a>
-            <a href="artifactStore.html"><li>Artifact Store</li></a>
-            <a id="logoutButton" href="../login.twig"><li>Log out</li></a>
+            <a href="/quest/codecooler/index">
+                <li>My Profile</li>
+            </a>
+            <a href="/quest/codecooler/backpack">
+                <li>Backpack</li>
+            </a>
+            <a href="/quest/codecooler/artifactStore">
+                <li>Artifact Store</li>
+            </a>
+            <a id="logoutButton" href="/quest/codecooler/logout">
+                <li>Log out</li>
+            </a>
         </ul>
     </div>
 </nav>
@@ -37,15 +45,15 @@
         <ul class="item">
             <img class="avatar" src="#" alt="Artifact image">
             <li class="artifactName">
-                Test Artifact
+                {{ artifact.getName() }}
             </li>
             <p class="heading">Description:</p>
             <li class="description">
-                Decription
+                {{ artifact.getDescription() }}
             </li>
             <p class="heading">prize:</p>
             <li class="prize">
-                Artifact prize
+                {{ artifact.getPrize() }}
             </li>
             <li class="editButtonImage"><a href="/quest/codecooler/buy/{{ artifact.getArtifactId() }}"><img
                             class="editButton"

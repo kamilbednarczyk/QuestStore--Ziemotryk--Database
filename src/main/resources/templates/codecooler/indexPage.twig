@@ -24,10 +24,18 @@
 
             <ul id="menu">
                 <p id="mentorName">Codecooler</p>
-                <a href="indexPage.twig"><li>My Profile</li></a>
-                <a href="backpack.twig"><li>Backpack</li></a>
-                <a href="artifactStore.twig"><li>Artifact Store</li></a>
-                <a id="logoutButton" href="../login.twig"><li>Log out</li></a>
+                <a href="/quest/codecooler/index">
+                    <li>My Profile</li>
+                </a>
+                <a href="/quest/codecooler/backpack">
+                    <li>Backpack</li>
+                </a>
+                <a href="/quest/codecooler/artifactStore">
+                    <li>Artifact Store</li>
+                </a>
+                <a id="logoutButton" href="/quest/codecooler/logout">
+                    <li>Log out</li>
+                </a>
             </ul>
         </div>
     </nav>
@@ -45,7 +53,7 @@
                     You have achieved level
                 </p>
                 <p class="profileInfoValue">
-                    {{ codecooler.getLevelBy(codecooler.getCoolcoins()) }}
+                    {{ codecooler.getLevelBy(codecooler.getCoolcoins()).getLevel() }}
                 </p>
                 <p class="profileInfoDescription">
                     Keep it up!

@@ -65,7 +65,7 @@ public class Router implements HttpHandler {
                 response = loginController.getLoginPage();
             } else {
                 sessionHandler.addSession(account, httpExchange);
-                response = connectToControllerBy(account);
+                response = connectToControllerBy(account, httpExchange);
             }
         } else if (cookie.isPresent()) {
             int cookiePermissionLevel = sessionHandler.getPermissionFromCookie(cookie);
@@ -84,6 +84,7 @@ public class Router implements HttpHandler {
             response = "ERROR 404";
         }
         sendResponse(httpExchange, response, cookie);
+        System.out.println("response.....");
     }
 
     private String getResponseByCookieAndUrl(HttpExchange httpExchange,
@@ -96,14 +97,14 @@ public class Router implements HttpHandler {
         } else if(userRequestedPermissions.equals("mentor") && cookiePermissionLevel == 2) {
             response = "mentorResponseGoesHere";
         } else if(userRequestedPermissions.equals("codecooler") && cookiePermissionLevel == 1) {
-            response = "codecoolerResponseGoesHere";
+            response = codecoolerController.getCodecoolerResponse(httpExchange, userPageRequest);
         } else {
             response = "Error 404";
         }
         return response;
     }
 
-    private String connectToControllerBy(Account account) {
+    private String connectToControllerBy(Account account, HttpExchange httpExchange) {
         int permission = account.getPermission();
         int accountId = account.getAccountId();
 
@@ -113,7 +114,7 @@ public class Router implements HttpHandler {
             case 2: // Mentor
                 return "mentor";
             case 1: // Codecooler
-                return "codecooler";
+                return codecoolerController.getIndexPage(accountId);
         }
         return null;
     }

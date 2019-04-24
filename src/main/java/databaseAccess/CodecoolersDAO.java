@@ -14,11 +14,12 @@ public class CodecoolersDAO implements IDAO<Codecooler> {
     @Override
     public void add(Codecooler toAdd) {
         dbConnector.executeUpdate(
-                "INSERT INTO codecoolers(backpack_id, full_name, email, avatar_file, coolcoins)\n"
-                        + "VALUES ('" + toAdd.getBackpackId() + "'\n"
-                        + "'" + toAdd.getFullName() + "'\n"
-                        + "'" + toAdd.getEmail() + "'\n"
-                        + "'" + toAdd.getAvatarFile() + "'\n"
+                "INSERT INTO codecoolers(account_id, class_id, full_name, email, avatar_file, coolcoins)\n"
+                        + "VALUES ('" + toAdd.getAccountId() + "',\n"
+                        + "'" + toAdd.getClassId() + "',\n"
+                        + "'" + toAdd.getFullName() + "',\n"
+                        + "'" + toAdd.getEmail() + "',\n"
+                        + "'" + toAdd.getAvatarFile() + "',\n"
                         + "" + toAdd.getCoolcoins() + "\n"
                         +");"
         );
@@ -27,7 +28,7 @@ public class CodecoolersDAO implements IDAO<Codecooler> {
     @Override
     public Codecooler get(int id) {
         ResultSet resultSet = dbConnector.getResultSetByQuery(
-                "SELECT * FROM categories WHERE category_id="+id
+                "SELECT * FROM codecoolers WHERE account_id="+id
         );
         Codecooler codecooler = null;
 

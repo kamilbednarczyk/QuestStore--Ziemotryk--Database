@@ -1,6 +1,8 @@
 package views;
 
+import models.Artifact;
 import models.Class;
+import models.Codecooler;
 import models.Mentor;
 import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
@@ -48,7 +50,7 @@ public class ResponseCreator {
         return renderPageWith(fileName, new ArrayList<>());
     }
 
-    public <E> String renderPageWith(String fileName, List<Mentor> firstList, List<Class> secondList) {
+    public <E, F> String renderPageWith(String fileName, List<E> firstList, List<F> secondList) {
         String response;
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/"+fileName);
         JtwigModel model;
