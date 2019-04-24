@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Artifact Store| Store</title>
+    <title>Codecooler | Store</title>
     <link rel="stylesheet" href="/static/CSS/flexboxStyle.css">
     <link rel="stylesheet" href="/static/CSS/IndexPageStyle.css">
     <link rel="stylesheet" href="/static/CSS/Admin/editLevel.css">
@@ -37,13 +37,14 @@
 </nav>
 
 <div id="pageInfo">
-    <a href="indexPage.html"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70" height="70"></a>
+    <a href="/quest/codecooler/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70"
+                                           height="70"></a>
 </div>
 
 <div class="container">
     {% for artifact in list %}
         <ul class="item">
-            <img class="avatar" src="#" alt="Artifact image">
+            <img class="avatar" src="//:0" alt="Artifact image">
             <li class="artifactName">
                 {{ artifact.getName() }}
             </li>
@@ -57,7 +58,7 @@
             </li>
             <li class="editButtonImage"><a href="/quest/codecooler/buy/{{ artifact.getArtifactId() }}"><img
                             class="editButton"
-                            src="/static/IMAGES/wrench.png"
+                            src="../../static/IMAGES/plusButton.png"
                             ALT="EDIT"></a></li>
         </ul>
     {% endfor %}

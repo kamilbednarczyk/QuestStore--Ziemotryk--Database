@@ -1,6 +1,5 @@
 package controllers;
 
-import models.Codecooler;
 import services.CodecoolerService;
 
 import com.sun.net.httpserver.HttpExchange;
@@ -8,6 +7,7 @@ import sessionData.SessionHandler;
 
 public class CodecoolerController {
     private CodecoolerService codecoolerService = new CodecoolerService();
+
 
     public String getIndexPage(int accountId) {
         return codecoolerService.getIndexPageRender(accountId);
@@ -26,7 +26,6 @@ public class CodecoolerController {
     }
 
     public String getCodecoolerResponse(HttpExchange httpExchange, String userPageRequest) {
-        int requestedItemId = getItemIdRequestIfExists(httpExchange);
         String response = "";
 
         switch (userPageRequest) {
@@ -36,7 +35,6 @@ public class CodecoolerController {
 
             case "artifactStore":
                 response = getArtifactStorePage();
-                System.out.println("23");
                 break;
 
             case "backpack":
@@ -54,14 +52,5 @@ public class CodecoolerController {
                 break;
         }
         return response;
-    }
-
-    private int getItemIdRequestIfExists(HttpExchange httpExchange) {
-        int id = -1;
-        String[] requestUrlArray = httpExchange.getRequestURI().toString().split("/");
-        if (requestUrlArray.length >= 5) {
-            id = Integer.parseInt(requestUrlArray[4]);
-        }
-        return id;
     }
 }

@@ -39,7 +39,7 @@ public class ResponseCreator {
 
     public <E> String renderPageWith(String fileName, List<E> listToFillWith) {
         String response;
-        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/"+fileName);
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/" + fileName);
         JtwigModel model;
         model = JtwigModel.newModel().with("list", listToFillWith);
         response = template.render(model);
@@ -52,7 +52,7 @@ public class ResponseCreator {
 
     public <E, F> String renderPageWith(String fileName, List<E> firstList, List<F> secondList) {
         String response;
-        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/"+fileName);
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/" + fileName);
         JtwigModel model;
         model = JtwigModel.newModel().with("list", firstList);
         model.with("list2", secondList);
@@ -61,7 +61,7 @@ public class ResponseCreator {
     }
 
     private JtwigTemplate getTemplateByFile(String fileName) {
-        return JtwigTemplate.classpathTemplate("templates/"+fileName);
+        return JtwigTemplate.classpathTemplate("templates/" + fileName);
     }
 
     private JtwigModel getNewModel() {
