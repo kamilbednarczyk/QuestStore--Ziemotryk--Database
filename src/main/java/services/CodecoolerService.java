@@ -63,6 +63,8 @@ public class CodecoolerService {
 
         if (enoughCoins(amountOfCoolcoins, artifactPrize)) {
             codecooler.setCoolcoins(amountOfCoolcoins - artifactPrize);
+            CodecoolersDAO codecoolersDAO = new CodecoolersDAO();
+            codecoolersDAO.update(codecooler.getClassId(), codecooler);
 
             Backpack backpack = new Backpack(codecooler.getBackpackId(), artifactId, false);
             backpacksDAO.add(backpack);
