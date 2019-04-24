@@ -2,6 +2,7 @@ package databaseAccess;
 
 import models.Category;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -75,5 +76,16 @@ public class CategoriesDAO implements IDAO<Category> {
         dbConnector.executeUpdate(
                 "DELETE FROM categories WHERE category_id" + id
         );
+    }
+
+    public int getCategoryIdByName(String name) throws IOException {
+        List<Category> categories = getAll();
+        for(int i = 0; i < categories.size(); i ++) {
+            if(categories.get(i).getCategoryName().equals(name)) {
+                return categories.get(i).getCategoryId();
+            }
+        }
+        System.out.println("Finding category id by name failed");
+        throw new IOException("Category not found");
     }
 }

@@ -81,7 +81,6 @@ public class CodecoolersDAO implements IDAO<Codecooler> {
         dbConnector.executeUpdate(
                 "UPDATE codecoolers\n"
                         + "SET class_id=" + toUpdate.getClassId() + ",\n"
-                        + "backpack_id=" + toUpdate.getBackpackId() + ",\n"
                         + "full_name='" + toUpdate.getEmail() + "'\n"
                         + "email='" + toUpdate.getAvatarFile() + "'\n"
                         + "coolcoins=" + toUpdate.getCoolcoins() + "\n"

@@ -111,7 +111,6 @@ public class AdminController {
 
                 break;
             case "updateMentor":  // POST: edit mentor
-                System.out.println("IM IN CONTROLLER UPDATE MENTOR");
                 adminService.updateMentor(httpExchange, requestedItemId);
                 response = getMentorPage();
 

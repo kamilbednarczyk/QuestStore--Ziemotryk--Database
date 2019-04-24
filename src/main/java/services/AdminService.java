@@ -20,6 +20,7 @@ import java.util.Map;
 public class AdminService {
     private AdminResponseCreator adminResponseCreator = new AdminResponseCreator();
 
+    // GET METHODS
     public String getIndexPageRender() {
         return adminResponseCreator.renderIndexPage();
     }
@@ -83,10 +84,7 @@ public class AdminService {
     }
 
     private int getIdByURL(HttpExchange httpExchange) {
-        return Integer
-                .parseInt(httpExchange
-                        .getRequestURI()
-                        .toString().split("/")[4]);
+        return UrlIdService.getIdByUrl(httpExchange, 4);
     }
 
     // POST METHODS
@@ -105,11 +103,9 @@ public class AdminService {
     public void updateMentor(HttpExchange httpExchange, int requestedItemId) throws IOException {
         Map<String, String> inputs = getFormInputsMap(httpExchange);
 
-        System.out.println("DZIALA");
         Account account = new AccountsDAO().get(requestedItemId);
-        System.out.println(1);
         Mentor mentor = getMentorFromFormAndAccount(inputs, account);
-        System.out.println(2);
+
         new MentorsDAO().update(requestedItemId, mentor);
     }
 
@@ -150,11 +146,7 @@ public class AdminService {
 
     private Account getMentorAccountFromForm(Map<String, String> inputs) throws IOException {
 
-        return new Account(
-                inputs.get("login"),
-                inputs.get("password"),
-                2
-        );
+        return new AccountFactory().getMentorAccountFromForm(inputs);
     }
 
     private Mentor getMentorFromFormAndAccount(Map<String, String> inputs, Account account) throws IOException {

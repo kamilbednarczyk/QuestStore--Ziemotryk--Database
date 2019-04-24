@@ -11,6 +11,15 @@ public class Codecooler {
     private String avatarFile;
     private int coolcoins;
 
+    public Codecooler(int accountId, int classId, String fullName, String email, String avatarFile) {
+        this.accountId = accountId;
+        this.classId = classId;
+        this.fullName = fullName;
+        this.email = email;
+        this.avatarFile = avatarFile;
+        this.coolcoins = 0;
+    }
+
     public Codecooler(String fullName, String email, String avatarFile, int coolcoins) {
         this.fullName = fullName;
         this.email = email;
