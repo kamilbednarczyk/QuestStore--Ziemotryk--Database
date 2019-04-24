@@ -112,7 +112,7 @@ public class Router implements HttpHandler {
             case 3: // Admin
                 return adminController.getIndexPage();
             case 2: // Mentor
-                return "mentor";
+                return mentorController.getIndexPage(accountId);
             case 1: // Codecooler
                 return codecoolerController.getIndexPage(accountId);
         }

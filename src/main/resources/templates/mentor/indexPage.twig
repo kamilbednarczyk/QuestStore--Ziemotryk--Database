@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <title>Mentor</title>
     <link rel="stylesheet" href="/static/CSS/IndexPageStyle.css">
+    <link rel="stylesheet" href="/static/CSS/Home/homePageStyle.css">
+    <link rel="stylesheet" href="/static/CSS/flexboxStyle.css">
 </head>
 <body>
 
-
 <div id="pageInfo">
-    <img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" width="70" height="70" alt="logoImage">
+    <a href="/quest/mentor/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" width="70" height="70"></a>
     <nav role='navigation'>
         <div id="menuToggle">
 
@@ -38,6 +39,29 @@
             </ul>
         </div>
     </nav>
+</div>
+
+<div class="mainContent">
+    {% for mentor in list %}
+        <img class="picture" src="/static/IMAGES/{{ mentor.getAvatarFile() }}" alt="Mentor picture">
+        <h1 class="headerStyle">{{ mentor.getFullName() }}</h1>
+        <ul class="containerHomeAdjustments container">
+            <li class="item itemHomeAdjustments">
+                <img class="itemPicture" src="/static/IMAGES/levelIcon.png" alt="itemPicture"><br>
+                <h1 class="headerStyle">Class</h1>
+                <p class="profileInfoDescription">
+                    Your class is:
+                </p>
+                <p class="profileInfoValue">
+                    {{ mentor.getClassName() }}
+                </p>
+                <p class="profileInfoDescription">
+                    :)
+                </p>
+
+            </li>
+        </ul>
+    {% endfor %}
 </div>
 
 </body>
