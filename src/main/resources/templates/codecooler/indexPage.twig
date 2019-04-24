@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Codecooler | My Profile</title>
+    <link rel="stylesheet" href="/static/CSS/IndexPageStyle.css">
+    <link rel="stylesheet" href="/static/CSS/Home/homePageStyle.css">
+    <link rel="stylesheet" href="/static/CSS/flexboxStyle.css">
+</head>
+<body>
+
+
+<div id="pageInfo">
+    <a href="/quest/codecooler/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" width="70" height="70" alt="logo"></a>
+    <nav role='navigation'>
+        <div id="menuToggle">
+
+            <input type="checkbox"/>
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <ul id="menu">
+                <p id="mentorName">Codecooler</p>
+                <a href="/quest/codecooler/index">
+                    <li>My Profile</li>
+                </a>
+                <a href="/quest/codecooler/backpack">
+                    <li>Backpack</li>
+                </a>
+                <a href="/quest/codecooler/artifactStore">
+                    <li>Artifact Store</li>
+                </a>
+                <a id="logoutButton" href="/quest/codecooler/logout">
+                    <li>Log out</li>
+                </a>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="mainContent">
+    {% for codecooler in list %}
+        <img class="picture" src="/static/IMAGES/{{ codecooler.getAvatarFile() }}" alt="Codecooler picture">
+        <h1 class="headerStyle">Full Name</h1>
+        <ul class="containerHomeAdjustments container">
+            <li class="item itemHomeAdjustments">
+                <img class="itemPicture" src="/static/IMAGES/levelIcon.png" alt="itemPicture"><br>
+                <h1 class="headerStyle">Level</h1>
+                <p class="profileInfoDescription">
+                    You have achieved level
+                </p>
+                <p class="profileInfoValue">
+                    {{ codecooler.getLevelBy(codecooler.getCoolcoins()).getLevel() }}
+                </p>
+                <p class="profileInfoDescription">
+                    Keep it up!
+                </p>
+
+            </li>
+            <li class="item itemHomeAdjustments">
+                <img class="itemPicture" src="/static/IMAGES/walletIcon.png" alt="itemPicture"><br>
+                <h1 class="headerStyle">Wallet</h1>
+                <p class="profileInfoDescription">
+                    You currently have
+                </p>
+                <p class="profileInfoValue" id="coolcoins">
+                    {{ codecooler.getCoolcoins() }}
+                </p>
+                <p class="profileInfoDescription">
+                    coolcoins
+                </p>
+            </li>
+        </ul>
+    {% endfor %}
+</div>
+
+
+</body>
+</html>

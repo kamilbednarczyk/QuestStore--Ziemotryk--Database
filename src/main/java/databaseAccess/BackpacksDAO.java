@@ -12,20 +12,28 @@ public class BackpacksDAO implements IDAO<Backpack> {
 
     private DbConnector dbConnector = DbConnector.getInstance();
 
+    public void test() {
+        dbConnector.executeUpdate("ALTER TABLE backpacks\n" +
+                " ADD COLUMN artifact_description TEXT"
+        );
+    }
+
     @Override
     public void add(Backpack toAdd) {
         dbConnector.executeUpdate(
-                "INSERT INTO backpacks(backpack_id, artifact_id, is_used)\n"
+                "INSERT INTO backpacks(backpack_id, artifact_id, is_used, artifact_name, artifact_description)\n"
                         + "VALUES (" + toAdd.getBackpackId() + ","
                         + "" + toAdd.getArtifactId() + ","
-                        + "'" + Boolean.toString(toAdd.isUsed()).toUpperCase() + ");"
+                        + "'" + Boolean.toString(toAdd.isUsed()).toUpperCase() + "',"
+                        + "'" + toAdd.getArtifactName() + "',"
+                        + "'" + toAdd.getArtifactDescription() + "');"
         );
     }
 
     @Override
     public Backpack get(int id) {
         ResultSet resultSet = dbConnector.getResultSetByQuery(
-                "SELECT * FROM backpacks WHERE backpack_id="+id
+                "SELECT * FROM backpacks WHERE backpack_id=" + id
         );
         Backpack backpack = null;
 
@@ -51,7 +59,7 @@ public class BackpacksDAO implements IDAO<Backpack> {
         );
 
         try {
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 backpacks.add(
                         new Backpack(
                                 resultSet.getInt("backpack_id"),
@@ -70,10 +78,10 @@ public class BackpacksDAO implements IDAO<Backpack> {
     public void update(int id, Backpack toUpdate) {
         dbConnector.executeUpdate(
                 "UPDATE backpacks\n"
-                      + "SET backpack_id=" + toUpdate.getBackpackId() + ",\n"
-                      + "artifact_id=" + toUpdate.getArtifactId() + ",\n"
-                      + "is_used=" + Boolean.toString(toUpdate.isUsed()).toUpperCase() + "\n"
-                      + "WHERE backpack_id=" + id
+                        + "SET backpack_id=" + toUpdate.getBackpackId() + ",\n"
+                        + "artifact_id=" + toUpdate.getArtifactId() + ",\n"
+                        + "is_used=" + Boolean.toString(toUpdate.isUsed()).toUpperCase() + "\n"
+                        + "WHERE backpack_id=" + id
         );
     }
 
@@ -87,11 +95,11 @@ public class BackpacksDAO implements IDAO<Backpack> {
     public void switchArtifactCurrentUsageStatus(int artifactId, int backpackId) {
         dbConnector.executeUpdate(
                 "UPDATE backpacks\n"
-                    + "SET is_used=" + Boolean.toString(true).toUpperCase()
-                    + "WHERE artifact_id=" + artifactId
-                    + " AND backpack_id=" + backpackId
-                    + " AND is_used=" + Boolean.toString(false).toUpperCase()
-                    + " LIMIT 1"
+                        + "SET is_used=" + Boolean.toString(true).toUpperCase()
+                        + "WHERE artifact_id=" + artifactId
+                        + " AND backpack_id=" + backpackId
+                        + " AND is_used=" + Boolean.toString(false).toUpperCase()
+                        + " LIMIT 1"
         );
     }
 
@@ -101,9 +109,9 @@ public class BackpacksDAO implements IDAO<Backpack> {
         Backpack currentArtficatInBackpack;
         int codecoolerBackpackId = codecooler.getBackpackId();
 
-        for(int i = 0; i < artifactsInBackpack.size(); i++) {
+        for (int i = 0; i < artifactsInBackpack.size(); i++) {
             currentArtficatInBackpack = artifactsInBackpack.get(i);
-            if(currentArtficatInBackpack.getBackpackId() != codecoolerBackpackId) {
+            if (currentArtficatInBackpack.getBackpackId() != codecoolerBackpackId) {
                 artifactsInBackpack.remove(i);
             }
         }

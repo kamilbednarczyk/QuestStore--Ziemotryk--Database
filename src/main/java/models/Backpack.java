@@ -1,13 +1,26 @@
 package models;
 
+import databaseAccess.ArtifactsDAO;
+
 public class Backpack {
     private int backpackId;
     private int artifactId;
+    private String artifactName;
+    private String artifactDescription;
     private boolean isUsed;
 
     public Backpack(int backpackId, int artifactId, boolean isUsed) {
         this.backpackId = backpackId;
         this.artifactId = artifactId;
+        Artifact artifact = new ArtifactsDAO().get(artifactId);
+        this.artifactName = artifact.getName();
+        this.artifactDescription = artifact.getDescription();
+        this.isUsed = isUsed;
+    }
+
+    public Backpack(String artifactName, String artifactDescription, boolean isUsed) {
+        this.artifactName = artifactName;
+        this.artifactDescription = artifactDescription;
         this.isUsed = isUsed;
     }
 
@@ -16,16 +29,8 @@ public class Backpack {
         return backpackId;
     }
 
-    public void setBackpackId(int backpackId) {
-        this.backpackId = backpackId;
-    }
-
     public int getArtifactId() {
         return artifactId;
-    }
-
-    public void setArtifactId(int artifactId) {
-        this.artifactId = artifactId;
     }
 
     public boolean isUsed() {
@@ -34,5 +39,13 @@ public class Backpack {
 
     public void setUsed(boolean used) {
         isUsed = used;
+    }
+
+    public String getArtifactName() {
+        return artifactName;
+    }
+
+    public String getArtifactDescription() {
+        return artifactDescription;
     }
 }

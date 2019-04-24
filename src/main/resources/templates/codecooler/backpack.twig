@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Codecooler | Backpack</title>
+    <link rel="stylesheet" href="/static/CSS/flexboxStyle.css">
+    <link rel="stylesheet" href="/static/CSS/IndexPageStyle.css">
+    <link rel="stylesheet" href="/static/CSS/Admin/editLevel.css">
+</head>
+<body>
+
+<nav role='navigation'>
+    <div id="menuToggle">
+
+        <input type="checkbox"/>
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <ul id="menu">
+            <p id="mentorName">Codecooler</p>
+            <a href="/quest/codecooler/index">
+                <li>My Profile</li>
+            </a>
+            <a href="/quest/codecooler/backpack">
+                <li>Backpack</li>
+            </a>
+            <a href="/quest/codecooler/artifactStore">
+                <li>Artifact Store</li>
+            </a>
+            <a id="logoutButton" href="/quest/codecooler/logout">
+                <li>Log out</li>
+            </a>
+        </ul>
+    </div>
+</nav>
+
+<div id="pageInfo">
+    <a href="/quest/codecooler/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70"
+                                  height="70"></a>
+</div>
+
+<div class="container">
+    {% for backpack in list %}
+        <ul class="item">
+            <li class="level">
+                <span style="font-size: 35px" style="font-weight: normal">{{ backpack.getArtifactName() }}</span>
+            </li>
+            <p class="heading">Description:</p>
+            <li class="email">
+                {{ backpack.getArtifactDescription() }}
+            </li>
+            <p class="heading">Is Used:</p>
+            <li class="email">
+                {{ backpack.isUsed() }}
+            </li>
+        </ul>
+    {% endfor %}
+</div>
+
+</body>
+</html>

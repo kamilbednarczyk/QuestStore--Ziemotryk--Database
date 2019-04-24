@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Codecooler | Store</title>
+    <link rel="stylesheet" href="/static/CSS/flexboxStyle.css">
+    <link rel="stylesheet" href="/static/CSS/IndexPageStyle.css">
+    <link rel="stylesheet" href="/static/CSS/Admin/editLevel.css">
+</head>
+<body>
+
+<nav role='navigation'>
+    <div id="menuToggle">
+
+        <input type="checkbox"/>
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <ul id="menu">
+            <p id="mentorName">Codecooler</p>
+            <a href="/quest/codecooler/index">
+                <li>My Profile</li>
+            </a>
+            <a href="/quest/codecooler/backpack">
+                <li>Backpack</li>
+            </a>
+            <a href="/quest/codecooler/artifactStore">
+                <li>Artifact Store</li>
+            </a>
+            <a id="logoutButton" href="/quest/codecooler/logout">
+                <li>Log out</li>
+            </a>
+        </ul>
+    </div>
+</nav>
+
+<div id="pageInfo">
+    <a href="/quest/codecooler/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" alt="logo" width="70"
+                                           height="70"></a>
+</div>
+
+<div class="container">
+    {% for artifact in list %}
+        <ul class="item">
+            <img class="avatar" src="//:0" alt="Artifact image">
+            <li class="artifactName">
+                {{ artifact.getName() }}
+            </li>
+            <p class="heading">Description:</p>
+            <li class="description">
+                {{ artifact.getDescription() }}
+            </li>
+            <p class="heading">prize:</p>
+            <li class="prize">
+                {{ artifact.getPrize() }}
+            </li>
+            <li class="editButtonImage"><a id="buyLink" data-href="/quest/codecooler/buy/{{ artifact.getArtifactId() }}"><img
+                            class="editButton"
+                            src="/static/IMAGES/plusButton.png"
+                            ALT="EDIT"></a></li>
+        </ul>
+    {% endfor %}
+    <script src="/static/JS/buyValidator.js"></script>
+</div>
+</body>
+</html>
