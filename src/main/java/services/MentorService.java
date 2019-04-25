@@ -79,11 +79,30 @@ public class MentorService {
         List<Quest> quest = new ArrayList<>();
         quest.add(new QuestsDAO().get(id));
 
-        return this.mentorResponseCreator.renderAddCodecoolerPage();
+        return this.mentorResponseCreator.renderEditQuestPage(quest);
     }
 
     public String getAddQuestPageRender() {
         return this.mentorResponseCreator.renderAddQuestPage();
+    }
+
+    public String getPendingArtifactsPageRender() {
+        List<Backpack> backpacks = new ArrayList<>();
+        List<Codecooler> codecoolers = new CodecoolersDAO().getAll();
+        List<Backpack> currentCodecoolerBackpacks;
+
+        for(Codecooler codecooler: codecoolers) {
+            currentCodecoolerBackpacks = codecooler.getBackpacks();
+            backpacks.addAll(currentCodecoolerBackpacks);
+        }
+
+        for(Backpack backpack: backpacks) {
+            if(backpack.isUsed()) {
+                backpacks.remove(backpack);
+            }
+        }
+
+        return this.mentorResponseCreator.renderPendingArtifactsPageRender(backpacks);
     }
 
     private int getIdByUrl(HttpExchange httpExchange) {
@@ -149,6 +168,16 @@ public class MentorService {
         new QuestsDAO().delete(requestedItemId);
     }
 
+    public void useBackpackItem(HttpExchange httpExchange, int backpackId) throws IOException {
+        int artifactId = UrlIdService.getIdByUrl(httpExchange, 5);
+        Codecooler codecooler = new CodecoolersDAO().getCodecoolerByBackpackId(backpackId);
+        Backpack backpack = codecooler.getFirstNotUsedBackpackItemByArtifactId(artifactId);
+        backpack.setIsUsed(true);
+        BackpacksDAO backpacksDAO = new BackpacksDAO();
+        backpacksDAO.deleteWithLimitOne(backpack.getArtifactId(), backpack.getArtifactId());
+        backpacksDAO.add(backpack);
+    }
+
     private Map<String, String> getFormInputsMap(HttpExchange httpExchange) throws IOException {
         return FormService.getInputsStringMap(httpExchange);
     }
@@ -176,7 +205,7 @@ public class MentorService {
         );
     }
 
-    private Quest getQuestFromForm(Map<String, String> inputs) throws IOException {
+    private Quest getQuestFromForm(Map<String, String> inputs) {
         return new Quest(
                 inputs.get("questName"),
                 inputs.get("description"),

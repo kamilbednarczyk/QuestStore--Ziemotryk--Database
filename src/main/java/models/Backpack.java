@@ -1,6 +1,9 @@
 package models;
 
 import databaseAccess.ArtifactsDAO;
+import databaseAccess.CodecoolersDAO;
+
+import java.util.List;
 
 public class Backpack {
     private int backpackId;
@@ -37,7 +40,7 @@ public class Backpack {
         return isUsed;
     }
 
-    public void setUsed(boolean used) {
+    public void setIsUsed(boolean used) {
         isUsed = used;
     }
 
@@ -47,5 +50,15 @@ public class Backpack {
 
     public String getArtifactDescription() {
         return artifactDescription;
+    }
+
+    public String getBackpackItemOwnerName() {
+        List<Codecooler> codecoolers = new CodecoolersDAO().getAll();
+        for(Codecooler codecooler: codecoolers) {
+            if(backpackId == codecooler.getBackpackId()) {
+                return codecooler.getFullName();
+            }
+        }
+        return "Owner not found";
     }
 }

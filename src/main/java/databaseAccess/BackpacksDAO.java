@@ -81,7 +81,7 @@ public class BackpacksDAO implements IDAO<Backpack> {
                         + "SET backpack_id=" + toUpdate.getBackpackId() + ",\n"
                         + "artifact_id=" + toUpdate.getArtifactId() + ",\n"
                         + "is_used=" + Boolean.toString(toUpdate.isUsed()).toUpperCase() + "\n"
-                        + "WHERE backpack_id=" + id
+                        + "WHERE backpack_id=" + id + " AND artifactId =" + toUpdate.getArtifactId()
         );
     }
 
@@ -89,6 +89,15 @@ public class BackpacksDAO implements IDAO<Backpack> {
     public void delete(int id) {
         dbConnector.executeUpdate(
                 "DELETE FROM backpacks WHERE backpack_id=" + id
+        );
+    }
+
+    public void deleteWithLimitOne(int artifactId, int backpackId) {
+        dbConnector.executeUpdate(
+                "DELETE FROM backpacks\n" +
+                        "WHERE ctid IN=(SELECT ctid FROM backpacks WHERE\n" +
+                        "artifact_id=" + artifactId + " AND\n" +
+                        "backpack_id=" + backpackId + " LIMIT 1)"
         );
     }
 

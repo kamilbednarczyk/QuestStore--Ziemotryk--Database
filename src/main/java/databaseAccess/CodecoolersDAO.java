@@ -1,7 +1,9 @@
 package databaseAccess;
 
 import models.*;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -95,6 +97,18 @@ public class CodecoolersDAO implements IDAO<Codecooler> {
         dbConnector.executeUpdate(
                 "DELETE FROM codecoolers WHERE account_id="+id
         );
+    }
+
+    public Codecooler getCodecoolerByBackpackId(int backpackId) throws IOException {
+        List<Codecooler> codecoolers = getAll();
+
+        for(Codecooler codecooler: codecoolers) {
+            if(backpackId == codecooler.getBackpackId()) {
+                return codecooler;
+            }
+        }
+        System.out.println("Can't find codecooler with backpack id " + backpackId);
+        throw new IOException("Element not found");
     }
 
     public void addArtifactToCodecoolerBackpack(int codecoolerId, Artifact artifact) {

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Artifacts</title>
+    <link rel="stylesheet" href="/static/CSS/flexboxStyle.css">
+    <link rel="stylesheet" href="/static/CSS/IndexPageStyle.css">
+</head>
+<body>
+
+
+<div id="pageInfo">
+    <img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" width="70" height="70">
+    <nav role='navigation'>
+        <div id="menuToggle">
+
+            <input type="checkbox"/>
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <ul id="menu">
+                <a href="/quest/mentor/index">
+                    <li>Home</li>
+                </a>
+                <a href="/quest/mentor/codecoolers">
+                    <li>Codecoolers</li>
+                </a>
+                <a href="/quest/mentor/quests">
+                    <li>Quests</li>
+                </a>
+                <a href="/quest/mentor/artifacts">
+                    <li>Artifacts</li>
+                </a>
+                <a href="/quest/mentor/transactions">
+                    <li>Transactions history</li>
+                </a>
+                <a href="/quest/mentor/logout">
+                    <li>Log out</li>
+                </a>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div id="pageInfo">
+    <a href="/quest/mentor/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" width="70" height="70"></a>
+</div>
+<div id="plusButton">
+    <a href="/quest/mentor/addArtifactPage"><img class="plusButton" src="/static/IMAGES/plusButton.png"></a>
+</div>
+
+<div class="container">
+    {% for backpack in list %}
+    <ul class="item">
+        <li class="level">
+            <span style="font-size: 35px" style="font-weight: normal">{{ backpack.getArtifactName() }}</span>
+        </li>
+        <p class="heading">Description:</p>
+        <li class="email">
+            {{ backpack.getArtifactDescription() }}
+        </li>
+        <p class="heading">State:</p>
+        <li class="email">
+            Pending
+        </li>
+        <li class="editButtonImage"><a href="/quest/mentor/useArtifact/{{ backpack.getBackpackId() }}/{{ backpack.getArtifactId() }}"><img
+                        class="editButton"
+                        src="/static/IMAGES/useIcon.png"
+                        ALT="EDIT"></a></li>
+    </ul>
+    {% endfor %}
+</div>
+
+</body>
+</html>

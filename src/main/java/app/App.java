@@ -19,7 +19,6 @@ public class App {
         server.createContext("/quest", new Router());
         server.createContext("/", new Static());
 
-
         server.setExecutor(null);
 
         System.out.println("Server starting...");

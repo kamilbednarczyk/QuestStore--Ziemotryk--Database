@@ -4,6 +4,7 @@ import databaseAccess.BackpacksDAO;
 import databaseAccess.ClassesDAO;
 import databaseAccess.LevelsDAO;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -125,5 +126,18 @@ public class Codecooler {
         }
 
         return codecoolerBackpacks;
+    }
+
+    public Backpack getFirstNotUsedBackpackItemByArtifactId(int artifactId) throws IOException {
+        List<Backpack> backpacks = getBackpacks();
+
+        for(Backpack backpack: backpacks) {
+            if(artifactId == backpack.getArtifactId()) {
+                return backpack;
+            }
+        }
+
+        System.out.println("Codecooler's backpack item not found");
+        throw new IOException("Backpack not found");
     }
 }

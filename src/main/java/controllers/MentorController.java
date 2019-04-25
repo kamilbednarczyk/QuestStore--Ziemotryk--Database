@@ -54,6 +54,10 @@ public class MentorController {
         return this.mentorService.getAddQuestPageRender();
     }
 
+    public String getPendingArtifactsPage() {
+        return this.mentorService.getPendingArtifactsPageRender();
+    }
+
     public String getMentorResponse(HttpExchange httpExchange, String userPageRequest) throws IOException {
         int requestedItemId = getItemIdRequestIfExists(httpExchange);
         String response = "";
@@ -149,8 +153,17 @@ public class MentorController {
                 break;
 
             case "deleteArtifact": // POST: delete artifact
-                mentorService.deleteQuest(requestedItemId);
+                mentorService.deleteArtifact(requestedItemId);
                 response = getArtifactPage();
+                break;
+            case "pendingArtifacts": // GET: pending artifacts
+                response = getPendingArtifactsPage();
+
+                break;
+            case "useArtifact": // POST: pending artifacts
+                mentorService.useBackpackItem(httpExchange, requestedItemId);
+                response = getPendingArtifactsPage();
+
                 break;
         }
 
