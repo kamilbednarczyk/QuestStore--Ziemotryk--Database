@@ -1,5 +1,6 @@
 package controllers;
 
+import services.FileUploaderService;
 import services.MentorService;
 
 import com.sun.net.httpserver.HttpExchange;
@@ -113,11 +114,13 @@ public class MentorController {
                 break;
 
             case "addCodecooler": // POST: add codecooler
+                addItemByHttpExchange(httpExchange, "codecoolers");
                 mentorService.addCodecooler(httpExchange);
                 response = getCodecoolerPage();
                 break;
 
             case "updateCodecooler": // POST: update codecooler
+                addItemByHttpExchange(httpExchange, "codecoolers");
                 mentorService.updateCodecooler(httpExchange, requestedItemId);
                 response = getCodecoolerPage();
                 break;
@@ -179,5 +182,9 @@ public class MentorController {
             id = Integer.parseInt(requestUrlArray[4]);
         }
         return id;
+    }
+
+    public void addItemByHttpExchange(HttpExchange httpExchange, String imagesSubFolderName) throws IOException {
+        new FileUploaderService().upload(httpExchange, imagesSubFolderName);
     }
 }

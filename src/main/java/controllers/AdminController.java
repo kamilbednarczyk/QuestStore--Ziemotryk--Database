@@ -2,6 +2,7 @@ package controllers;
 
 import com.sun.net.httpserver.HttpExchange;
 import services.AdminService;
+import services.FileUploaderService;
 import sessionData.SessionHandler;
 
 import java.io.IOException;
@@ -56,7 +57,6 @@ public class AdminController {
 //        Map<String, Function> map;
 //        map.get("key").apply(httpExchange);
 
-
         switch (userPageRequest) {
             case "index":  // GET: index
                 response = getIndexPage();
@@ -104,11 +104,13 @@ public class AdminController {
 
                 break;
             case "addMentor":  // POST: add mentor
+                addItemByHttpExchange(httpExchange, "mentors");
                 adminService.addMentor(httpExchange);
                 response = getMentorPage();
 
                 break;
             case "updateMentor":  // POST: edit mentor
+                addItemByHttpExchange(httpExchange, "mentors");
                 adminService.updateMentor(httpExchange, requestedItemId);
                 response = getMentorPage();
 
@@ -165,5 +167,9 @@ public class AdminController {
             id = Integer.parseInt(requestUrlArray[4]);
         }
         return id;
+    }
+
+    public void addItemByHttpExchange(HttpExchange httpExchange, String imagesSubFolderName) throws IOException {
+        new FileUploaderService().upload(httpExchange, imagesSubFolderName);
     }
 }
