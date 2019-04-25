@@ -47,6 +47,11 @@ public class MentorService {
         return this.mentorResponseCreator.renderQuestPage(quests);
     }
 
+    public String getTransactionsHistoryPageRender() {
+        List<Transaction> transactions = new TransactionsHistoryDAO().getAll();
+        return this.mentorResponseCreator.renderTransactionsHistoryPage(transactions);
+    }
+
     public String getEditCodecoolerPageRender(HttpExchange httpExchange) {
         int id = getIdByUrl(httpExchange);
         List<Codecooler> codecooler = new ArrayList<>();
@@ -173,12 +178,12 @@ public class MentorService {
 
     private Quest getQuestFromForm(Map<String, String> inputs) throws IOException {
         return new Quest(
-            new CategoriesDAO().getCategoryIdByName(
-                    inputs.get("categoryName")
-            ), // ADD CATEGORY NAME INPUT TO TWIGS LATER
-            inputs.get("questName"),
-            inputs.get("description"),
-            Integer.parseInt(inputs.get("questValue"))
+                new CategoriesDAO().getCategoryIdByName(
+                        inputs.get("categoryName")
+                ), // ADD CATEGORY NAME INPUT TO TWIGS LATER
+                inputs.get("questName"),
+                inputs.get("description"),
+                Integer.parseInt(inputs.get("questValue"))
         );
     }
 

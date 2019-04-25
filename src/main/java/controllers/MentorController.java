@@ -58,96 +58,99 @@ public class MentorController {
         int requestedItemId = getItemIdRequestIfExists(httpExchange);
         String response = "";
 
-        switch(userPageRequest) {
+        switch (userPageRequest) {
             case "index": // GET: index
                 response = mentorService.getIndexPageRender(httpExchange); // Finish parsing personalized index
-
                 break;
+
             case "codecoolers": // GET: codecoolers
                 response = mentorService.getCodecoolerPageRender();
-
                 break;
+
             case "quests": // GET: quests
                 response = mentorService.getQuestPageRender();
-
                 break;
+
             case "artifacts": // GET: logout
                 response = mentorService.getArtifactPageRender();
-
                 break;
+
+            case "transactions": // GET: transactions
+                response = mentorService.getTransactionsHistoryPageRender();
+                break;
+
             case "logout": // GET: logout
                 SessionHandler.getInstance().removeActiveSessionWithCookie(httpExchange);
                 response = new LoginController().getLoginPage();
-                
                 break;
+
             case "editCodecoolerPage": // GET: edit codecooler
                 response = getEditCodecoolerPage(httpExchange);
-
                 break;
+
             case "addCodecoolerPage": // GET: add codecooler
                 response = getAddCodecooler();
-
                 break;
+
             case "editQuestPage": // GET: edit quest
                 response = getEditQuestPage(httpExchange);
-
                 break;
+
             case "addQuestPage": // GET: add quest
                 response = getAddQuestPage();
-
                 break;
+
             case "editArtifactPage": // GET: edit artifact
                 response = getEditArtifactPage(httpExchange);
-
                 break;
+
             case "addArtifactPage": // GET: add artifact
                 response = getAddArtifactPage();
-
                 break;
+
             case "addCodecooler": // POST: add codecooler
                 mentorService.addCodecooler(httpExchange);
                 response = getCodecoolerPage();
-
                 break;
+
             case "updateCodecooler": // POST: update codecooler
                 mentorService.updateCodecooler(httpExchange, requestedItemId);
                 response = getCodecoolerPage();
-
                 break;
+
             case "deleteCodecooler": // POST: delete codecooler
                 mentorService.deleteCodecooler(requestedItemId);
                 response = getCodecoolerPage();
-
                 break;
+
             case "addQuest": // POST: delete quest
                 mentorService.addQuest(httpExchange);
                 response = getQuestPage();
-
                 break;
+
             case "updateQuest": // POST: update quest
                 mentorService.updateQuest(httpExchange, requestedItemId);
                 response = getQuestPage();
-
                 break;
+
             case "deleteQuest": // POST: delete quest
                 mentorService.deleteQuest(requestedItemId);
                 response = getQuestPage();
-
                 break;
+
             case "addArtifact": // POST: addQuest: add artifact
                 mentorService.addArtifact(httpExchange);
                 response = getArtifactPage();
-
                 break;
+
             case "updateArtifact": // POST: update artifact
                 mentorService.updateArtficat(httpExchange, requestedItemId);
                 response = getArtifactPage();
-
                 break;
+
             case "deleteArtifact": // POST: delete artifact
                 mentorService.deleteQuest(requestedItemId);
                 response = getArtifactPage();
-
                 break;
         }
 
@@ -158,7 +161,7 @@ public class MentorController {
         int id = -1;
         String[] requestUrlArray = httpExchange.getRequestURI().toString().split("/");
         System.out.println("3");
-        if(requestUrlArray.length >= 5) {
+        if (requestUrlArray.length >= 5) {
             System.out.println(requestUrlArray[4]);
             id = Integer.parseInt(requestUrlArray[4]);
         }
