@@ -74,7 +74,7 @@ public class MentorService {
         List<Quest> quest = new ArrayList<>();
         quest.add(new QuestsDAO().get(id));
 
-        return this.mentorResponseCreator.renderAddCodecoolerPage();
+        return this.mentorResponseCreator.renderAddQuestPage();
     }
 
     public String getAddQuestPageRender() {
@@ -171,11 +171,8 @@ public class MentorService {
         );
     }
 
-    private Quest getQuestFromForm(Map<String, String> inputs) throws IOException {
+    private Quest getQuestFromForm(Map<String, String> inputs) {
         return new Quest(
-            new CategoriesDAO().getCategoryIdByName(
-                    inputs.get("categoryName")
-            ), // ADD CATEGORY NAME INPUT TO TWIGS LATER
             inputs.get("questName"),
             inputs.get("description"),
             Integer.parseInt(inputs.get("questValue"))

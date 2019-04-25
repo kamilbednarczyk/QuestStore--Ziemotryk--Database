@@ -13,7 +13,7 @@ import java.util.List;
 public class App {
 
     public void run() throws IOException {
-        //test();
+        // test();
         HttpServer server = HttpServer.create(new InetSocketAddress(7900), 0);
 
         server.createContext("/quest", new Router());
@@ -27,14 +27,6 @@ public class App {
     }
 
     public void test() {
-        AccountsDAO accountsDAO = new AccountsDAO();
-        MentorsDAO mentorsDAO = new MentorsDAO();
 
-        Account newAccount = new Account("test", "test", 2);
-        accountsDAO.add(newAccount);
-        Account newAccountFromDb = accountsDAO.getAccountFromDbByAccountWithoutId(newAccount);
-        // acc id = 12
-        Mentor newMentor = new Mentor(newAccountFromDb.getAccountId(), "bomba konga", "zubizubi@bubi.pl", 12, "funny momby", "emptyAvatar404.jpg");
-        mentorsDAO.add(newMentor);
     }
 }

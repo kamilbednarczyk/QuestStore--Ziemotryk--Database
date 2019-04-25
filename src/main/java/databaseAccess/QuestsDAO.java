@@ -14,8 +14,8 @@ public class QuestsDAO implements IDAO<Quest> {
     @Override
     public void add(Quest toAdd) {
         String query = "INSERT INTO quests" +
-                "(category_id, name, description, coolcoin_prize)" +
-                "VALUES (" + toAdd.getCategoryId() + ",'" + toAdd.getName() + "," +
+                "(name, description, coolcoin_prize)" +
+                "VALUES ('" + toAdd.getName() + "," +
                 toAdd.getDescription() + "','" + toAdd.getCoolcoinPrize() + "');";
 
         dbConnector.executeUpdate(query);
@@ -33,7 +33,6 @@ public class QuestsDAO implements IDAO<Quest> {
             resultSet.next();
             quest = new Quest(
                     resultSet.getInt("quest_id"),
-                    resultSet.getInt("category_id"),
                     resultSet.getString("name"),
                     resultSet.getString("description"),
                     resultSet.getInt("coolcoin_prize")
@@ -47,6 +46,7 @@ public class QuestsDAO implements IDAO<Quest> {
 
     @Override
     public List<Quest> getAll() {
+        System.out.println("getting all quests...");
         List<Quest> questsList = new ArrayList<>();
 
         String query = "SELECT\n" +
@@ -59,7 +59,6 @@ public class QuestsDAO implements IDAO<Quest> {
             while (currentResultSet.next()) {
                 questsList.add(new Quest(
                         currentResultSet.getInt("quest_id"),
-                        currentResultSet.getInt("category_id"),
                         currentResultSet.getString("name"),
                         currentResultSet.getString("description"),
                         currentResultSet.getInt("coolcoin_prize")
@@ -76,12 +75,12 @@ public class QuestsDAO implements IDAO<Quest> {
     @Override
     public void update(int id, Quest toUpdate) {
         String query = "UPDATE quests\n" +
-                "SET category_id = '" + toUpdate.getCategoryId() + "', name = '" + toUpdate.getName() + "', description = " + toUpdate.getDescription() +
+                "SET name = '" + toUpdate.getName() + "', description = " + toUpdate.getDescription() +
                 "', coolcoin_prize = " + toUpdate.getCoolcoinPrize() +"\n" +
                 "WHERE account_id = " + id;
         dbConnector.executeUpdate(query);
 
-        System.out.println("dupa");
+        System.out.println("Updating quest...");
     }
 
     @Override
@@ -91,6 +90,6 @@ public class QuestsDAO implements IDAO<Quest> {
 
         dbConnector.executeUpdate(query);
 
-        System.out.println("delete works");
+        System.out.println("Deleting quest...");
     }
 }

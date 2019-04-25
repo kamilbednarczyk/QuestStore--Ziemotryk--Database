@@ -2,20 +2,18 @@ package models;
 
 public class Quest {
     private int questId;
-    private int categoryId;
     private String name;
     private String description;
     private int coolcoinPrize;
 
-    public Quest(int categoryId, String name, String description, int coolcoinPrize) {
-        this.categoryId = categoryId;
+    public Quest(String name, String description, int coolcoinPrize) {
         this.name = name;
         this.description = description;
         this.coolcoinPrize = coolcoinPrize;
     }
 
-    public Quest(int questId, int categoryId, String name, String description, int coolcoinPrize) {
-        this(categoryId, name, description, coolcoinPrize);
+    public Quest(int questId,  String name, String description, int coolcoinPrize) {
+        this(name, description, coolcoinPrize);
         this.questId = questId;
     }
 
@@ -26,14 +24,6 @@ public class Quest {
 
     public void setQuestId(int questId) {
         this.questId = questId;
-    }
-
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
     }
 
     public String getName() {
