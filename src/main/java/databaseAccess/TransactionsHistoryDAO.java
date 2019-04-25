@@ -10,16 +10,16 @@ import java.util.List;
 public class TransactionsHistoryDAO implements IDAO<Transaction>{
     DbConnector dbConnector = DbConnector.getInstance();
 
-//    public void create() {
-//        dbConnector.executeUpdate(
-//                "CREATE TABLE transactions (" +
-//                        "transaction_id serial PRIMARY KEY," +
-//                        "buyer TEXT NOT NULL," +
-//                        "date INTEGER NOT NULL," +
-//                        "artifact_name TEXT NOT NULL" +
-//                        ")"
-//        );
-//    }
+    public void create() {
+        dbConnector.executeUpdate(
+                "CREATE TABLE transactions (" +
+                        "transaction_id serial PRIMARY KEY," +
+                        "buyer TEXT NOT NULL," +
+                        "date TEXT NOT NULL," +
+                        "artifact_name TEXT NOT NULL" +
+                        ")"
+        );
+    }
 
     @Override
     public void add(Transaction toAdd) {
@@ -28,7 +28,7 @@ public class TransactionsHistoryDAO implements IDAO<Transaction>{
                         + "(buyer, date, artifact_name)\n"
                         + "VALUES('" + toAdd.getBuyer() + "',\n"
                         + "'" + toAdd.getDate() + "',\n"
-                        + "" + toAdd.getArtifactName() + "\n"
+                        + "'" + toAdd.getArtifactName() + "'\n"
                         + ")"
         );
     }
@@ -45,7 +45,7 @@ public class TransactionsHistoryDAO implements IDAO<Transaction>{
             transaction = new Transaction(
                     resultSet.getInt("transaction_id"),
                     resultSet.getString("buyer"),
-                    resultSet.getInt("date"),
+                    resultSet.getString("date"),
                     resultSet.getString("artifact_name")
             );
         } catch (SQLException e) {
@@ -68,8 +68,8 @@ public class TransactionsHistoryDAO implements IDAO<Transaction>{
                         new Transaction(
                                 resultSet.getInt("transaction_id"),
                                 resultSet.getString("buyer"),
-                                resultSet.getInt("date"),
-                                resultSet.getString("artifact_nme")
+                                resultSet.getString("date"),
+                                resultSet.getString("artifact_name")
                         )
                 );
             }

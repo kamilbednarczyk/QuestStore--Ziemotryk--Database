@@ -4,14 +4,18 @@ import com.sun.net.httpserver.HttpExchange;
 import databaseAccess.ArtifactsDAO;
 import databaseAccess.BackpacksDAO;
 import databaseAccess.CodecoolersDAO;
+import databaseAccess.TransactionsHistoryDAO;
 import models.Artifact;
 import models.Backpack;
 import models.Codecooler;
+import models.Transaction;
 import sessionData.CookieHandler;
 import sessionData.SessionHandler;
 import views.CodecoolerResponseCreator;
 
 import java.net.HttpCookie;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -58,13 +62,16 @@ public class CodecoolerService {
 
         int amountOfCoolcoins = codecooler.getCoolcoins();
         int artifactPrize = new ArtifactsDAO().get(artifactId).getPrize();
-
-
+        String artifactName = new ArtifactsDAO().get(artifactId).getName();
 
         if (enoughCoins(amountOfCoolcoins, artifactPrize)) {
+            TransactionsHistoryDAO transactionsHistoryDAO = new TransactionsHistoryDAO();
             codecooler.setCoolcoins(amountOfCoolcoins - artifactPrize);
             CodecoolersDAO codecoolersDAO = new CodecoolersDAO();
             codecoolersDAO.update(codecooler.getClassId(), codecooler);
+
+            Transaction transaction = new Transaction(codecooler.getFullName(), getLocalDateAndTime(), artifactName);
+            transactionsHistoryDAO.add(transaction);
 
             Backpack backpack = new Backpack(codecooler.getBackpackId(), artifactId, false);
             backpacksDAO.add(backpack);
@@ -94,5 +101,13 @@ public class CodecoolerService {
                 .parseInt(httpExchange
                         .getRequestURI()
                         .toString().split("/")[4]);
+    }
+
+    private String getLocalDateAndTime() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String dateAndTime = dtf.format(now);
+
+        return dateAndTime;
     }
 }
