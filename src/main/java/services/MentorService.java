@@ -38,6 +38,7 @@ public class MentorService {
     }
 
     public String getArtifactPageRender() {
+
         List<Artifact> artifacts = new ArtifactsDAO().getAll();
         return this.mentorResponseCreator.renderArtifactPage(artifacts);
     }

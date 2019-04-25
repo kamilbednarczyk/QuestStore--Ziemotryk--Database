@@ -38,11 +38,15 @@ public class ResponseCreator {
 //    }
 
     public <E> String renderPageWith(String fileName, List<E> listToFillWith) {
+        if("templates/mentor/artifactPage.twig".equals(fileName)) System.out.println("IN"); // DELL LATER
         String response;
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/" + fileName);
+        if("templates/mentor/artifactPage.twig".equals(fileName)) System.out.println("OUT 1"); // dell later
         JtwigModel model;
         model = JtwigModel.newModel().with("list", listToFillWith);
+        if("templates/mentor/artifactPage.twig".equals(fileName)) System.out.println("OUT 2"); // dell later
         response = template.render(model);
+        if("templates/mentor/artifactPage.twig".equals(fileName)) System.out.println("OUT 3"); // DELL LATER
         return response;
     }
 

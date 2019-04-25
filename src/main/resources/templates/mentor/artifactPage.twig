@@ -57,17 +57,17 @@
 <div class="container">
     {% for artifact in list %}
         <ul class="item">
-            <img class="avatar" src="#" alt="Artifact image">
+            <img class="avatar" src="//:0" alt="Artifact image">
             <li class="artifactName">
-                Test Artifact
+                {{ artifact.getName() }}
             </li>
             <p class="heading">Description:</p>
             <li class="description">
-                Decription
+                {{ artifact.getDescription() }}
             </li>
             <p class="heading">prize:</p>
             <li class="prize">
-                Artifact prize
+                {{ artifact.getPrize() }}
             </li>
             <li class="editButtonImage"><a href="/quest/mentor/editArtifactPage/{{ artifact.getArtifactId() }}"><img
                             class="editButton"
