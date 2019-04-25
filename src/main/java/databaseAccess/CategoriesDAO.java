@@ -16,7 +16,7 @@ public class CategoriesDAO implements IDAO<Category> {
     public void add(Category toAdd) {
         dbConnector.executeUpdate(
                 "INSERT INTO categories(category_name)\n"
-                        + "VALUES ('" + toAdd.getCategoryId() + ");"
+                        + "VALUES ('" + toAdd.getCategoryName() + "');"
         );
     }
 

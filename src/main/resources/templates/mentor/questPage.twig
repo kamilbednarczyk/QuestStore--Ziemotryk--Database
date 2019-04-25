@@ -51,17 +51,17 @@
 <div class="container">
     {% for quest in list %}
         <ul class="item">
-            <img class="avatar" src="#" alt="Quest image">
+            <img class="avatar" src="//:0" alt="Quest image">
             <li class="questName">
-                Test Quest
+                {{ quest.getName() }}
             </li>
             <p class="heading">Description:</p>
             <li class="description">
-                Decription
+                {{ quest.getDescription() }}
             </li>
             <p class="heading">Value:</p>
             <li class="questValue">
-                Quest value
+                {{ quest.getCoolcoinPrize() }}
             </li>
             <li class="editButtonImage"><a href="/quest/mentor/editQuestPage/{{ quest.getQuestId() }}"><img
                             class="editButton"
