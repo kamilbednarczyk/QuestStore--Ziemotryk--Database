@@ -178,9 +178,6 @@ public class MentorService {
 
     private Quest getQuestFromForm(Map<String, String> inputs) throws IOException {
         return new Quest(
-                new CategoriesDAO().getCategoryIdByName(
-                        inputs.get("categoryName")
-                ), // ADD CATEGORY NAME INPUT TO TWIGS LATER
                 inputs.get("questName"),
                 inputs.get("description"),
                 Integer.parseInt(inputs.get("questValue"))

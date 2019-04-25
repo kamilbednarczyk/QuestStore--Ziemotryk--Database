@@ -1,91 +1,92 @@
-package databaseAccess;
-
-import models.Category;
-
-import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-public class CategoriesDAO implements IDAO<Category> {
-
-    DbConnector dbConnector =  DbConnector.getInstance();
-
-    @Override
-    public void add(Category toAdd) {
-        dbConnector.executeUpdate(
-                "INSERT INTO categories(category_name)\n"
-                        + "VALUES ('" + toAdd.getCategoryName() + "');"
-        );
-    }
-
-    @Override
-    public Category get(int id) {
-        ResultSet resultSet = dbConnector.getResultSetByQuery(
-                "SELECT * FROM categories WHERE category_id="+id
-        );
-        Category category = null;
-
-        try {
-            resultSet.next();
-            category = new Category(
-                    resultSet.getInt("category_id"),
-                    resultSet.getString("category_name")
-            );
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return category;
-    }
-
-    @Override
-    public List<Category> getAll() {
-        List<Category> categories = new ArrayList<>();
-        ResultSet resultSet = dbConnector.getResultSetByQuery(
-                "SELECT * FROM categories"
-        );
-
-        try {
-            while(resultSet.next()) {
-                categories.add(
-                        new Category(
-                                resultSet.getInt("category_id"),
-                                resultSet.getString("category_name")
-                        )
-                );
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return categories;
-    }
-
-    @Override
-    public void update(int id, Category toUpdate) {
-        dbConnector.executeUpdate(
-                "UPDATE categories\n"
-                        + "SET category_name=" + toUpdate.getCategoryName() + "\n"
-                        + "WHERE backpack_id=" + id
-        );
-    }
-
-    @Override
-    public void delete(int id) {
-        dbConnector.executeUpdate(
-                "DELETE FROM categories WHERE category_id" + id
-        );
-    }
-
-    public int getCategoryIdByName(String name) throws IOException {
-        List<Category> categories = getAll();
-        for(int i = 0; i < categories.size(); i ++) {
-            if(categories.get(i).getCategoryName().equals(name)) {
-                return categories.get(i).getCategoryId();
-            }
-        }
-        System.out.println("Finding category id by name failed");
-        throw new IOException("Category not found");
-    }
-}
+//package databaseAccess;
+//
+//import models.Category;
+//
+//import java.io.IOException;
+//import java.sql.ResultSet;
+//import java.sql.SQLException;
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//public class CategoriesDAO implements IDAO<Category> {
+//
+//    DbConnector dbConnector =  DbConnector.getInstance();
+//
+//    @Override
+//    public void add(Category toAdd) {
+//        dbConnector.executeUpdate(
+//                "INSERT INTO categories(category_name)\n"
+//                        + "VALUES ('" + toAdd.getCategoryName() + "');"
+//        );
+//    }
+//
+//    @Override
+//    public Category get(int id) {
+//        ResultSet resultSet = dbConnector.getResultSetByQuery(
+//                "SELECT * FROM categories WHERE category_id="+id
+//        );
+//        Category category = null;
+//
+//        try {
+//            resultSet.next();
+//            category = new Category(
+//                    resultSet.getInt("category_id"),
+//                    resultSet.getString("category_name")
+//            );
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return category;
+//    }
+//
+//    @Override
+//    public List<Category> getAll() {
+//        List<Category> categories = new ArrayList<>();
+//        ResultSet resultSet = dbConnector.getResultSetByQuery(
+//                "SELECT * FROM categories"
+//        );
+//
+//        try {
+//            while(resultSet.next()) {
+//                categories.add(
+//                        new Category(
+//                                resultSet.getInt("category_id"),
+//                                resultSet.getString("category_name")
+//                        )
+//                );
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return categories;
+//    }
+//
+//    @Override
+//    public void update(int id, Category toUpdate) {
+//        dbConnector.executeUpdate(
+//                "UPDATE categories\n"
+//                        + "SET category_name=" + toUpdate.getCategoryName() + "\n"
+//                        + "WHERE backpack_id=" + id
+//        );
+//    }
+//
+//    @Override
+//    public void delete(int id) {
+//        dbConnector.executeUpdate(
+//                "DELETE FROM categories WHERE category_id" + id
+//        );
+//    }
+//
+//    public int getCategoryIdByName(String name) throws IOException {
+//        System.out.println("searching for name \"" + name + "\"...");
+//        List<Category> categories = getAll();
+//        for (Category category : categories) {
+//            if (category.getCategoryName().equals(name)) {
+//                return category.getCategoryId();
+//            }
+//        }
+//        System.out.println("Finding category id by name failed");
+//        throw new IOException("Category not found");
+//    }
+//}

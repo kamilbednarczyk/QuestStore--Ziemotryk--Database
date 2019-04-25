@@ -27,7 +27,5 @@ public class App {
     }
 
     public void test() {
-        TransactionsHistoryDAO transactionsHistoryDAO = new TransactionsHistoryDAO();
-        transactionsHistoryDAO.create();
     }
 }
