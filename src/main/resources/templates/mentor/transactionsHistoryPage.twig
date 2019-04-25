@@ -2,13 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add quest</title>
+    <title>Transactions History</title>
     <link rel="stylesheet" href="/static/CSS/flexboxStyle.css">
     <link rel="stylesheet" href="/static/CSS/IndexPageStyle.css">
-    <link rel="stylesheet" href="/static/CSS/Mentor/addCodecoolerPage.css">
 </head>
 <body>
-
 
 
 <div id="pageInfo">
@@ -16,7 +14,7 @@
     <nav role='navigation'>
         <div id="menuToggle">
 
-            <input type="checkbox" />
+            <input type="checkbox"/>
 
             <span></span>
             <span></span>
@@ -51,34 +49,23 @@
 </div>
 
 <div class="container">
-    <<form id="addForm" method="POST" action="/quest/mentor/addQuest"></form>
+    {% for transaction in list %}
         <ul class="item">
-            <li class="avatarImage">
-                <img class="avatar" src="#" alt="Quest image">
-            </li>
+            <p class="heading">Buyer:</p>
             <li class="questName">
-                <input class="input" type="text" placeholder="Quest name" form="addForm" name="questName"/>
+                {{ transaction.getBuyer() }}
             </li>
-            <p class="heading">Quest Category:</p>
-            <li class="categoryName">
-                <input class="input" type="text" placeholder="Category name" form="addForm" name="categoryName"/>
+            <p class="heading">Date:</p>
+            <li class="description">
+                {{ transaction.getDate() }}
             </li>
-            <p class="heading">Decription:</p>
-            <li class="decription">
-                <input class="input" type="text" placeholder="Decription" form="addForm" name="description"/>
-            </li>
-            <p class="heading">Value:</p>
+            <p class="heading">Artifact name:</p>
             <li class="questValue">
-                <input class="input" type="text" placeholder="Quest value" form="addForm" name="questValue"/>
-            </li>
-            <li class="editButtonsImage">
-                <a href="/quest/mentor/quests"><img class="cancelButton" src="/static/IMAGES/cancelButton.png"
-                                                       alt="cancel"></a>
-                <input type="image" name="confirmAddQuest" class="confirmButton" src="/static/IMAGES/tickButton.png"
-                       alt="confirm" form="addForm">
+                {{ transaction.getArtifactName() }}
             </li>
         </ul>
-    </form>
+    {% endfor %}
+
 </div>
 
 </body>

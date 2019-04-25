@@ -16,7 +16,8 @@ public class QuestsDAO implements IDAO<Quest> {
         String query = "INSERT INTO quests" +
                 "(name, description, coolcoin_prize)" +
                 "VALUES ('" + toAdd.getName() + "," +
-                toAdd.getDescription() + "','" + toAdd.getCoolcoinPrize() + "');";
+                toAdd.getDescription() + "','" +
+                toAdd.getCoolcoinPrize() + "');";
 
         dbConnector.executeUpdate(query);
         System.out.println("add works");
