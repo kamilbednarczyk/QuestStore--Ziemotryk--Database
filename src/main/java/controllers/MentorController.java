@@ -64,7 +64,7 @@ public class MentorController {
 
         switch (userPageRequest) {
             case "index": // GET: index
-                response = mentorService.getIndexPageRender(httpExchange); // Finish parsing personalized index
+                response = getIndexPage(httpExchange); // Finish parsing personalized index
                 break;
 
             case "codecoolers": // GET: codecoolers
