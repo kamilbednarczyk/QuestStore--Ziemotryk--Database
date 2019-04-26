@@ -47,6 +47,10 @@
             <li class="level">
                 <span style="font-size: 35px" style="font-weight: normal">{{ backpack.getArtifactName() }}</span>
             </li>
+            <p class="heading">Owner:</p>
+            <li class="email">
+                {{ backpack.getBackpackItemOwnerName() }}
+            </li>
             <p class="heading">Description:</p>
             <li class="email">
                 {{ backpack.getArtifactDescription() }}

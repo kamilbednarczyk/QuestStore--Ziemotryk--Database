@@ -56,4 +56,8 @@ public class MentorResponseCreator {
     public String renderAddQuestPage() {
         return this.responseCreator.renderPage("/mentor/addQuestPage.twig");
     }
+
+    public String renderPendingArtifactsPageRender(List<Backpack> backpacks) {
+        return this.responseCreator.renderPageWith("/mentor/pendingArtifacts.twig", backpacks);
+    }
 }

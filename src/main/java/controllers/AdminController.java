@@ -5,13 +5,13 @@ import services.AdminService;
 import sessionData.SessionHandler;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.function.Function;
 
 public class AdminController {
     private AdminService adminService = new AdminService();
 
-    public String getIndexPage() {
-        return adminService.getIndexPageRender();
-    }
+    public String getIndexPage() { return adminService.getIndexPageRender(); }
 
     public String getMentorPage() {
         return adminService.getMentorPageRender();
@@ -52,6 +52,9 @@ public class AdminController {
     public String getAdminResponse(HttpExchange httpExchange, String userPageRequest) throws IOException {
         int requestedItemId = getItemIdRequestIfExists(httpExchange);
         String response = "";
+
+//        Map<String, Function> map;
+//        map.get("key").apply(httpExchange);
 
 
         switch (userPageRequest) {
@@ -157,7 +160,7 @@ public class AdminController {
         int id = -1;
         String[] requestUrlArray = httpExchange.getRequestURI().toString().split("/");
         System.out.println("3");
-        if (requestUrlArray.length >= 5) {
+        if(requestUrlArray.length >= 5) {
             System.out.println(requestUrlArray[4]);
             id = Integer.parseInt(requestUrlArray[4]);
         }

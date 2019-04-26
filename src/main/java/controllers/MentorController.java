@@ -1,5 +1,6 @@
 package controllers;
 
+import services.FileUploaderService;
 import services.MentorService;
 
 import com.sun.net.httpserver.HttpExchange;
@@ -54,13 +55,17 @@ public class MentorController {
         return this.mentorService.getAddQuestPageRender();
     }
 
+    public String getPendingArtifactsPage() {
+        return this.mentorService.getPendingArtifactsPageRender();
+    }
+
     public String getMentorResponse(HttpExchange httpExchange, String userPageRequest) throws IOException {
         int requestedItemId = getItemIdRequestIfExists(httpExchange);
         String response = "";
 
         switch (userPageRequest) {
             case "index": // GET: index
-                response = mentorService.getIndexPageRender(httpExchange); // Finish parsing personalized index
+                response = getIndexPage(httpExchange); // Finish parsing personalized index
                 break;
 
             case "codecoolers": // GET: codecoolers
@@ -109,11 +114,13 @@ public class MentorController {
                 break;
 
             case "addCodecooler": // POST: add codecooler
+                addItemByHttpExchange(httpExchange, "codecoolers");
                 mentorService.addCodecooler(httpExchange);
                 response = getCodecoolerPage();
                 break;
 
             case "updateCodecooler": // POST: update codecooler
+                addItemByHttpExchange(httpExchange, "codecoolers");
                 mentorService.updateCodecooler(httpExchange, requestedItemId);
                 response = getCodecoolerPage();
                 break;
@@ -149,8 +156,17 @@ public class MentorController {
                 break;
 
             case "deleteArtifact": // POST: delete artifact
-                mentorService.deleteQuest(requestedItemId);
+                mentorService.deleteArtifact(requestedItemId);
                 response = getArtifactPage();
+                break;
+            case "pendingArtifacts": // GET: pending artifacts
+                response = getPendingArtifactsPage();
+
+                break;
+            case "useArtifact": // POST: pending artifacts
+                mentorService.useBackpackItem(httpExchange, requestedItemId);
+                response = getPendingArtifactsPage();
+
                 break;
         }
 
@@ -166,5 +182,9 @@ public class MentorController {
             id = Integer.parseInt(requestUrlArray[4]);
         }
         return id;
+    }
+
+    public void addItemByHttpExchange(HttpExchange httpExchange, String imagesSubFolderName) throws IOException {
+        new FileUploaderService().upload(httpExchange, imagesSubFolderName);
     }
 }

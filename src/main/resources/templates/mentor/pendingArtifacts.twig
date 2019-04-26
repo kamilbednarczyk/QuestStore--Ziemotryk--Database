@@ -50,30 +50,26 @@
 <div id="pageInfo">
     <a href="/quest/mentor/index"><img id="logoImage" src="/static/IMAGES/logoCodecool.jpg" width="70" height="70"></a>
 </div>
-<div id="plusButton">
-    <a href="/quest/mentor/addArtifactPage"><img class="plusButton" src="/static/IMAGES/plusButton.png"></a>
-</div>
 
 <div class="container">
-    {% for artifact in list %}
-        <ul class="item">
-            <img class="avatar" src="//:0" alt="Artifact image">
-            <li class="artifactName">
-                {{ artifact.getName() }}
-            </li>
-            <p class="heading">Description:</p>
-            <li class="description">
-                {{ artifact.getDescription() }}
-            </li>
-            <p class="heading">prize:</p>
-            <li class="prize">
-                {{ artifact.getPrize() }}
-            </li>
-            <li class="editButtonImage"><a href="/quest/mentor/editArtifactPage/{{ artifact.getArtifactId() }}"><img
-                            class="editButton"
-                            src="/static/IMAGES/wrench.png"
-                            ALT="EDIT"></a></li>
-        </ul>
+    {% for backpack in list %}
+    <ul class="item">
+        <li class="level">
+            <span style="font-size: 35px" style="font-weight: normal">{{ backpack.getArtifactName() }}</span>
+        </li>
+        <p class="heading">Description:</p>
+        <li class="email">
+            {{ backpack.getArtifactDescription() }}
+        </li>
+        <p class="heading">State:</p>
+        <li class="email">
+            Pending
+        </li>
+        <li class="editButtonImage"><a href="/quest/mentor/useArtifact/{{ backpack.getBackpackId() }}/{{ backpack.getArtifactId() }}"><img
+                        class="editButton"
+                        src="/static/IMAGES/useIcon.png"
+                        ALT="EDIT"></a></li>
+    </ul>
     {% endfor %}
 </div>
 

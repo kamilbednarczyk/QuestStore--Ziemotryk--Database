@@ -36,7 +36,7 @@ public class DbConnector {
 
         try {
             Statement statement = connection.createStatement();
-            resultSet = statement.executeQuery(query);
+            resultSet = statement.executeQuery(query); // tThere is an error when i try to enter artifacts as mentor
         } catch (SQLException e) {
             e.printStackTrace();
         }

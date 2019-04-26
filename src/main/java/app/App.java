@@ -10,12 +10,11 @@ import java.net.InetSocketAddress;
 public class App {
 
     public void run() throws IOException {
-        //test();
+        // test();
         HttpServer server = HttpServer.create(new InetSocketAddress(7900), 0);
 
         server.createContext("/quest", new Router());
         server.createContext("/", new Static());
-
 
         server.setExecutor(null);
 
@@ -24,5 +23,11 @@ public class App {
     }
 
     public void test() {
+        System.out.println("WYKONALO SIE");
+        new ArtifactsDAO().add(
+                new Artifact(
+                        "nazwaArtifact1", "opis1", 2
+                )
+        );
     }
 }
