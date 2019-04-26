@@ -7,24 +7,14 @@ import controllers.AdminController;
 import controllers.CodecoolerController;
 import controllers.LoginController;
 import controllers.MentorController;
-import databaseAccess.AccountsDAO;
-import databaseAccess.ClassesDAO;
-import databaseAccess.LevelsDAO;
-import databaseAccess.MentorsDAO;
 import models.Account;
-import models.Class;
-import models.Level;
-import models.Mentor;
 import services.FormService;
 import sessionData.SessionHandler;
 import sessionData.CookieHandler;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpCookie;
-import java.net.URLDecoder;
 import java.util.*;
 
 public class Router implements HttpHandler {
@@ -70,15 +60,15 @@ public class Router implements HttpHandler {
         } else if (cookie.isPresent()) {
             int cookiePermissionLevel = sessionHandler.getPermissionFromCookie(cookie);
 
-                System.out.println(cookieHandler.getSessionIdCookieValue(cookie));
-                String[] requestPathArray = httpExchange.getRequestURI().toString().split("/");
-                String userRequestedPermissions = requestPathArray[2];
-                String userPageRequest = requestPathArray[3];
+            System.out.println(cookieHandler.getSessionIdCookieValue(cookie));
+            String[] requestPathArray = httpExchange.getRequestURI().toString().split("/");
+            String userRequestedPermissions = requestPathArray[2];
+            String userPageRequest = requestPathArray[3];
 
-                response = getResponseByCookieAndUrl(httpExchange,
-                                                    cookiePermissionLevel,
-                                                    userRequestedPermissions,
-                                                    userPageRequest);
+            response = getResponseByCookieAndUrl(httpExchange,
+                    cookiePermissionLevel,
+                    userRequestedPermissions,
+                    userPageRequest);
         } else {
             System.out.println("Not found");
             response = "ERROR 404";
@@ -92,11 +82,11 @@ public class Router implements HttpHandler {
                                              String userRequestedPermissions,
                                              String userPageRequest) throws IOException {
         String response;
-        if(userRequestedPermissions.equals("admin") && cookiePermissionLevel == 3) {
+        if (userRequestedPermissions.equals("admin") && cookiePermissionLevel == 3) {
             response = adminController.getAdminResponse(httpExchange, userPageRequest);
-        } else if(userRequestedPermissions.equals("mentor") && cookiePermissionLevel == 2) {
+        } else if (userRequestedPermissions.equals("mentor") && cookiePermissionLevel == 2) {
             response = mentorController.getMentorResponse(httpExchange, userPageRequest);
-        } else if(userRequestedPermissions.equals("codecooler") && cookiePermissionLevel == 1) {
+        } else if (userRequestedPermissions.equals("codecooler") && cookiePermissionLevel == 1) {
             response = codecoolerController.getCodecoolerResponse(httpExchange, userPageRequest);
         } else {
             response = "Error 404";

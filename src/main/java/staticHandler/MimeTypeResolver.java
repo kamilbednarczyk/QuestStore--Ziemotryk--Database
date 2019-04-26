@@ -15,7 +15,7 @@ public class MimeTypeResolver {
         return MimeTypes.mimeTypeMapping.get(getFileExtension().toLowerCase());
     }
 
-    public String getFileExtension(){
+    public String getFileExtension() {
         Pattern pattern = Pattern.compile("\\.(\\w+)$");
         Matcher matcher = pattern.matcher(file.getName());
         matcher.find();

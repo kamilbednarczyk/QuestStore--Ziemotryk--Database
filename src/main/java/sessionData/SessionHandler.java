@@ -21,7 +21,7 @@ public class SessionHandler {
     }
 
     public static SessionHandler getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new SessionHandler();
         }
         return instance;
@@ -37,7 +37,7 @@ public class SessionHandler {
         String permission = String.valueOf(account.getPermission());
 
         String[] accountData = {accountId, permission};
-        System.out.println("randomSessionId |||"+randomSessionId+"|||"); // remove later
+        System.out.println("randomSessionId |||" + randomSessionId + "|||"); // remove later
         activeSessionList.put(randomSessionId, accountData);
         cookieHandler.addSessionIdCookie(randomSessionId, httpExchange);
         System.out.println("ALIVE");

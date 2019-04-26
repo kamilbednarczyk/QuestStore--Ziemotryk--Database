@@ -7,19 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TransactionsHistoryDAO implements IDAO<Transaction>{
+public class TransactionsHistoryDAO implements IDAO<Transaction> {
     DbConnector dbConnector = DbConnector.getInstance();
 
-    public void create() {
-        dbConnector.executeUpdate(
-                "CREATE TABLE transactions (" +
-                        "transaction_id serial PRIMARY KEY," +
-                        "buyer TEXT NOT NULL," +
-                        "date TEXT NOT NULL," +
-                        "artifact_name TEXT NOT NULL" +
-                        ")"
-        );
-    }
 
     @Override
     public void add(Transaction toAdd) {

@@ -4,9 +4,13 @@ import java.util.List;
 
 public interface IDAO<E> {
 
-    public void add(E toAdd);
-    public E get(int id);
-    public List<E> getAll();
-    public void update(int id, E toUpdate);
-    public void delete(int id);
+    void add(E toAdd);
+
+    E get(int id);
+
+    List<E> getAll();
+
+    void update(int id, E toUpdate);
+
+    void delete(int id);
 }

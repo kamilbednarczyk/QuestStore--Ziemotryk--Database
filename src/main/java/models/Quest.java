@@ -12,7 +12,7 @@ public class Quest {
         this.coolcoinPrize = coolcoinPrize;
     }
 
-    public Quest(int questId,  String name, String description, int coolcoinPrize) {
+    public Quest(int questId, String name, String description, int coolcoinPrize) {
         this(name, description, coolcoinPrize);
         this.questId = questId;
     }

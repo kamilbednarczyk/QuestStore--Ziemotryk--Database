@@ -22,7 +22,7 @@ public class ClassesDAO implements IDAO<Class> {
     @Override
     public Class get(int id) {
         ResultSet resultSet = dbConnector.getResultSetByQuery(
-                "SELECT * FROM classes WHERE class_id="+id
+                "SELECT * FROM classes WHERE class_id=" + id
         );
         Class questStoreClass = null;
 
@@ -47,7 +47,7 @@ public class ClassesDAO implements IDAO<Class> {
         );
 
         try {
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 classes.add(
                         new Class(
                                 resultSet.getInt("class_id"),
@@ -73,15 +73,15 @@ public class ClassesDAO implements IDAO<Class> {
     @Override
     public void delete(int id) {
         dbConnector.executeUpdate(
-                "DELETE FROM classes WHERE class_id="+id
+                "DELETE FROM classes WHERE class_id=" + id
         );
     }
 
     public int getClassIdByName(String name) {
         List<Class> classes = getAll();
 
-        for(Class currentClass: classes) {
-            if(currentClass.getClassName().equals(name)) {
+        for (Class currentClass : classes) {
+            if (currentClass.getClassName().equals(name)) {
                 return currentClass.getClassId();
             }
         }

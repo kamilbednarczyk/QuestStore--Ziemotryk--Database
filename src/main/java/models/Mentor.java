@@ -73,7 +73,6 @@ public class Mentor {
         this.avatarFile = avatarFile;
     }
 
-    // Methods
     public String getClassName() {
         return new ClassesDAO().get(classId).getClassName();
     }

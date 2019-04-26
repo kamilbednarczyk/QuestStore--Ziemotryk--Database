@@ -21,14 +21,14 @@ public class CodecoolersDAO implements IDAO<Codecooler> {
                         + "'" + toAdd.getEmail() + "',\n"
                         + "'" + toAdd.getAvatarFile() + "',\n"
                         + "" + toAdd.getCoolcoins() + "\n"
-                        +");"
+                        + ");"
         );
     }
 
     @Override
     public Codecooler get(int id) {
         ResultSet resultSet = dbConnector.getResultSetByQuery(
-                "SELECT * FROM codecoolers WHERE account_id="+id
+                "SELECT * FROM codecoolers WHERE account_id=" + id
         );
         Codecooler codecooler = null;
 
@@ -58,7 +58,7 @@ public class CodecoolersDAO implements IDAO<Codecooler> {
         );
 
         try {
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 codecoolers.add(
                         new Codecooler(
                                 resultSet.getInt("account_id"),
@@ -93,17 +93,8 @@ public class CodecoolersDAO implements IDAO<Codecooler> {
     @Override
     public void delete(int id) {
         dbConnector.executeUpdate(
-                "DELETE FROM codecoolers WHERE account_id="+id
+                "DELETE FROM codecoolers WHERE account_id=" + id
         );
-    }
-
-    public void addArtifactToCodecoolerBackpack(int codecoolerId, Artifact artifact) {
-        Backpack backpack = new Backpack(
-                get(codecoolerId).getBackpackId(),
-                artifact.getArtifactId(),
-                false
-        );
-        new BackpacksDAO().add(backpack);
     }
 
     public void addFinishedQuestReward(Codecooler codecooler, Quest quest) {
@@ -114,8 +105,8 @@ public class CodecoolersDAO implements IDAO<Codecooler> {
 
         dbConnector.executeUpdate(
                 "UPDATE codecoolers\n"
-                    + "SET coolcoins=" + newCodecoolerCoolcoinsValue + "\n"
-                    + "WHERE account_id=" + codecoolerId
+                        + "SET coolcoins=" + newCodecoolerCoolcoinsValue + "\n"
+                        + "WHERE account_id=" + codecoolerId
         );
     }
 }

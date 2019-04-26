@@ -51,8 +51,8 @@ public class CookieHandler {
     public void addSessionIdCookie(String sessionId, HttpExchange httpExchange) {
         System.out.println("im lost here");
         HttpCookie cookie = new HttpCookie(SESSION_COOKIE_NAME, sessionId);
-        cookie.setMaxAge(90*80); // 2 hours
-        System.out.println("cookieSessionId|||"+cookie.getValue()+"|||");
+        cookie.setMaxAge(90 * 80); // 2 hours
+        System.out.println("cookieSessionId|||" + cookie.getValue() + "|||");
         httpExchange.getResponseHeaders().add("Set-Cookie", cookie.toString());
     }
 

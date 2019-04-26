@@ -15,7 +15,7 @@ public class ConnectionPool implements IConnectionPool {
     private List<Connection> usedConnections = new ArrayList<>();
     private static int INITIAL_POOL_SIZE = 10;
 
-    private ConnectionPool (String url, String user, String password, List<Connection> pool) {
+    private ConnectionPool(String url, String user, String password, List<Connection> pool) {
         this.url = url;
         this.user = user;
         this.password = password;

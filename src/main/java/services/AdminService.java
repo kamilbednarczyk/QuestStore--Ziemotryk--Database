@@ -46,8 +46,8 @@ public class AdminService {
         mentor.add(new MentorsDAO().get(id));
         List<Class> possibleClasses = new ClassesDAO().getAll();
 
-        for(int i=0; i<possibleClasses.size(); i++) {
-            if(possibleClasses.get(i).getClassId()==mentor.get(0).getClassId()) {
+        for (int i = 0; i < possibleClasses.size(); i++) {
+            if (possibleClasses.get(i).getClassId() == mentor.get(0).getClassId()) {
                 possibleClasses.remove(i);
             }
         }

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class QuestsDAO implements IDAO<Quest> {
 
-    private DbConnector dbConnector =  DbConnector.getInstance();
+    private DbConnector dbConnector = DbConnector.getInstance();
 
     @Override
     public void add(Quest toAdd) {
@@ -26,7 +26,7 @@ public class QuestsDAO implements IDAO<Quest> {
     @Override
     public Quest get(int id) {
         ResultSet resultSet = dbConnector.getResultSetByQuery(
-                "SELECT * FROM quests WHERE quest_id="+id
+                "SELECT * FROM quests WHERE quest_id=" + id
         );
         Quest quest = null;
 
@@ -77,7 +77,7 @@ public class QuestsDAO implements IDAO<Quest> {
     public void update(int id, Quest toUpdate) {
         String query = "UPDATE quests\n" +
                 "SET name = '" + toUpdate.getName() + "', description = " + toUpdate.getDescription() +
-                "', coolcoin_prize = " + toUpdate.getCoolcoinPrize() +"\n" +
+                "', coolcoin_prize = " + toUpdate.getCoolcoinPrize() + "\n" +
                 "WHERE account_id = " + id;
         dbConnector.executeUpdate(query);
 
@@ -90,7 +90,6 @@ public class QuestsDAO implements IDAO<Quest> {
                 "WHERE quest_id = " + id;
 
         dbConnector.executeUpdate(query);
-
         System.out.println("Deleting quest...");
     }
 }
