@@ -22,12 +22,4 @@ public class App {
         server.start();
     }
 
-    public void test() {
-        System.out.println("WYKONALO SIE");
-        new ArtifactsDAO().add(
-                new Artifact(
-                        "nazwaArtifact1", "opis1", 2
-                )
-        );
-    }
 }
