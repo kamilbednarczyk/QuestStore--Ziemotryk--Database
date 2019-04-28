@@ -30,27 +30,27 @@ public class MentorController {
         return this.mentorService.getQuestPageRender();
     }
 
-    public String getEditCodecoolerPage(HttpExchange httpExchange) {
+    private String getEditCodecoolerPage(HttpExchange httpExchange) {
         return this.mentorService.getEditCodecoolerPageRender(httpExchange);
     }
 
-    public String getAddCodecooler() {
+    private String getAddCodecooler() {
         return this.mentorService.getAddCodecoolerPageRender();
     }
 
-    public String getEditArtifactPage(HttpExchange httpExchange) {
+    private String getEditArtifactPage(HttpExchange httpExchange) {
         return this.mentorService.getEditArtifactPageRender(httpExchange);
     }
 
-    public String getAddArtifactPage() {
+    private String getAddArtifactPage() {
         return this.mentorService.getAddArtifactPageRender();
     }
 
-    public String getEditQuestPage(HttpExchange httpExchange) {
+    private String getEditQuestPage(HttpExchange httpExchange) {
         return this.mentorService.getEditQuestPageRender(httpExchange);
     }
 
-    public String getAddQuestPage() {
+    private String getAddQuestPage() {
         return this.mentorService.getAddQuestPageRender();
     }
 

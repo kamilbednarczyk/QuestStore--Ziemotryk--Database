@@ -17,11 +17,11 @@ public class CodecoolerController {
         return codecoolerService.getIndexPageRender(httpExchange);
     }
 
-    public String getArtifactStorePage() {
+    private String getArtifactStorePage() {
         return codecoolerService.getArtifactStorePageRender();
     }
 
-    public String getBackpackPage(HttpExchange httpExchange) {
+    private String getBackpackPage(HttpExchange httpExchange) {
         return codecoolerService.getBackpackPageRender(httpExchange);
     }
 

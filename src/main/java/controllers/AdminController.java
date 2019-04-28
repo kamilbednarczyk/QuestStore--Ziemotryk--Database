@@ -13,39 +13,39 @@ public class AdminController {
         return adminService.getIndexPageRender();
     }
 
-    public String getMentorPage() {
+    private String getMentorPage() {
         return adminService.getMentorPageRender();
     }
 
-    public String getClassPage() {
+    private String getClassPage() {
         return adminService.getClassPageRender();
     }
 
-    public String getLevelPage() {
+    private String getLevelPage() {
         return adminService.getLevelPageRender();
     }
 
-    public String getEditMentorPage(HttpExchange httpExchange) {
+    private String getEditMentorPage(HttpExchange httpExchange) {
         return adminService.getEditMentorPageRender(httpExchange);
     }
 
-    public String getAddMentorPage() {
+    private String getAddMentorPage() {
         return adminService.getAddMentorPageRender();
     }
 
-    public String getEditLevelPage(HttpExchange httpExchange) {
+    private String getEditLevelPage(HttpExchange httpExchange) {
         return adminService.getEditLevelPageRender(httpExchange);
     }
 
-    public String getAddLevelPage() {
+    private String getAddLevelPage() {
         return adminService.getAddLevelPageRender();
     }
 
-    public String getEditClassPage(HttpExchange httpExchange) {
+    private String getEditClassPage(HttpExchange httpExchange) {
         return adminService.getEditClassPageRender(httpExchange);
     }
 
-    public String getAddClassPage() {
+    private String getAddClassPage() {
         return adminService.getAddClassPageRender();
     }
 

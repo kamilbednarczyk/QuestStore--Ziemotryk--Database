@@ -17,7 +17,7 @@ public class ResponseCreator {
         return loginPage;
     }
 
-    public <E> String renderPageWith(String fileName, List<E> listToFillWith) {
+    <E> String renderPageWith(String fileName, List<E> listToFillWith) {
         String response;
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/" + fileName);
         JtwigModel model;
@@ -26,11 +26,11 @@ public class ResponseCreator {
         return response;
     }
 
-    public String renderPage(String fileName) {
+    String renderPage(String fileName) {
         return renderPageWith(fileName, new ArrayList<>());
     }
 
-    public <E, F> String renderPageWith(String fileName, List<E> firstList, List<F> secondList) {
+    <E, F> String renderPageWith(String fileName, List<E> firstList, List<F> secondList) {
         String response;
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/" + fileName);
         JtwigModel model;
