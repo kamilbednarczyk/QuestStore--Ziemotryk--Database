@@ -18,14 +18,6 @@ public class Quest {
     }
 
     // Getters & Setters
-    public int getQuestId() {
-        return questId;
-    }
-
-    public void setQuestId(int questId) {
-        this.questId = questId;
-    }
-
     public String getName() {
         return name;
     }
@@ -44,9 +36,5 @@ public class Quest {
 
     public int getCoolcoinPrize() {
         return coolcoinPrize;
-    }
-
-    public void setCoolcoinPrize(int coolcoinPrize) {
-        this.coolcoinPrize = coolcoinPrize;
     }
 }

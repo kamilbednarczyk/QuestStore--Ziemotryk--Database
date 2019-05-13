@@ -1,7 +1,5 @@
 package databaseAccess;
 
-import models.Artifact;
-import models.Codecooler;
 import models.Mentor;
 
 import java.sql.ResultSet;
@@ -94,29 +92,5 @@ public class MentorsDAO implements IDAO<Mentor> {
 
         dbConnector.executeUpdate(query);
         System.out.println("delete works");
-    }
-
-    public List<Codecooler> getCodecoolersFromClass(int mentorId) {
-        List<Codecooler> codecoolersFromClass;
-        codecoolersFromClass = new CodecoolersDAO().getAll();
-
-        Codecooler currentCodecooler;
-        int mentorClassId = get(mentorId).getClassId();
-
-        for (int i = 0; i < codecoolersFromClass.size(); i++) {
-            currentCodecooler = codecoolersFromClass.get(i);
-            if (currentCodecooler.getClassId() != mentorClassId) {
-                codecoolersFromClass.remove(i);
-            }
-        }
-
-        return codecoolersFromClass;
-    }
-
-    public void switchCodecoolerArtifactUsedStatus(Artifact artifact, Codecooler codecooler) {
-        new BackpacksDAO().switchArtifactCurrentUsageStatus(
-                artifact.getArtifactId(),
-                codecooler.getBackpackId()
-        );
     }
 }

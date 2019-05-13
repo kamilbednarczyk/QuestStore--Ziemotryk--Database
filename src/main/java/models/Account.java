@@ -35,10 +35,6 @@ public class Account {
         return accountId;
     }
 
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
-    }
-
     public String getLogin() {
         return login;
     }
@@ -51,15 +47,7 @@ public class Account {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public int getPermission() {
         return permission;
-    }
-
-    public void setPermission(int permission) {
-        this.permission = permission;
     }
 }

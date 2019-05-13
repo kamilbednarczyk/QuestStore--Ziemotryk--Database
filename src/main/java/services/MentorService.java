@@ -79,7 +79,7 @@ public class MentorService {
         List<Quest> quest = new ArrayList<>();
         quest.add(new QuestsDAO().get(id));
 
-        return this.mentorResponseCreator.renderAddCodecoolerPage();
+        return this.mentorResponseCreator.renderEditQuestPage(quest);
     }
 
     public String getAddQuestPageRender() {
@@ -127,10 +127,6 @@ public class MentorService {
         Map<String, String> inputs = getFormInputsMap(httpExchange);
         Artifact artifactToUpdate = getArtifactFromForm(inputs);
         new ArtifactsDAO().update(requestedItemId, artifactToUpdate);
-    }
-
-    public void deleteArtifact(int requestedItemId) {
-        new ArtifactsDAO().delete(requestedItemId);
     }
 
     public void addQuest(HttpExchange httpExchange) throws IOException {

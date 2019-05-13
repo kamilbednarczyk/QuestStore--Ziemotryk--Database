@@ -29,10 +29,6 @@ public class Mentor {
         return accountId;
     }
 
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
-    }
-
     public String getFullName() {
         return fullName;
     }
@@ -53,10 +49,6 @@ public class Mentor {
         return classId;
     }
 
-    public void setClassId(int classId) {
-        this.classId = classId;
-    }
-
     public String getAbout() {
         return about;
     }
@@ -67,10 +59,6 @@ public class Mentor {
 
     public String getAvatarFile() {
         return avatarFile;
-    }
-
-    public void setAvatarFile(String avatarFile) {
-        this.avatarFile = avatarFile;
     }
 
     public String getClassName() {

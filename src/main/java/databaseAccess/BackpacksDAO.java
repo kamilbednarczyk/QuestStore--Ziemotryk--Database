@@ -1,7 +1,6 @@
 package databaseAccess;
 
 import models.Backpack;
-import models.Codecooler;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

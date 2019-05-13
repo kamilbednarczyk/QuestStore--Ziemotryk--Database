@@ -18,7 +18,7 @@ public class DbConnector {
 
     private DbConnector() {
         try {
-            this.connectionPool = ConnectionPool.create("jdbc:postgresql://localhost:5432/queststore_database", "queststore_user", "123");
+            this.connectionPool = ConnectionPool.create("jdbc:postgresql://localhost:5432/queststore_database", "gosteek", "Patryk342351");
         } catch (SQLException e) {
             e.printStackTrace();
         }

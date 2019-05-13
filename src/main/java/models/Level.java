@@ -30,23 +30,11 @@ public class Level {
         return coolcoinsNeeded;
     }
 
-    public void setCoolcoinsNeeded(int coolcoinsNeeded) {
-        this.coolcoinsNeeded = coolcoinsNeeded;
-    }
-
     public String getLevelName() {
         return levelName;
     }
 
-    public void setLevelName(String levelName) {
-        this.levelName = levelName;
-    }
-
     public String getLevelDescription() {
         return levelDescription;
-    }
-
-    public void setLevelDescription(String levelDescription) {
-        this.levelDescription = levelDescription;
     }
 }

@@ -18,14 +18,6 @@ public class Artifact {
     }
 
     // Getters & Setters
-    public int getArtifactId() {
-        return artifactId;
-    }
-
-    public void setArtifactId(int artifactId) {
-        this.artifactId = artifactId;
-    }
-
     public String getName() {
         return name;
     }

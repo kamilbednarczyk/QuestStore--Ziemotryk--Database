@@ -36,11 +36,7 @@ public class Backpack {
     public boolean isUsed() {
         return isUsed;
     }
-
-    public void setUsed(boolean used) {
-        isUsed = used;
-    }
-
+    
     public String getArtifactName() {
         return artifactName;
     }

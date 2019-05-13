@@ -2,7 +2,6 @@ package models;
 
 import databaseAccess.BackpacksDAO;
 import databaseAccess.ClassesDAO;
-import databaseAccess.LevelsDAO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,24 +50,12 @@ public class Codecooler {
         return accountId;
     }
 
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
-    }
-
     public int getClassId() {
         return classId;
     }
 
-    public void setClassId(int classId) {
-        this.classId = classId;
-    }
-
     public int getBackpackId() {
         return backpackId;
-    }
-
-    public void setBackpackId(int backpackId) {
-        this.backpackId = backpackId;
     }
 
     public String getFullName() {
@@ -91,10 +78,6 @@ public class Codecooler {
         return avatarFile;
     }
 
-    public void setAvatarFile(String avatarFile) {
-        this.avatarFile = avatarFile;
-    }
-
     public int getCoolcoins() {
         return coolcoins;
     }
@@ -107,15 +90,10 @@ public class Codecooler {
         return new ClassesDAO().get(classId).getClassName();
     }
 
-    public Level getLevelBy(int coolcoins) {
-        return new LevelsDAO().getLevelBy(coolcoins);
-
-    }
-
     public List<Backpack> getBackpacks() {
         BackpacksDAO backpacksDAO = new BackpacksDAO();
         List<Backpack> allBackpacks = backpacksDAO.getAll();
-        
+
         List<Backpack> codecoolerBackpacks = new ArrayList<>();
 
         for (int i = 0; i < allBackpacks.size(); i++) {

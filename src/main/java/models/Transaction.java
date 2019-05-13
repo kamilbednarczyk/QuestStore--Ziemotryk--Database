@@ -17,10 +17,6 @@ public class Transaction {
         this.transactionId = transactionId;
     }
 
-    public int getTransactionId() {
-        return transactionId;
-    }
-
     public String getBuyer() {
         return buyer;
     }

@@ -54,7 +54,7 @@ public class CodecoolerService {
     }
 
 
-    public boolean buyArtifact(HttpExchange httpExchange) {
+    public void buyArtifact(HttpExchange httpExchange) {
         int accountId = getAccountIdBy(httpExchange);
         Codecooler codecooler = new CodecoolersDAO().get(accountId);
 
@@ -70,9 +70,7 @@ public class CodecoolerService {
             addTransactionToTransactionsHistory(artifactName, codecoolerFullName);
             addItemToBackpack(codecooler, artifactId);
 
-            return true;
         } else {
-            return false;
         }
     }
 
