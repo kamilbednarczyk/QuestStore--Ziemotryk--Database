@@ -64,7 +64,7 @@ public class SessionHandler {
         return activeSessionList.get(cookieSessionId)[index];
     }
 
-    private String getRandomSessionId() {
+    public String getRandomSessionId() {
         String randomId = "";
         Random random = new Random();
 
